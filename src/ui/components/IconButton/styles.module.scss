@@ -1,0 +1,18 @@
+.icon-button {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 40px;
+  padding: 8px;
+  border: none;
+  background-color: transparent;
+  color: var(--text-primary);
+  cursor: pointer;
+  outline: none;
+  border-radius: 50%;
+  aspect-ratio: 1;
+
+  &:hover {
+    background-color: var(--action-hover);
+  }
+}

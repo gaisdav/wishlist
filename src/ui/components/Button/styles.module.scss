@@ -1,0 +1,58 @@
+.button {
+  height: 40px;
+  padding: 8px 16px;
+  font-size: 1em;
+  font-weight: 500;
+  font-family: inherit;
+  cursor: pointer;
+  transition: border-color 0.25s;
+  background-color: var(--primary-main);
+  border: 2px solid;
+  border-color: var(--primary-main);
+  color: var(--primary-contrast-text);
+  outline: none;
+  border-radius: 8px;
+  -webkit-tap-highlight-color: rgba(0, 0, 0, 0);
+
+  &:active {
+    outline: none;
+  }
+
+  &:hover {
+    background-color: var(--primary-dark);
+    border-color: var(--primary-dark);
+  }
+
+  &:focus,
+  &:focus-visible {
+    border-color: 2px auto var(--primary-dark);
+  }
+
+  &.secondary {
+    background-color: var(--secondary-main);
+    border-color: var(--secondary-main);
+    color: var(--secondary-contrast-text);
+
+    &:hover:not(.outlined) {
+      background-color: var(--secondary-dark);
+    }
+
+    &:focus,
+    &:focus-visible {
+      outline: 2px auto var(--secondary-dark);
+    }
+  }
+
+  &.outlined {
+    background-color: transparent;
+    color: var(--text-primary);
+
+    &.primary {
+      color: var(--primary-main);
+    }
+
+    &.secondary {
+      color: var(--secondary-main);
+    }
+  }
+}

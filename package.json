@@ -1,0 +1,25 @@
+{
+  "name": "wishlist",
+  "private": true,
+  "version": "0.0.0",
+  "type": "module",
+  "scripts": {
+    "prebuild": "pollen",
+    "dev": "vite --host",
+    "build": "tsc && vite build",
+    "preview": "vite preview"
+  },
+  "dependencies": {
+    "solid-js": "^1.7.11"
+  },
+  "devDependencies": {
+    "classnames": "^2.3.2",
+    "prettier": "^3.0.2",
+    "sass": "^1.66.1",
+    "typescript": "^5.1.6",
+    "vite": "^4.4.9",
+    "vite-plugin-pwa": "^0.16.4",
+    "vite-plugin-solid": "^2.7.0"
+  },
+  "packageManager": "pnpm@8.3.1"
+}
