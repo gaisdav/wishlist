@@ -1,4 +1,4 @@
 import { IComponent } from '../../common';
 
 export interface IWishesProps {}
-export type TWishesComponent = IComponent<IWishesProps, HTMLDivElement>;
+export type TProfileComponent = IComponent<IWishesProps, HTMLDivElement>;
