@@ -1,4 +1,4 @@
-import { IComponent } from '../../common/types.ts';
+import { IComponent } from '../../common';
 
 export interface IBottomNavigationProps {
   onOpenCreateWish?: () => void;
