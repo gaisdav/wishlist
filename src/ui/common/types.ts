@@ -7,5 +7,5 @@ export interface IBreakpoints {
   xl: number;
 }
 
-export interface IComponent<P = {}, T = HTMLElement>
-  extends SolidComponent<P & Omit<JSX.HTMLAttributes<T>, 'class'>> {}
+export interface IComponent<P = object, T = HTMLElement>
+  extends SolidComponent<P & JSX.HTMLAttributes<T>> {}

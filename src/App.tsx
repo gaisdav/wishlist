@@ -1,10 +1,12 @@
-import { createSignal } from 'solid-js';
+import { Route, Router, Routes } from '@solidjs/router';
+import { createSignal, For } from 'solid-js';
+
 import './App.css';
-import { PageWrapper } from './ui/components/PageWrapper';
-import Wishes from './ui/pages/wishes/Wishes.tsx';
-import { BottomNavigation } from './ui/components/BottomNavigation';
 import { AppWrapper } from './ui/components/AppWrapper/AppWrapper.tsx';
-import { Modal } from './ui/components/Modals';
+import { BottomNavigation } from './ui/components/BottomNavigation';
+import { Modal } from './ui/components/Modal';
+import { PageWrapper } from './ui/components/PageWrapper';
+import { routes } from './ui/routes/routes.ts';
 
 function App() {
   const [open, setOpen] = createSignal(false);
@@ -24,19 +26,30 @@ function App() {
   };
 
   return (
-    <AppWrapper>
-      <PageWrapper>
-        <Wishes />
-      </PageWrapper>
+    <Router>
+      <AppWrapper>
+        <PageWrapper>
+          <Routes>
+            <For each={routes} fallback={<div>Loading...</div>}>
+              {(route) => <Route path={route.path} component={route.component} />}
+            </For>
+            <Route path="*" component={() => <div>Page Not found!!!</div>} />
+          </Routes>
+        </PageWrapper>
 
-      <BottomNavigation onChangeTheme={changeTheme} onOpenCreateWish={openDialog} />
+        <BottomNavigation onChangeTheme={changeTheme} onOpenCreateWish={openDialog} />
 
-      {open() && (
-        <Modal title="Create wish" onClose={closeDialog}>
-          <div style={{ height: '800px' }}>Content</div>
+        <Modal open={open} title="Create wish" onClose={closeDialog}>
+          <div
+            style={{
+              height: '800px',
+            }}
+          >
+            Content
+          </div>
         </Modal>
-      )}
-    </AppWrapper>
+      </AppWrapper>
+    </Router>
   );
 }
 

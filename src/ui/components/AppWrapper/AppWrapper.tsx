@@ -1,6 +1,6 @@
-import { IComponent } from '../../common/types.ts';
 import css from './styles.module.scss';
+import { IComponent } from '../../common/types.ts';
 
-export const AppWrapper: IComponent = ({ children }) => {
-  return <div class={css['app-wrapper']}>{children}</div>;
+export const AppWrapper: IComponent = (props) => {
+  return <div class={css['app-wrapper']}>{props.children}</div>;
 };

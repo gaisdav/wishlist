@@ -1,29 +1,33 @@
-import { TBottomNavigationComponent } from './types.ts';
-import { Card } from '../Card';
 import cn from 'classnames';
-import css from './styles.module.scss';
-import { Button } from '../Button';
-import { IconButton } from '../IconButton';
+import { splitProps } from 'solid-js';
 
-export const BottomNavigation: TBottomNavigationComponent = ({
-  onChangeTheme,
-  onOpenCreateWish,
-  className,
-  ...props
-}) => {
+import css from './styles.module.scss';
+import { TBottomNavigationComponent } from './types.ts';
+import { ERoute } from '../../routes/routes.ts';
+import { Card } from '../simple';
+import { Button } from '../simple';
+import { IconButton } from '../simple';
+
+export const BottomNavigation: TBottomNavigationComponent = (_props) => {
+  const [{ class: className = '', ...props }, others] = splitProps(_props, [
+    'class',
+    'onChangeTheme',
+    'onOpenCreateWish',
+  ]);
+
   const classes = cn(css['bottom-navigation'], className);
 
   return (
-    <Card className={classes} {...props}>
-      <IconButton iconName="browse" onClick={onChangeTheme} />
+    <Card class={classes} {...others}>
+      <IconButton iconName="browse" onClick={props.onChangeTheme} href={ERoute.HOME} />
 
-      <Button className={css['hidden-button']}>-</Button>
+      <Button class={css['hidden-button']}>-</Button>
 
-      <Card className={css.add}>
-        <IconButton className={css['add-button']} iconName="add" onClick={onOpenCreateWish} />
+      <Card class={css.add}>
+        <IconButton class={css['add-button']} iconName="add" onClick={props.onOpenCreateWish} />
       </Card>
 
-      <IconButton iconName="person" />
+      <IconButton iconName="person" href={ERoute.PROFILE} />
     </Card>
   );
 };

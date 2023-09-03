@@ -1,8 +1,9 @@
-import { IComponent } from '../../common/types.ts';
+import { Accessor } from 'solid-js';
 
-export type TModalType = 'simple' | 'bottom';
+import { IComponent } from '../../common';
 
 export interface IModalProps {
+  open: Accessor<boolean>;
   title?: string;
   onClose?: () => void;
   className?: string;
