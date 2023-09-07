@@ -1,6 +1,6 @@
 import { JSX } from 'solid-js';
 
-import { ERoute } from '../../../routes/routes.ts';
+import { ERoute } from '../../../routes/types.ts';
 
 export interface IBaseButtonProps {
   color?: 'primary' | 'secondary';

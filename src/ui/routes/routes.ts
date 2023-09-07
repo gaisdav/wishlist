@@ -1,11 +1,9 @@
+import { RouteDefinition } from '@solidjs/router';
 import { lazy } from 'solid-js';
 
-export enum ERoute {
-  HOME = '/',
-  PROFILE = '/profile',
-}
+import { ERoute } from './types.ts';
 
-export const routes = [
+export const routes: RouteDefinition[] = [
   {
     path: ERoute.HOME,
     component: lazy(() => import('../pages/wishes/Wishes')),

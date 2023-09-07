@@ -1,5 +1,5 @@
-import { Route, Router, Routes } from '@solidjs/router';
-import { createSignal, For } from 'solid-js';
+import { Router, useRoutes } from '@solidjs/router';
+import { createSignal } from 'solid-js';
 
 import './App.css';
 import { AppWrapper } from './ui/components/AppWrapper/AppWrapper.tsx';
@@ -10,6 +10,7 @@ import { routes } from './ui/routes/routes.ts';
 
 function App() {
   const [open, setOpen] = createSignal(false);
+  const Routes = useRoutes(routes);
 
   const changeTheme = () => {
     const theme = document.documentElement.getAttribute('data-theme');
@@ -29,12 +30,7 @@ function App() {
     <Router>
       <AppWrapper>
         <PageWrapper>
-          <Routes>
-            <For each={routes} fallback={<div>Loading...</div>}>
-              {(route) => <Route path={route.path} component={route.component} />}
-            </For>
-            <Route path="*" component={() => <div>Page Not found!!!</div>} />
-          </Routes>
+          <Routes />
         </PageWrapper>
 
         <BottomNavigation onChangeTheme={changeTheme} onOpenCreateWish={openDialog} />

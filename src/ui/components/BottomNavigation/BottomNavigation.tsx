@@ -3,7 +3,7 @@ import { splitProps } from 'solid-js';
 
 import css from './styles.module.scss';
 import { TBottomNavigationComponent } from './types.ts';
-import { ERoute } from '../../routes/routes.ts';
+import { ERoute } from '../../routes/types.ts';
 import { Card } from '../simple';
 import { Button } from '../simple';
 import { IconButton } from '../simple';
