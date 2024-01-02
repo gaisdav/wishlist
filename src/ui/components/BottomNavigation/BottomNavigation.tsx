@@ -23,9 +23,9 @@ export const BottomNavigation: TBottomNavigationComponent = (_props) => {
 
       <Button class={css['hidden-button']}>-</Button>
 
-      <Card class={css.add}>
+      <div class={css.add}>
         <IconButton class={css['add-button']} iconName="add" onClick={props.onOpenCreateWish} />
-      </Card>
+      </div>
 
       <IconButton iconName="person" href={ERoute.PROFILE} />
     </Card>

@@ -7,7 +7,7 @@ import { TCardComponent } from './types.ts';
 export const Card: TCardComponent = (_props) => {
   const [{ class: className = '' }, others] = splitProps(_props, ['class']);
 
-  const cardClasses = cn(css.card, className);
+  const cardClasses = cn(className, css.card);
 
   return <div class={cardClasses}>{others.children}</div>;
 };
