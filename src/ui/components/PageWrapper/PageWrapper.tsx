@@ -1,6 +1,6 @@
 import css from './styles.module.scss';
-import { IComponent } from '../../common';
+import { FC, PropsWithChildren } from 'react';
 
-export const PageWrapper: IComponent = (props) => {
-  return <div class={css['page-wrapper']}>{props.children}</div>;
+export const PageWrapper: FC<PropsWithChildren> = (props) => {
+  return <div className={css['page-wrapper']}>{props.children}</div>;
 };

@@ -1,22 +1,23 @@
+import { FC } from 'react';
 import css from './styles.module.scss';
 import { TWishesComponent } from './types.ts';
 import { Card } from '../../components/simple';
 
-export const Wishes: TWishesComponent = () => {
+export const Wishes: FC<TWishesComponent> = () => {
   return (
-    <div class={css.wishes}>
-      <Card class={css.wish} />
-      <Card class={css.wish} />
-      <Card class={css.wish} />
-      <Card class={css.wish} />
-      <Card class={css.wish} />
-      <Card class={css.wish} />
-      <Card class={css.wish} />
-      <Card class={css.wish} />
-      <Card class={css.wish} />
-      <Card class={css.wish} />
-      <Card class={css.wish} />
-      <Card class={css.wish} />
+    <div className={css.wishes}>
+      <Card className={css.wish} />
+      <Card className={css.wish} />
+      <Card className={css.wish} />
+      <Card className={css.wish} />
+      <Card className={css.wish} />
+      <Card className={css.wish} />
+      <Card className={css.wish} />
+      <Card className={css.wish} />
+      <Card className={css.wish} />
+      <Card className={css.wish} />
+      <Card className={css.wish} />
+      <Card className={css.wish} />
     </div>
   );
 };

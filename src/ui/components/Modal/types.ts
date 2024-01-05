@@ -1,12 +1,10 @@
-import { Accessor } from 'solid-js';
-
-import { IComponent } from '../../common';
+import { HTMLAttributes } from 'react';
 
 export interface IModalProps {
-  open: Accessor<boolean>;
+  open: boolean;
   title?: string;
   onClose?: () => void;
   className?: string;
 }
 
-export type TModalComponent = IComponent<IModalProps, HTMLDivElement>;
+export type TModalComponent = IModalProps & HTMLAttributes<HTMLDivElement>;
