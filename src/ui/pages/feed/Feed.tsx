@@ -3,7 +3,7 @@ import css from './styles.module.scss';
 import { TWishesComponent } from './types.ts';
 import { Card } from '../../components/simple';
 
-export const Wishes: FC<TWishesComponent> = () => {
+export const Feed: FC<TWishesComponent> = () => {
   return (
     <div className={css.wishes}>
       <Card className={css.wish} />
@@ -22,4 +22,4 @@ export const Wishes: FC<TWishesComponent> = () => {
   );
 };
 
-export default Wishes;
+export default Feed;
