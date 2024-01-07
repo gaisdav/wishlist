@@ -1,13 +1,14 @@
 import cn from 'classnames';
-import { splitProps } from 'solid-js';
 
 import css from './styles.module.scss';
 import { TCardComponent } from './types.ts';
+import { FC, PropsWithChildren } from 'react';
 
-export const Card: TCardComponent = (_props) => {
-  const [{ class: className = '' }, others] = splitProps(_props, ['class']);
-
+export const Card: FC<PropsWithChildren<TCardComponent>> = ({
+  className,
+  children,
+}) => {
   const cardClasses = cn(css.card, className);
 
-  return <div class={cardClasses}>{others.children}</div>;
+  return <div className={cardClasses}>{children}</div>;
 };

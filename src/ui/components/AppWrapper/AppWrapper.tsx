@@ -1,6 +1,6 @@
+import { FC, PropsWithChildren } from 'react';
 import css from './styles.module.scss';
-import { IComponent } from '../../common';
 
-export const AppWrapper: IComponent = (props) => {
-  return <div class={css['app-wrapper']}>{props.children}</div>;
+export const AppWrapper: FC<PropsWithChildren> = (props) => {
+  return <div className={css['app-wrapper']}>{props.children}</div>;
 };

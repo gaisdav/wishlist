@@ -1,5 +1,5 @@
-import { IComponent } from '../../../common';
+import { HTMLAttributes } from 'react';
 
 export interface ICardsProps {}
 
-export type TCardComponent = IComponent<ICardsProps, HTMLDivElement>;
+export type TCardComponent = ICardsProps & HTMLAttributes<HTMLDivElement>;

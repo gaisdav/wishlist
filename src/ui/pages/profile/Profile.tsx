@@ -1,8 +1,8 @@
 import css from './styles.module.scss';
-import { TProfileComponent } from './types.ts';
+import { FC, PropsWithChildren } from 'react';
 
-export const Profile: TProfileComponent = () => {
-  return <div class={css.profile}>profile</div>;
+export const Profile: FC<PropsWithChildren> = () => {
+  return <div className={css.profile}>profile</div>;
 };
 
 export default Profile;

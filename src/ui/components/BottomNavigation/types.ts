@@ -1,8 +1,9 @@
-import { IComponent } from '../../common';
+import { HTMLAttributes } from 'react';
 
 export interface IBottomNavigationProps {
   onOpenCreateWish?: () => void;
-  onChangeTheme?: () => void;
+  onSwitchTheme?: () => void;
 }
 
-export type TBottomNavigationComponent = IComponent<IBottomNavigationProps, HTMLDivElement>;
+export type TBottomNavigationComponent = IBottomNavigationProps &
+  HTMLAttributes<HTMLDivElement>;

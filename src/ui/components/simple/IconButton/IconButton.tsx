@@ -1,22 +1,11 @@
-import cn from 'classnames';
-import { splitProps } from 'solid-js';
+import { FC } from 'react';
+import { IIconButtonProps } from './types.ts';
+import { Button } from '../Button';
 
-import css from './styles.module.scss';
-import { IIconButtonProps, ILinkIconButtonProps } from './types.ts';
-import { Button, IButtonProps, ILinkButtonProps } from '../Button';
-
-export const IconButton = (_props: IIconButtonProps | ILinkIconButtonProps) => {
-  const [{ class: className = '', iconName, href }, others] = splitProps(_props, [
-    'class',
-    'iconName',
-    'href',
-  ]);
-
-  const classes = cn(css['icon-button'], className);
-
+export const IconButton: FC<IIconButtonProps> = ({ iconName, ...props }) => {
   return (
-    <Button {...(others as ILinkButtonProps | IButtonProps)} href={href} class={classes}>
-      <span class="material-symbols-rounded">{iconName}</span>
+    <Button {...props}>
+      <span className="material-symbols-rounded">{iconName}</span>
     </Button>
   );
 };
