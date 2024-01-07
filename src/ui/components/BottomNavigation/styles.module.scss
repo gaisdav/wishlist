@@ -14,9 +14,9 @@
   display: flex;
   top: -28px;
   aspect-ratio: 1;
-  background-color: var(--background-paper);
-  box-shadow: none;
-  border-radius: 100%;
+  background-color: var(--background-default);
+  box-shadow: 0 0 15px -3px rgba(0, 0, 0, 0.1);
+  border-radius: 50%;
 
   .add-button {
     border-radius: 50%;
