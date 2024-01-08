@@ -3,8 +3,8 @@ import cn from 'classnames';
 
 import css from './styles.module.scss';
 import { TModalComponent } from './types.ts';
-import { breakpoints } from '../../common';
-import { Button, IconButton } from '../simple';
+import { breakpoints } from '../../../common';
+import { Button, IconButton } from '../../atoms';
 
 export const Modal: FC<PropsWithChildren<TModalComponent>> = ({
   className,

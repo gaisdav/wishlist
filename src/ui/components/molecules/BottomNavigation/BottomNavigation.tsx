@@ -1,10 +1,8 @@
 import { FC } from 'react';
 import { TBottomNavigationComponent } from './types.ts';
-import { Button } from '../simple';
+import { Button } from '../../atoms';
 
-export const BottomNavigation: FC<TBottomNavigationComponent> = ({
-  className,
-}) => {
+export const BottomNavigation: FC<TBottomNavigationComponent> = ({ className }) => {
   return (
     <div className={className}>
       <Button>a</Button>

@@ -1,7 +1,7 @@
 import { FC } from 'react';
 import css from './styles.module.scss';
 import { TWishesComponent } from './types.ts';
-import { Card } from '../../components/simple';
+import { Card } from '../../components/atoms';
 
 export const Feed: FC<TWishesComponent> = () => {
   return (
