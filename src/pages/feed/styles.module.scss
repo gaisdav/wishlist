@@ -1,6 +1,6 @@
-@import '../../common/styles/breakpoints.scss';
+@import '../../common/styles/breakpoints';
 
-.wishes {
+.feed {
   display: grid;
   gap: var(--grid-gap, 12px);
   padding: 12px 16px;

@@ -1,36 +1,16 @@
 import React from 'react';
 import ReactDOM from 'react-dom/client';
 import './index.css';
-import { RouterProvider } from 'react-router-dom';
-import { router } from './ui/routes/routes.tsx';
-import { PageWrapper } from './ui/components/organisms/PageWrapper';
-import { BottomNavigation } from './ui/components/molecules/BottomNavigation';
-import { CssVarsProvider, extendTheme } from '@mui/joy/styles';
-
-const theme = extendTheme({
-  cssVarPrefix: 'wl',
-  components: {
-    JoyCard: {
-      defaultProps: {
-        variant: 'soft',
-      },
-    },
-    JoyButton: {
-      defaultProps: {
-        variant: 'soft',
-      },
-    },
-  },
-});
+import { CssVarsProvider } from '@mui/joy/styles';
+import CssBaseline from '@mui/joy/CssBaseline';
+import { theme } from './theme.ts';
+import App from './App.tsx';
 
 ReactDOM.createRoot(document.getElementById('root')!).render(
   <React.StrictMode>
     <CssVarsProvider defaultMode="system" theme={theme}>
-      <PageWrapper>
-        <RouterProvider router={router} />
-      </PageWrapper>
-
-      <BottomNavigation />
+      <CssBaseline />
+      <App />
     </CssVarsProvider>
   </React.StrictMode>,
 );

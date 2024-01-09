@@ -1313,7 +1313,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@babel/runtime@npm:^7.11.2, @babel/runtime@npm:^7.12.5, @babel/runtime@npm:^7.18.3, @babel/runtime@npm:^7.23.2, @babel/runtime@npm:^7.23.6, @babel/runtime@npm:^7.8.4":
+"@babel/runtime@npm:^7.11.2, @babel/runtime@npm:^7.12.5, @babel/runtime@npm:^7.18.3, @babel/runtime@npm:^7.23.2, @babel/runtime@npm:^7.23.6, @babel/runtime@npm:^7.5.5, @babel/runtime@npm:^7.8.4, @babel/runtime@npm:^7.8.7":
   version: 7.23.7
   resolution: "@babel/runtime@npm:7.23.7"
   dependencies:
@@ -1866,22 +1866,6 @@ __metadata:
   version: 5.15.3
   resolution: "@mui/core-downloads-tracker@npm:5.15.3"
   checksum: 002451af1aa555c0163c0ffacde5c15062e0ae0f30b81945e1a0befe7b6c5d14924a2b068b7b5f713c177ee3eecca4fc250d590d11206a6b5465700c399a34d1
-  languageName: node
-  linkType: hard
-
-"@mui/icons-material@npm:^5.15.3":
-  version: 5.15.3
-  resolution: "@mui/icons-material@npm:5.15.3"
-  dependencies:
-    "@babel/runtime": ^7.23.6
-  peerDependencies:
-    "@mui/material": ^5.0.0
-    "@types/react": ^17.0.0 || ^18.0.0
-    react: ^17.0.0 || ^18.0.0
-  peerDependenciesMeta:
-    "@types/react":
-      optional: true
-  checksum: 8b6084e2ac285d13cbb1711a2577ba1f0493b12beb0f5d45da01a0fd2c99b5b69b9990ae2daf2d5bd3c751cd43815b573c51bae09397a496b5ba4aa074d9a91c
   languageName: node
   linkType: hard
 
@@ -3255,6 +3239,16 @@ __metadata:
   dependencies:
     esutils: ^2.0.2
   checksum: fd7673ca77fe26cd5cba38d816bc72d641f500f1f9b25b83e8ce28827fe2da7ad583a8da26ab6af85f834138cf8dae9f69b0cd6ab925f52ddab1754db44d99ce
+  languageName: node
+  linkType: hard
+
+"dom-helpers@npm:^5.0.1":
+  version: 5.2.1
+  resolution: "dom-helpers@npm:5.2.1"
+  dependencies:
+    "@babel/runtime": ^7.8.7
+    csstype: ^3.0.2
+  checksum: 863ba9e086f7093df3376b43e74ce4422571d404fc9828bf2c56140963d5edf0e56160f9b2f3bb61b282c07f8fc8134f023c98fd684bddcb12daf7b0f14d951c
   languageName: node
   linkType: hard
 
@@ -5490,7 +5484,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"prop-types@npm:^15.8.1":
+"prop-types@npm:^15.6.2, prop-types@npm:^15.8.1":
   version: 15.8.1
   resolution: "prop-types@npm:15.8.1"
   dependencies:
@@ -5578,6 +5572,21 @@ __metadata:
   peerDependencies:
     react: ">=16.8"
   checksum: c6774cf4440b524401cecb40f4fbf4dbc89d61405f9f6d3cb3d2338e262a5254b9e27bc6039dc32e2c5f8b3009e83e9d6b30a61159dd6c423297cb0e3bd46fb3
+  languageName: node
+  linkType: hard
+
+"react-transition-group@npm:^4.4.5":
+  version: 4.4.5
+  resolution: "react-transition-group@npm:4.4.5"
+  dependencies:
+    "@babel/runtime": ^7.5.5
+    dom-helpers: ^5.0.1
+    loose-envify: ^1.4.0
+    prop-types: ^15.6.2
+  peerDependencies:
+    react: ">=16.6.0"
+    react-dom: ">=16.6.0"
+  checksum: 75602840106aa9c6545149d6d7ae1502fb7b7abadcce70a6954c4b64a438ff1cd16fc77a0a1e5197cdd72da398f39eb929ea06f9005c45b132ed34e056ebdeb1
   languageName: node
   linkType: hard
 
@@ -6735,7 +6744,6 @@ __metadata:
   dependencies:
     "@emotion/react": ^11.11.3
     "@emotion/styled": ^11.11.0
-    "@mui/icons-material": ^5.15.3
     "@mui/joy": ^5.0.0-beta.21
     "@types/react": ^18.2.43
     "@types/react-dom": ^18.2.17
@@ -6755,6 +6763,7 @@ __metadata:
     react: ^18.2.0
     react-dom: ^18.2.0
     react-router-dom: ^6.21.1
+    react-transition-group: ^4.4.5
     sass: ^1.69.7
     typescript: ^5.2.2
     vite: ^5.0.8
