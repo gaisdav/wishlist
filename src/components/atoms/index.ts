@@ -1,3 +1,4 @@
+export * from './Link';
 export * from './Card';
 export * from './Icon';
 export * from './Button';

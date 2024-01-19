@@ -1,15 +1,17 @@
 import { createBrowserRouter } from 'react-router-dom';
 import { ERoute } from './types.ts';
+import { AppWrapper } from '../components/organisms';
 import Profile from '../pages/profile/Profile.tsx';
-import Feed from '../pages/feed/Feed.tsx';
 
-export const router = createBrowserRouter([
+export const routes = createBrowserRouter([
   {
-    path: ERoute.HOME,
-    element: <Feed />,
-  },
-  {
-    path: ERoute.PROFILE,
-    element: <Profile />,
+    path: '/',
+    Component: AppWrapper,
+    children: [
+      {
+        path: ERoute.HOME,
+        element: <Profile />,
+      },
+    ],
   },
 ]);
