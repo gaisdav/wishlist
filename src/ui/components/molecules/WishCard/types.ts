@@ -1,5 +1,6 @@
 export interface IWishCard {
+  loading?: boolean;
   title: string;
   description?: string;
-  src?: string;
+  imageSrc?: string;
 }

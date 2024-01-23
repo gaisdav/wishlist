@@ -1,7 +1,7 @@
 import { FC } from 'react';
 import { IBottomNavigation } from './types.ts';
 import { Icon, IconButton, Link } from '../../atoms';
-import { ERoute } from '../../../routes/types.ts';
+import { ERoute } from '../../../../routes/types.ts';
 
 export const BottomNavigation: FC<IBottomNavigation> = ({ className, onSwitchTheme, ...props }) => (
   <nav className={className} {...props}>
