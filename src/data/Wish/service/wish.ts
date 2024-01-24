@@ -1,11 +1,19 @@
 import { IWishService } from './types.ts';
-import { IWishEntity } from '../entity';
+import { ICreateWishDTO, IWishEntity, Wish } from '../entity';
 import { IWishRepository } from '../repository';
 
 export class WishService implements IWishService {
   constructor(private repository: IWishRepository) {}
 
-  getList(): Promise<IWishEntity[]> {
-    return this.repository.getList();
+  async getList(): Promise<IWishEntity[]> {
+    const list = await this.repository.getList();
+
+    return list.map((item) => new Wish(item));
+  }
+
+  async createWish(dto: ICreateWishDTO): Promise<IWishEntity> {
+    const wish = await this.repository.createWish(dto);
+
+    return new Wish(wish);
   }
 }

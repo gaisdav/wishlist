@@ -1,5 +1,5 @@
 import { IWishVM } from './types.ts';
-import { IWishEntity } from '../entity';
+import { ICreateWishDTO, IWishEntity } from '../entity';
 import { IWishService } from '../service';
 import { makeAutoObservable } from 'mobx';
 
@@ -22,6 +22,12 @@ export class WishVM implements IWishVM {
   async getList(): Promise<void> {
     this._loading = true;
     this._list = await this.service.getList();
+    this._loading = false;
+  }
+
+  async createWish(dto: ICreateWishDTO): Promise<void> {
+    this._loading = true;
+    await this.service.createWish(dto);
     this._loading = false;
   }
 }

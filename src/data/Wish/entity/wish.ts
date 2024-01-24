@@ -1,10 +1,19 @@
-import { IWishEntity } from './types.ts';
-import { faker } from '@faker-js/faker';
+import { IWishEntity, IWishResponse } from './types.ts';
 
 export class Wish implements IWishEntity {
-  id: string = faker.string.uuid();
-  title: string = faker.lorem.words(3);
-  description?: string = faker.lorem.sentence();
-  createdAt: string = faker.date.past().toISOString();
-  updatedAt: string = faker.date.past().toISOString();
+  id: string = '';
+  title: string = '';
+  imageSrc?: string;
+  description?: string;
+  createdAt: string = '';
+  updatedAt: string = '';
+
+  constructor(data: IWishResponse) {
+    this.id = data.id;
+    this.title = data.title;
+    this.imageSrc = data.imageSrc;
+    this.description = data.description;
+    this.createdAt = data.createdAt;
+    this.updatedAt = data.updatedAt;
+  }
 }

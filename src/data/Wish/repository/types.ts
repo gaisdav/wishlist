@@ -1,5 +1,6 @@
-import { IWishEntity } from '../entity';
+import { ICreateWishDTO, IWishResponse } from '../entity';
 
 export interface IWishRepository {
-  getList(): Promise<IWishEntity[]>;
+  getList(): Promise<IWishResponse[]>;
+  createWish(dto: ICreateWishDTO): Promise<IWishResponse>;
 }
