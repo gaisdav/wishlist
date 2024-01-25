@@ -1,4 +1,4 @@
-import { FC } from 'react';
+import { FC, useMemo } from 'react';
 import { IAddWishModal } from './types.ts';
 import { Modal } from '../Modal';
 import { Button, Input, Textarea } from '../../atoms';
@@ -25,7 +25,7 @@ export const AddWishModal: FC<IAddWishModal> = ({ loading = false, open = false,
     handleCLose();
   };
 
-  const title = mode === 'add' ? 'Add Wish' : 'Edit Wish';
+  const title = useMemo(() => (mode === 'add' ? 'Add Wish' : 'Edit Wish'), [mode]);
 
   return (
     <Modal open={open} title={title} onClose={handleCLose}>
