@@ -19,7 +19,7 @@ if (!moduleName) {
 
 const createFolderAndFiles = (moduleName) => {
   // Create a folder
-  const componentsDir = path.join(__dirname, `src/components/${folderName}`, moduleName);
+  const componentsDir = path.join(__dirname, `src/ui/components/${folderName}`, moduleName);
 
   if (!fs.existsSync(componentsDir)) {
     fs.mkdirSync(componentsDir);
@@ -56,7 +56,7 @@ export * from './types.ts';
 
   // Create files
   files.forEach((file, index) => {
-    const filePath = path.join(__dirname, `src/components/${folderName}`, file);
+    const filePath = path.join(__dirname, `src/ui/components/${folderName}`, file);
     const directory = path.dirname(filePath);
 
     if (!fs.existsSync(directory)) {

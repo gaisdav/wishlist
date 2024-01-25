@@ -28,5 +28,20 @@ export const theme = extendTheme({
         variant: 'soft',
       },
     },
+    JoyInput: {
+      defaultProps: {
+        variant: 'soft',
+      },
+    },
+    JoyTextarea: {
+      defaultProps: {
+        variant: 'soft',
+      },
+    },
+    JoySkeleton: {
+      defaultProps: {
+        animation: 'wave',
+      },
+    },
   },
 });

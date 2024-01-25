@@ -3,16 +3,23 @@ import css from './styles.module.scss';
 import { IWishCard } from './types.ts';
 import { Card } from '../../atoms/';
 import { Img } from '../../atoms/Img';
-import { Sheet, Typography } from '@mui/joy';
+import { Box, Typography } from '@mui/joy';
+import { WishCardSkeleton } from './WishCardSkeleton.tsx';
 
-export const WishCard: FC<IWishCard> = ({ title, description, imageSrc }) => {
+export const WishCard: FC<IWishCard> = ({ title, description, imageSrc, loading }) => {
+  if (loading) return <WishCardSkeleton />;
+
   return (
-    <Sheet>
-      <Card className={css.wishCard}>
-        {imageSrc ? <Img className={css.backgroundImg} alt="gift" src={imageSrc} /> : null}
-      </Card>
+    <Box className={css.wishCard}>
+      {imageSrc ? (
+        <Card className={css.wishPic}>
+          <Img className={css.backgroundImg} alt="gift" src={imageSrc} />
+        </Card>
+      ) : null}
+
       <Typography>{title}</Typography>
-      <Typography>{description}</Typography>
-    </Sheet>
+
+      <Typography style={{ marginTop: 4 }}>{description}</Typography>
+    </Box>
   );
 };

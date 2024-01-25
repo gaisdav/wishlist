@@ -24,6 +24,7 @@ export class WishRepository implements IWishRepository {
   createWish(dto: ICreateWishDTO): Promise<IWishResponse> {
     const wish: IWishEntity = {
       ...dto,
+      imageSrc: dto.imageSrc || faker.image.url(),
       id: faker.string.uuid(),
       updatedAt: new Date().toString(),
       createdAt: faker.date.recent().toString(),
@@ -31,9 +32,8 @@ export class WishRepository implements IWishRepository {
 
     const listFromStorage = window.localStorage.getItem('wishes');
     const list: IWishEntity[] = listFromStorage ? JSON.parse(listFromStorage) : [];
-    list.push(wish);
+    list.unshift(wish);
     window.localStorage.setItem('wishes', JSON.stringify(list));
-
     return delayedResponse(wish, randomDelay(3000));
   }
 }

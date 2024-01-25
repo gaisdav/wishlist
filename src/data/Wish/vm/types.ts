@@ -5,5 +5,5 @@ export interface IWishVM {
   list: IWishEntity[];
 
   getList(): Promise<void>;
-  createWish(dto: ICreateWishDTO): Promise<void>;
+  addWish(dto: ICreateWishDTO): Promise<void>;
 }

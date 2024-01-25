@@ -19,15 +19,16 @@ export class WishVM implements IWishVM {
     makeAutoObservable(this);
   }
 
-  async getList(): Promise<void> {
+  getList = async (): Promise<void> => {
     this._loading = true;
     this._list = await this.service.getList();
     this._loading = false;
-  }
+  };
 
-  async createWish(dto: ICreateWishDTO): Promise<void> {
+  addWish = async (dto: ICreateWishDTO): Promise<void> => {
     this._loading = true;
-    await this.service.createWish(dto);
+    const wish = await this.service.createWish(dto);
+    this._list.unshift(wish);
     this._loading = false;
-  }
+  };
 }

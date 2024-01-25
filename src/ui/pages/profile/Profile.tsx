@@ -1,39 +1,62 @@
 import css from './styles.module.scss';
-import { FC, PropsWithChildren, useState } from 'react';
-import { Modal, WishCard } from '../../components/molecules';
+import { FC, PropsWithChildren, useMemo, useState } from 'react';
 import { observer } from 'mobx-react-lite';
 import { useStore } from '../../hooks';
 import { Button } from '../../components/atoms';
+import { WishCard, AddWishModal } from '../../components/molecules';
+import { ICreateWishDTO } from '../../../data/Wish/entity';
 
-export const Profile: FC<PropsWithChildren> = observer(() => {
-  const { list, loading } = useStore('wish');
-  const [open, setOpen] = useState(false);
+const skeletons = (
+  <>
+    <WishCard loading={true} title="title" description="description" />
+    <WishCard loading={true} title="title" description="description" />
+    <WishCard loading={true} title="title" description="description" />
+    <WishCard loading={true} title="title" description="description" />
+    <WishCard loading={true} title="title" description="description" />
+  </>
+);
 
-  const handleOpenModal = () => {
-    setOpen(!open);
+const Profile: FC<PropsWithChildren> = observer(() => {
+  const { list, loading, addWish } = useStore('wish');
+  const [isModalOpen, setIsModalOpen] = useState(false);
+
+  const handleOpenModal = () => setIsModalOpen(true);
+  const handleCloseModal = () => setIsModalOpen(false);
+
+  const handleAddWish = async (data: ICreateWishDTO) => {
+    await addWish(data);
+    handleCloseModal();
   };
 
-  if (loading) {
-    return 'Loading...';
-  }
+  const content = useMemo(
+    () =>
+      loading
+        ? skeletons
+        : list.length === 0
+          ? 'Нет желаний'
+          : list.map((item) => (
+              <WishCard
+                loading={loading}
+                key={item.id}
+                title={item.title}
+                description={item.description}
+                imageSrc={item.imageSrc}
+              />
+            )),
+    [list, loading],
+  );
 
   return (
     <>
       <div className={css.profile}>
-        <Button onClick={handleOpenModal}>Create</Button>
+        <Button disabled={loading} onClick={handleOpenModal}>
+          Create
+        </Button>
 
-        <div className={css.wishes}>
-          {list.length === 0
-            ? 'Нет желаний'
-            : list.map((item) => (
-                <WishCard key={item.id} title={item.title} description={item.description} imageSrc={item.imageSrc} />
-              ))}
-        </div>
+        <div className={css.wishes}>{content}</div>
       </div>
 
-      <Modal open={open} title="text" onClose={handleOpenModal}>
-        content
-      </Modal>
+      <AddWishModal loading={loading} open={isModalOpen} onClose={handleCloseModal} onSubmit={handleAddWish} />
     </>
   );
 });

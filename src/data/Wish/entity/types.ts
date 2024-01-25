@@ -7,6 +7,6 @@ export interface IWishEntity {
   updatedAt: string;
 }
 
-export interface ICreateWishDTO extends Omit<IWishEntity, 'id'> {}
+export interface ICreateWishDTO extends Omit<IWishEntity, 'id' | 'createdAt' | 'updatedAt'> {}
 
 export interface IWishResponse extends IWishEntity {}
