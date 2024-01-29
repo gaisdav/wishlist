@@ -3,7 +3,7 @@ import { FC, PropsWithChildren, useMemo, useState } from 'react';
 import { observer } from 'mobx-react-lite';
 import { useStore } from '../../hooks';
 import { Button } from '../../components/atoms';
-import { WishCard, AddWishModal } from '../../components/molecules';
+import { AddWishModal, WishCard } from '../../components/molecules';
 import { ICreateWishDTO } from '../../../data/Wish/entity';
 
 const skeletons = (
@@ -36,8 +36,8 @@ const Profile: FC<PropsWithChildren> = observer(() => {
           ? 'Нет желаний'
           : list.map((item) => (
               <WishCard
-                loading={loading}
                 key={item.id}
+                loading={loading}
                 title={item.title}
                 description={item.description}
                 imageSrc={item.imageSrc}

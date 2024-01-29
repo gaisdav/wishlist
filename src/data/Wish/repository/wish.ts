@@ -36,4 +36,12 @@ export class WishRepository implements IWishRepository {
     window.localStorage.setItem('wishes', JSON.stringify(list));
     return delayedResponse(wish, randomDelay(3000));
   }
+
+  getWish(id: string): Promise<IWishResponse> {
+    const listFromStorage = window.localStorage.getItem('wishes');
+    const list: IWishEntity[] = listFromStorage ? JSON.parse(listFromStorage) : [];
+    const wish = list.find((item) => item.id === id);
+
+    return delayedResponse(wish as IWishResponse, randomDelay(3000));
+  }
 }

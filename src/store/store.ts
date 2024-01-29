@@ -8,17 +8,17 @@ export class Store {
   private services: IServices | null = null;
   private repositories: IRepositories | null = null;
 
+  private init() {
+    this.repositories = new RepositoriesStore();
+    this.services = new ServicesStore(this.repositories);
+    this.vms = new VMStore(this.services);
+  }
+
   get viewModels(): IVMs {
     if (!this.vms) {
       this.init();
     }
 
     return this.vms as IVMs;
-  }
-
-  init() {
-    this.repositories = new RepositoriesStore();
-    this.services = new ServicesStore(this.repositories);
-    this.vms = new VMStore(this.services);
   }
 }

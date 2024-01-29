@@ -1,0 +1,33 @@
+@import '../../common/styles/breakpoints';
+
+.profile {
+}
+
+.wishes {
+  display: grid;
+  gap: var(--grid-gap, 12px);
+  padding: 12px 16px;
+  grid-template-columns: repeat(var(--grid-columns, 2), 1fr);
+  background-color: var(--background-default);
+  grid-auto-rows: 1fr;
+
+  @media (min-width: var(--screen-sm-min)) {
+    --grid-columns: 4;
+    padding: 16px 24px;
+  }
+
+  @include sm {
+    --grid-columns: 4;
+    padding: 16px 24px;
+  }
+
+  @include lg {
+    --grid-columns: 6;
+    --grid-gap: 16px;
+  }
+
+  @include rwd(1400) {
+    --grid-columns: 8;
+    --grid-gap: 16px;
+  }
+}

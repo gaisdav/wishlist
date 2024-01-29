@@ -9,7 +9,6 @@ import { initRoutes } from '../routes';
 import { RouterProvider } from 'react-router-dom';
 
 const storeInstance = new Store();
-storeInstance.init();
 const store = storeInstance.viewModels;
 const routes = initRoutes(store);
 

@@ -16,4 +16,10 @@ export class WishService implements IWishService {
 
     return new Wish(wish);
   }
+
+  async getWish(id: string): Promise<IWishEntity> {
+    const wish = await this.repository.getWish(id);
+
+    return new Wish(wish);
+  }
 }
