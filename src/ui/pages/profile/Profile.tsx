@@ -3,21 +3,21 @@ import { FC, PropsWithChildren, useMemo, useState } from 'react';
 import { observer } from 'mobx-react-lite';
 import { useStore } from '../../hooks';
 import { Button } from '../../components/atoms';
-import { AddWishModal, WishCard } from '../../components/molecules';
+import { AddWishModal, WishCard, WishCardSkeleton } from '../../components/molecules';
 import { ICreateWishDTO } from '../../../data/Wish/entity';
 
 const skeletons = (
   <>
-    <WishCard loading={true} title="title" description="description" />
-    <WishCard loading={true} title="title" description="description" />
-    <WishCard loading={true} title="title" description="description" />
-    <WishCard loading={true} title="title" description="description" />
-    <WishCard loading={true} title="title" description="description" />
+    <WishCardSkeleton />
+    <WishCardSkeleton />
+    <WishCardSkeleton />
+    <WishCardSkeleton />
+    <WishCardSkeleton />
   </>
 );
 
 const Profile: FC<PropsWithChildren> = observer(() => {
-  const { list, loading, addWish } = useStore('wish');
+  const { list, loading, addWish, deleteWish, isLoaded } = useStore('wish');
   const [isModalOpen, setIsModalOpen] = useState(false);
 
   const handleOpenModal = () => setIsModalOpen(true);
@@ -26,6 +26,10 @@ const Profile: FC<PropsWithChildren> = observer(() => {
   const handleAddWish = async (data: ICreateWishDTO) => {
     await addWish(data);
     handleCloseModal();
+  };
+
+  const handleDeleteWish = async (id: string) => {
+    await deleteWish(id);
   };
 
   const content = useMemo(
@@ -37,13 +41,14 @@ const Profile: FC<PropsWithChildren> = observer(() => {
           : list.map((item) => (
               <WishCard
                 key={item.id}
-                loading={loading}
+                loading={loading || isLoaded(item.id)}
                 title={item.title}
                 description={item.description}
                 imageSrc={item.imageSrc}
+                onDelete={() => handleDeleteWish(item.id)}
               />
             )),
-    [list, loading],
+    [list, loading, isLoaded, handleDeleteWish],
   );
 
   return (

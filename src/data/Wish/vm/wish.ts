@@ -7,6 +7,7 @@ export class WishVM implements IWishVM {
   private _loading: boolean = false;
   private _list: IWishEntity[] = [];
   private _entity: IWishEntity | null = null;
+  private _loadedWishes: Record<string, boolean> = {};
 
   get loading(): boolean {
     return this._loading;
@@ -23,6 +24,10 @@ export class WishVM implements IWishVM {
   constructor(private service: IWishService) {
     makeAutoObservable(this);
   }
+
+  isLoaded = (id: string): boolean => {
+    return this._loadedWishes[id] ?? false;
+  };
 
   getList = async (): Promise<void> => {
     this._loading = true;
@@ -41,5 +46,12 @@ export class WishVM implements IWishVM {
     this._loading = true;
     this._entity = await this.service.getWish(id);
     this._loading = false;
+  };
+
+  deleteWish = async (id: string): Promise<void> => {
+    this._loadedWishes[id] = true;
+    const deletedWish = await this.service.deleteWish(id);
+    this._list = this._list.filter((wish) => wish.id !== deletedWish.id);
+    this._loadedWishes[id] = false;
   };
 }

@@ -30,17 +30,22 @@ export const theme = extendTheme({
     },
     JoyInput: {
       defaultProps: {
-        variant: 'soft',
+        variant: 'outlined',
       },
     },
     JoyTextarea: {
       defaultProps: {
-        variant: 'soft',
+        variant: 'outlined',
       },
     },
     JoySkeleton: {
       defaultProps: {
         animation: 'wave',
+      },
+    },
+    JoyLinearProgress: {
+      defaultProps: {
+        variant: 'soft',
       },
     },
   },

@@ -3,4 +3,7 @@ export interface IWishCard {
   title: string;
   description?: string;
   imageSrc?: string;
+
+  onDelete?: () => void;
+  onEdit?: () => void;
 }

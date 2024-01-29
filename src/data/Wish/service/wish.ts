@@ -22,4 +22,10 @@ export class WishService implements IWishService {
 
     return new Wish(wish);
   }
+
+  async deleteWish(id: string): Promise<IWishEntity> {
+    const wish = await this.repository.deleteWish(id);
+
+    return new Wish(wish);
+  }
 }

@@ -1,15 +1,25 @@
 import { FC } from 'react';
 import css from './styles.module.scss';
 import { IWishCard } from './types.ts';
-import { Card, Img, Typography } from '../../atoms/';
+import { Card, Icon, IconButton, Img, Typography, LinearProgress } from '../../atoms/';
 import { Box } from '@mui/joy';
-import { WishCardSkeleton } from './WishCardSkeleton.tsx';
 
-export const WishCard: FC<IWishCard> = ({ title, description, imageSrc, loading }) => {
-  if (loading) return <WishCardSkeleton />;
+export const WishCard: FC<IWishCard> = ({ title, description, imageSrc, loading, onEdit, onDelete }) => {
+  const handleEdit = () => {
+    if (onEdit) {
+      onEdit();
+    }
+  };
+  const handleDelete = () => {
+    if (onDelete) {
+      onDelete();
+    }
+  };
 
   return (
     <Box className={css.wishCard}>
+      {loading ? <LinearProgress size="sm" /> : null}
+
       {imageSrc ? (
         <Card className={css.wishPic}>
           <Img className={css.backgroundImg} alt="gift" src={imageSrc} />
@@ -18,7 +28,17 @@ export const WishCard: FC<IWishCard> = ({ title, description, imageSrc, loading 
 
       <Typography>{title}</Typography>
 
-      <Typography style={{ marginTop: 4 }}>{description}</Typography>
+      <Typography>{description}</Typography>
+
+      <div>
+        <IconButton disabled={loading} size="sm" onClick={handleEdit}>
+          <Icon iconName="edit" />
+        </IconButton>
+
+        <IconButton disabled={loading} size="sm" onClick={handleDelete}>
+          <Icon iconName="delete" />
+        </IconButton>
+      </div>
     </Box>
   );
 };

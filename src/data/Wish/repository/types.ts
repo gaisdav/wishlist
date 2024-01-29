@@ -4,4 +4,5 @@ export interface IWishRepository {
   getList(): Promise<IWishResponse[]>;
   createWish(dto: ICreateWishDTO): Promise<IWishResponse>;
   getWish(id: string): Promise<IWishResponse>;
+  deleteWish(id: string): Promise<IWishResponse>;
 }
