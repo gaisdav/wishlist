@@ -1,9 +1,18 @@
-import { ICreateWishDTO } from '../../../../data/Wish/entity';
+import { ICreateWishDTO, IEditWishDTO, IWishEntity } from '../../../../data/Wish/entity';
 
-export interface IAddWishModal {
+export interface IWishModal {
   open?: boolean;
   loading?: boolean;
-  mode?: 'add' | 'edit';
-  onClose?: () => void;
-  onSubmit: (dto: ICreateWishDTO) => Promise<void>;
+  onClose: () => void;
+  mode: 'add' | 'edit';
+  onSubmit: (wish: ICreateWishDTO | IEditWishDTO) => void;
+}
+
+export interface IEditWishModal extends Omit<IWishModal, 'title' | 'onSubmit' | 'mode'> {
+  wish?: IWishEntity | null;
+  onSubmit: (wish: IEditWishDTO) => void;
+}
+
+export interface IAddWishModal extends Omit<IWishModal, 'wish' | 'title' | 'onSubmit' | 'mode'> {
+  onSubmit: (wish: ICreateWishDTO) => void;
 }

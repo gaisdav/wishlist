@@ -4,15 +4,15 @@ import { IWishCard } from './types.ts';
 import { Card, Icon, IconButton, Img, Typography, LinearProgress } from '../../atoms/';
 import { Box } from '@mui/joy';
 
-export const WishCard: FC<IWishCard> = ({ title, description, imageSrc, loading, onEdit, onDelete }) => {
+export const WishCard: FC<IWishCard> = ({ wish: { id, title, description, imageSrc }, loading, onEdit, onDelete }) => {
   const handleEdit = () => {
     if (onEdit) {
-      onEdit();
+      onEdit(id);
     }
   };
   const handleDelete = () => {
     if (onDelete) {
-      onDelete();
+      onDelete(id);
     }
   };
 

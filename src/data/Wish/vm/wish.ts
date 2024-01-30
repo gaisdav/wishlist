@@ -1,5 +1,5 @@
 import { IWishVM } from './types.ts';
-import { ICreateWishDTO, IWishEntity } from '../entity';
+import { ICreateWishDTO, IEditWishDTO, IWishEntity } from '../entity';
 import { IWishService } from '../service';
 import { makeAutoObservable } from 'mobx';
 
@@ -25,7 +25,7 @@ export class WishVM implements IWishVM {
     makeAutoObservable(this);
   }
 
-  isLoaded = (id: string): boolean => {
+  isLoading = (id: string): boolean => {
     return this._loadedWishes[id] ?? false;
   };
 
@@ -40,6 +40,18 @@ export class WishVM implements IWishVM {
     const wish = await this.service.createWish(dto);
     this._list.unshift(wish);
     this._loading = false;
+  };
+
+  editWish = async (id: string, dto: IEditWishDTO): Promise<void> => {
+    this._loadedWishes[id] = true;
+    const wish = await this.service.editWish(id, dto);
+    this._list = this._list.map((item) => {
+      if (item.id === wish.id) {
+        return wish;
+      }
+      return item;
+    });
+    this._loadedWishes[id] = false;
   };
 
   getWish = async (id: string): Promise<void> => {

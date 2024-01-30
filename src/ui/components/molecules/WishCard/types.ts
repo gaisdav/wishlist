@@ -1,9 +1,9 @@
+import { IWishEntity } from '../../../../data/Wish/entity';
+
 export interface IWishCard {
   loading?: boolean;
-  title: string;
-  description?: string;
-  imageSrc?: string;
+  wish: IWishEntity;
 
-  onDelete?: () => void;
-  onEdit?: () => void;
+  onDelete?: (id: string) => void;
+  onEdit?: (id: string) => void;
 }

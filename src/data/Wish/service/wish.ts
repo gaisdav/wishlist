@@ -1,5 +1,5 @@
 import { IWishService } from './types.ts';
-import { ICreateWishDTO, IWishEntity, Wish } from '../entity';
+import { ICreateWishDTO, IEditWishDTO, IWishEntity, Wish } from '../entity';
 import { IWishRepository } from '../repository';
 
 export class WishService implements IWishService {
@@ -13,6 +13,12 @@ export class WishService implements IWishService {
 
   async createWish(dto: ICreateWishDTO): Promise<IWishEntity> {
     const wish = await this.repository.createWish(dto);
+
+    return new Wish(wish);
+  }
+
+  async editWish(id: string, dto: IEditWishDTO): Promise<IWishEntity> {
+    const wish = await this.repository.editWish(id, dto);
 
     return new Wish(wish);
   }

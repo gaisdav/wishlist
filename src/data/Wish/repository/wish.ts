@@ -1,5 +1,5 @@
 import { IWishRepository } from './types.ts';
-import { ICreateWishDTO, IWishEntity, IWishResponse } from '../entity';
+import { ICreateWishDTO, IEditWishDTO, IWishEntity, IWishResponse } from '../entity';
 import { faker } from '@faker-js/faker';
 
 function delayedResponse<T>(args: T, delayMs: number): Promise<T> {
@@ -35,6 +35,27 @@ export class WishRepository implements IWishRepository {
     list.unshift(wish);
     window.localStorage.setItem('wishes', JSON.stringify(list));
     return delayedResponse(wish, randomDelay(3000));
+  }
+
+  editWish(id: string, dto: IEditWishDTO): Promise<IWishResponse> {
+    const listFromStorage = window.localStorage.getItem('wishes');
+    const list: IWishEntity[] = listFromStorage ? JSON.parse(listFromStorage) : [];
+    let wish: IWishResponse | null = null;
+    const newList = list.map((item) => {
+      if (item.id === id) {
+        wish = {
+          ...item,
+          ...dto,
+          updatedAt: new Date().toString(),
+        };
+        return wish;
+      }
+      return item;
+    });
+
+    window.localStorage.setItem('wishes', JSON.stringify(newList));
+
+    return delayedResponse(wish as unknown as IWishResponse, randomDelay(3000));
   }
 
   getWish(id: string): Promise<IWishResponse> {

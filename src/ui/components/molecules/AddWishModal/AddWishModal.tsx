@@ -1,55 +1,20 @@
-import { FC, useMemo } from 'react';
+import { FC } from 'react';
 import { IAddWishModal } from './types.ts';
-import { Modal } from '../Modal';
-import { Button, Input, Textarea } from '../../atoms';
-import { useForm, Controller, SubmitHandler } from 'react-hook-form';
+import { FormProvider, useForm } from 'react-hook-form';
+import { WishModal } from './WishModal.tsx';
 import { ICreateWishDTO } from '../../../../data/Wish/entity';
 
-export const AddWishModal: FC<IAddWishModal> = ({ loading = false, open = false, mode = 'add', onClose, onSubmit }) => {
-  const { control, handleSubmit, reset } = useForm<ICreateWishDTO>({
+export const AddWishModal: FC<IAddWishModal> = ({ loading = false, open = false, onClose, onSubmit }) => {
+  const methods = useForm<ICreateWishDTO>({
     defaultValues: {
       title: '',
       description: '',
     },
   });
 
-  const handleCLose = () => {
-    if (onClose) {
-      onClose();
-      reset();
-    }
-  };
-
-  const submit: SubmitHandler<ICreateWishDTO> = async (data) => {
-    await onSubmit(data);
-    handleCLose();
-  };
-
-  const title = useMemo(() => (mode === 'add' ? 'Add Wish' : 'Edit Wish'), [mode]);
-
   return (
-    <Modal open={open} title={title} onClose={handleCLose}>
-      <form onSubmit={handleSubmit(submit)}>
-        <Controller
-          rules={{ required: 'Required field' }}
-          disabled={loading}
-          name="title"
-          control={control}
-          render={({ field, fieldState: { invalid, error } }) => {
-            return <Input label="Title" error={invalid} helperText={error?.message} {...field} />;
-          }}
-        />
-        <Controller
-          disabled={loading}
-          name="description"
-          control={control}
-          render={({ field }) => <Textarea label="Description" {...field} />}
-        />
-
-        <Button type="submit" loading={loading}>
-          Create
-        </Button>
-      </form>
-    </Modal>
+    <FormProvider {...methods}>
+      <WishModal mode="add" open={open} onClose={onClose} onSubmit={onSubmit} loading={loading} />
+    </FormProvider>
   );
 };

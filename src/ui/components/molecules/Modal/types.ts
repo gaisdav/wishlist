@@ -1,4 +1,6 @@
-export interface IModalProps {
+import { ModalProps } from '@mui/joy';
+
+export interface IModalProps extends ModalProps {
   open: boolean;
   title?: string;
   onClose?: () => void;

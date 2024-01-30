@@ -8,5 +8,6 @@ export interface IWishEntity {
 }
 
 export interface ICreateWishDTO extends Omit<IWishEntity, 'id' | 'createdAt' | 'updatedAt'> {}
+export interface IEditWishDTO extends Omit<IWishEntity, 'id' | 'createdAt' | 'updatedAt'> {}
 
 export interface IWishResponse extends IWishEntity {}
