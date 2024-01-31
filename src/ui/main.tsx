@@ -3,9 +3,9 @@ import ReactDOM from 'react-dom/client';
 import { CssVarsProvider } from '@mui/joy/styles';
 import CssBaseline from '@mui/joy/CssBaseline';
 import { theme } from './theme.ts';
-import { Store } from '../store';
-import { AppStateProvider } from './providers';
-import { initRoutes } from '../routes';
+import { Store } from 'store/store.ts';
+import { initRoutes } from 'routes/routes.tsx';
+import { AppStateProvider } from 'providers/store.tsx';
 import { RouterProvider } from 'react-router-dom';
 
 const storeInstance = new Store();

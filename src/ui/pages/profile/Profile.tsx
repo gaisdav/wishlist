@@ -2,10 +2,9 @@ import css from './styles.module.scss';
 import { FC, PropsWithChildren, useCallback, useState } from 'react';
 import { observer } from 'mobx-react-lite';
 import { useStore } from '../../hooks';
-import { Icon, IconButton } from '../../components/atoms';
-import { AddWishModal, WishCard, WishCardSkeleton } from '../../components/molecules';
-import { ICreateWishDTO, IEditWishDTO, IWishEntity } from '../../../data/Wish/entity';
-import { EditWishModal } from '../../components/molecules/AddWishModal/EditWishModal.tsx';
+import { ICreateWishDTO, IEditWishDTO, IWishEntity } from 'data/Wish/entity';
+import { AddWishModal, EditWishModal, WishCard, WishCardSkeleton } from 'components/molecules';
+import { Icon, IconButton } from 'components/atoms';
 
 const skeletons = (
   <>

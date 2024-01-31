@@ -1,7 +1,7 @@
 import { FC } from 'react';
 import { Sheet, Skeleton } from '@mui/joy';
-import { Card } from '../../atoms';
 import css from './styles.module.scss';
+import { Card } from 'components/atoms';
 
 export const WishCardSkeleton: FC = () => {
   return (

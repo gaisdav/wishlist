@@ -1,8 +1,8 @@
 import { FC } from 'react';
 import css from './styles.module.scss';
 import { IWishCard } from './types.ts';
-import { Card, Icon, IconButton, Img, Typography, LinearProgress } from '../../atoms/';
 import { Box } from '@mui/joy';
+import { Card, Icon, IconButton, Img, LinearProgress, Typography } from 'components/atoms';
 
 export const WishCard: FC<IWishCard> = ({ wish: { id, title, description, imageSrc }, loading, onEdit, onDelete }) => {
   const handleEdit = () => {

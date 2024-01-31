@@ -1,6 +1,6 @@
 import { createContext, FC, PropsWithChildren } from 'react';
 import { IStoreProvider } from './types.ts';
-import { IVMs } from '../../store';
+import { IVMs } from 'store/types.ts';
 
 /**
  * Create a context

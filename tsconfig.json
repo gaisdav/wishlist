@@ -6,6 +6,11 @@
     "module": "ESNext",
     "skipLibCheck": true,
 
+    "baseUrl": "./",
+    "allowSyntheticDefaultImports": true,
+    "esModuleInterop": true,
+    "importHelpers": true,
+
     /* Bundler mode */
     "moduleResolution": "bundler",
     "allowImportingTsExtensions": true,
@@ -18,8 +23,17 @@
     "strict": true,
     "noUnusedLocals": true,
     "noUnusedParameters": true,
-    "noFallthroughCasesInSwitch": true
+    "noFallthroughCasesInSwitch": true,
+    "paths": {
+      "data/*": ["src/data/*"],
+      "routes/*": ["src/routes/*"],
+      "store/*": ["src/store/*"],
+      "hooks/*": ["src/ui/hooks/*"],
+      "pages/*": ["src/ui/pages/*"],
+      "providers/*": ["src/ui/providers/*"],
+      "components/*": ["src/ui/components/*"]
+    }
   },
-  "include": ["src"],
+  "include": ["src/**/*"],
   "references": [{ "path": "./tsconfig.node.json" }]
 }

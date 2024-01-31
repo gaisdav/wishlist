@@ -1,2 +1,2 @@
 export * from './routes.tsx';
-export * from './types.ts';
+export { ERoute, dynamicRoute } from './types.ts';

@@ -2,7 +2,7 @@ import { FC, useEffect } from 'react';
 import { IEditWishModal } from './types.ts';
 import { useForm, FormProvider } from 'react-hook-form';
 import { WishModal } from './WishModal.tsx';
-import { IEditWishDTO } from '../../../../data/Wish/entity';
+import { IEditWishDTO } from 'data/Wish/entity';
 
 export const EditWishModal: FC<IEditWishModal> = ({ wish, loading = false, open = false, onClose, onSubmit }) => {
   const methods = useForm<IEditWishDTO>({

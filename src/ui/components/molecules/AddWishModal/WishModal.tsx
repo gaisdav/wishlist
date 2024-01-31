@@ -1,9 +1,9 @@
 import { FC } from 'react';
 import { IWishModal } from './types.ts';
 import { Modal } from '../Modal';
-import { Button, Input, Textarea } from '../../atoms';
 import { Controller, SubmitHandler, useFormContext } from 'react-hook-form';
-import { ICreateWishDTO, IEditWishDTO } from '../../../../data/Wish/entity';
+import { ICreateWishDTO, IEditWishDTO } from 'data/Wish/entity';
+import { Button, Input, Textarea } from 'components/atoms';
 
 export const WishModal: FC<IWishModal> = ({ mode, loading = false, open = false, onClose, onSubmit }) => {
   const { control, handleSubmit, reset } = useFormContext<ICreateWishDTO | IEditWishDTO>();

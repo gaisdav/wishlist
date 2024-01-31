@@ -5,6 +5,7 @@
     "amd": true,
     "node": true
   },
+  "plugins": ["@typescript-eslint", "import", "prettier"],
   "extends": [
     "eslint:recommended",
     "plugin:react/recommended",
@@ -15,13 +16,25 @@
     "eslint-config-prettier"
   ],
   "settings": {
-    "react": {
-      "version": "detect"
-    },
     "import/resolver": {
+      "alias": {
+        "map": [
+          ["data", "./src/data"],
+          ["routes", "./src/routes"],
+          ["store", "./src/store"],
+          ["hooks", "./src/ui/hooks"],
+          ["pages", "./src/ui/pages"],
+          ["providers", "./src/ui/providers"],
+          ["components", "./src/ui/components"]
+        ],
+        "extensions": [".js", ".jsx", ".ts", ".tsx"]
+      },
       "node": {
         "paths": ["src"],
         "extensions": [".js", ".jsx", ".ts", ".tsx"]
+      },
+      "react": {
+        "version": "detect"
       }
     }
   },
