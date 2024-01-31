@@ -21,7 +21,7 @@ export const WishModal: FC<IWishModal> = ({ mode, loading = false, open = false,
   };
 
   const title = mode === 'add' ? 'Create wish' : 'Edit wish';
-  const submitBtnText = mode === 'add' ? 'Create' : 'Edit';
+  const submitBtnText = mode === 'add' ? 'Create' : 'Save';
 
   return (
     <Modal open={open} title={title} onClose={handleCLose}>

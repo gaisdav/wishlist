@@ -2,7 +2,7 @@ import css from './styles.module.scss';
 import { FC, PropsWithChildren, useCallback, useState } from 'react';
 import { observer } from 'mobx-react-lite';
 import { useStore } from '../../hooks';
-import { Button } from '../../components/atoms';
+import { Icon, IconButton } from '../../components/atoms';
 import { AddWishModal, WishCard, WishCardSkeleton } from '../../components/molecules';
 import { ICreateWishDTO, IEditWishDTO, IWishEntity } from '../../../data/Wish/entity';
 import { EditWishModal } from '../../components/molecules/AddWishModal/EditWishModal.tsx';
@@ -33,7 +33,6 @@ const Profile: FC<PropsWithChildren> = observer(() => {
     await addWish(data);
     handleCloseModal();
   };
-
   const submitEditWish = async (data: IEditWishDTO) => {
     if (editableEntity) {
       handleCloseModal();
@@ -47,7 +46,6 @@ const Profile: FC<PropsWithChildren> = observer(() => {
     },
     [deleteWish],
   );
-
   const handleEditWish = useCallback(
     async (id: string) => {
       const wish = list.find((item) => item.id === id);
@@ -74,9 +72,9 @@ const Profile: FC<PropsWithChildren> = observer(() => {
   return (
     <>
       <div className={css.profile}>
-        <Button disabled={loading} onClick={openCreateWishModal}>
-          Create
-        </Button>
+        <IconButton disabled={loading} onClick={openCreateWishModal}>
+          <Icon iconName="add" />
+        </IconButton>
 
         <div className={css.wishes}>{content}</div>
       </div>
