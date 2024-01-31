@@ -9,6 +9,7 @@
 }
 
 .wishCard {
+  position: relative;
   margin-bottom: 12px;
 }
 
@@ -19,4 +20,11 @@
   height: 100%;
   width: 100%;
   object-fit: contain;
+}
+
+.linearProgress {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
 }

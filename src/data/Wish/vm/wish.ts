@@ -2,6 +2,7 @@ import { IWishVM } from './types.ts';
 import { ICreateWishDTO, IEditWishDTO, IWishEntity } from '../entity';
 import { IWishService } from '../service';
 import { makeAutoObservable } from 'mobx';
+import { throwUnknownError } from 'data/utils';
 
 export class WishVM implements IWishVM {
   private _loading: boolean = false;
@@ -30,40 +31,64 @@ export class WishVM implements IWishVM {
   };
 
   getList = async (): Promise<void> => {
-    this._loading = true;
-    this._list = await this.service.getList();
-    this._loading = false;
+    try {
+      this._loading = true;
+      this._list = await this.service.getList();
+    } catch (error) {
+      throwUnknownError(error);
+    } finally {
+      this._loading = false;
+    }
   };
 
   addWish = async (dto: ICreateWishDTO): Promise<void> => {
-    this._loading = true;
-    const wish = await this.service.createWish(dto);
-    this._list.unshift(wish);
-    this._loading = false;
+    try {
+      this._loading = true;
+      const wish = await this.service.createWish(dto);
+      this._list.unshift(wish);
+    } catch (error) {
+      throwUnknownError(error);
+    } finally {
+      this._loading = false;
+    }
   };
 
   editWish = async (id: string, dto: IEditWishDTO): Promise<void> => {
     this._loadedWishes[id] = true;
-    const wish = await this.service.editWish(id, dto);
-    this._list = this._list.map((item) => {
-      if (item.id === wish.id) {
-        return wish;
-      }
-      return item;
-    });
-    this._loadedWishes[id] = false;
+    const editedWishIndex = this._list.findIndex((item) => item.id === id);
+    const oldWish = this._list[editedWishIndex];
+
+    try {
+      this._list[editedWishIndex] = await this.service.editWish(id, dto);
+    } catch (error) {
+      this._list[editedWishIndex] = oldWish;
+      throwUnknownError(error);
+    } finally {
+      this._loadedWishes[id] = false;
+    }
   };
 
   getWish = async (id: string): Promise<void> => {
-    this._loading = true;
-    this._entity = await this.service.getWish(id);
-    this._loading = false;
+    try {
+      this._loading = true;
+      this._entity = await this.service.getWish(id);
+    } catch (error) {
+      throwUnknownError(error);
+    } finally {
+      this._loading = false;
+    }
   };
 
   deleteWish = async (id: string): Promise<void> => {
     this._loadedWishes[id] = true;
-    const deletedWish = await this.service.deleteWish(id);
-    this._list = this._list.filter((wish) => wish.id !== deletedWish.id);
-    this._loadedWishes[id] = false;
+
+    try {
+      const deletedWish = await this.service.deleteWish(id);
+      this._list = this._list.filter((wish) => wish.id !== deletedWish.id);
+    } catch (error) {
+      throwUnknownError(error);
+    } finally {
+      this._loadedWishes[id] = false;
+    }
   };
 }

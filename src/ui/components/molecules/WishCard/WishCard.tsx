@@ -18,7 +18,7 @@ export const WishCard: FC<IWishCard> = ({ wish: { id, title, description, imageS
 
   return (
     <Box className={css.wishCard}>
-      {loading ? <LinearProgress size="sm" /> : null}
+      {loading ? <LinearProgress className={css.linearProgress} size="sm" /> : null}
 
       {imageSrc ? (
         <Card className={css.wishPic}>
