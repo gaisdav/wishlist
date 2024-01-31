@@ -1,4 +1,4 @@
-import { IWishEntity } from '../../../../data/Wish/entity';
+import { IWishEntity } from 'data/wish/entity';
 
 export interface IWishCard {
   loading?: boolean;

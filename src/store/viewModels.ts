@@ -1,5 +1,5 @@
 import { IServices, IVMs } from './types.ts';
-import { IWishVM, WishVM } from '../data/Wish/vm';
+import { IWishVM, WishVM } from 'data/wish/vm';
 
 export class VMStore implements IVMs {
   private vms: IVMs | null = null;

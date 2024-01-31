@@ -1,4 +1,4 @@
-import { ICreateWishDTO, IEditWishDTO, IWishEntity } from '../../../../data/Wish/entity';
+import { ICreateWishDTO, IEditWishDTO, IWishEntity } from 'data/wish/entity';
 
 export interface IWishModal {
   open?: boolean;

@@ -1,5 +1,5 @@
 import { IRepositories } from './types.ts';
-import { IWishRepository, WishRepository } from '../data/Wish/repository';
+import { IWishRepository, WishRepository } from 'data/wish/repository';
 
 export class RepositoriesStore implements IRepositories {
   private repositories: IRepositories | null = null;

@@ -2,7 +2,7 @@ import { FC } from 'react';
 import { IAddWishModal } from './types.ts';
 import { FormProvider, useForm } from 'react-hook-form';
 import { WishModal } from './WishModal.tsx';
-import { ICreateWishDTO } from 'data/Wish/entity';
+import { ICreateWishDTO } from 'data/wish/entity';
 
 export const AddWishModal: FC<IAddWishModal> = ({ loading = false, open = false, onClose, onSubmit }) => {
   const methods = useForm<ICreateWishDTO>({

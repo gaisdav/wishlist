@@ -1,6 +1,6 @@
-import { IWishRepository } from '../data/Wish/repository';
-import { IWishService } from '../data/Wish/service';
-import { IWishVM } from '../data/Wish/vm';
+import { IWishRepository } from 'data/wish/repository';
+import { IWishService } from 'data/wish/service';
+import { IWishVM } from 'data/wish/vm';
 
 export interface IRepositories {
   wish: IWishRepository;

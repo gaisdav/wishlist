@@ -1,5 +1,5 @@
 import { IRepositories, IServices } from './types.ts';
-import { IWishService, WishService } from '../data/Wish/service';
+import { IWishService, WishService } from 'data/wish/service';
 
 export class ServicesStore implements IServices {
   private services: IServices | null = null;

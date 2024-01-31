@@ -2,7 +2,7 @@ import css from './styles.module.scss';
 import { FC, PropsWithChildren, useCallback, useState } from 'react';
 import { observer } from 'mobx-react-lite';
 import { useStore } from '../../hooks';
-import { ICreateWishDTO, IEditWishDTO, IWishEntity } from 'data/Wish/entity';
+import { ICreateWishDTO, IEditWishDTO, IWishEntity } from 'data/wish/entity';
 import { AddWishModal, EditWishModal, WishCard, WishCardSkeleton } from 'components/molecules';
 import { Icon, IconButton } from 'components/atoms';
 
