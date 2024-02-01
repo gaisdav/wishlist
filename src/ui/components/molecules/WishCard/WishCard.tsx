@@ -1,4 +1,5 @@
 import { FC } from 'react';
+import cn from 'classnames';
 import css from './styles.module.scss';
 import { IWishCard } from './types.ts';
 import { Box } from '@mui/joy';
@@ -17,7 +18,7 @@ export const WishCard: FC<IWishCard> = ({ wish: { id, title, description, imageS
   };
 
   return (
-    <Box className={css.wishCard}>
+    <Box className={cn(css.wishCard, { [css.loading]: loading })}>
       {loading ? <LinearProgress className={css.linearProgress} size="sm" /> : null}
 
       {imageSrc ? (

@@ -2,7 +2,7 @@ import { IWishVM } from './types.ts';
 import { ICreateWishDTO, IEditWishDTO, IWishEntity } from '../entity';
 import { IWishService } from '../service';
 import { makeAutoObservable } from 'mobx';
-import { throwUnknownError } from 'data/utils';
+import { throwError } from 'data/utils';
 
 export class WishVM implements IWishVM {
   private _loading: boolean = false;
@@ -35,7 +35,7 @@ export class WishVM implements IWishVM {
       this._loading = true;
       this._list = await this.service.getList();
     } catch (error) {
-      throwUnknownError(error);
+      throwError(error);
     } finally {
       this._loading = false;
     }
@@ -47,7 +47,7 @@ export class WishVM implements IWishVM {
       const wish = await this.service.createWish(dto);
       this._list.unshift(wish);
     } catch (error) {
-      throwUnknownError(error);
+      throwError(error);
     } finally {
       this._loading = false;
     }
@@ -59,10 +59,11 @@ export class WishVM implements IWishVM {
     const oldWish = this._list[editedWishIndex];
 
     try {
+      this._list[editedWishIndex] = { ...oldWish, ...dto };
       this._list[editedWishIndex] = await this.service.editWish(id, dto);
     } catch (error) {
       this._list[editedWishIndex] = oldWish;
-      throwUnknownError(error);
+      throwError(error);
     } finally {
       this._loadedWishes[id] = false;
     }
@@ -73,7 +74,7 @@ export class WishVM implements IWishVM {
       this._loading = true;
       this._entity = await this.service.getWish(id);
     } catch (error) {
-      throwUnknownError(error);
+      throwError(error);
     } finally {
       this._loading = false;
     }
@@ -86,7 +87,7 @@ export class WishVM implements IWishVM {
       const deletedWish = await this.service.deleteWish(id);
       this._list = this._list.filter((wish) => wish.id !== deletedWish.id);
     } catch (error) {
-      throwUnknownError(error);
+      throwError(error);
     } finally {
       this._loadedWishes[id] = false;
     }

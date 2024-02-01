@@ -1,4 +1,4 @@
-export const throwUnknownError = (error: unknown): never => {
+export const throwError = (error: unknown): never => {
   if (error instanceof Error) {
     throw new Error(error.message);
   } else {
