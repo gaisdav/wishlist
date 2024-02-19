@@ -1,16 +1,16 @@
 import { IUserEntity, IUserResponse } from './types.ts';
 
 export class User implements IUserEntity {
-  id: string = 'asdf';
-  username: string = 'asdf';
-  firstName: string = 'firstName';
-  lastName: string = 'lastName';
-  bio?: string = 'bio';
+  id: string;
+  username: string;
+  firstName: string;
+  lastName: string;
+  bio?: string;
   avatarSrc?: string;
-  birthdate: Date = new Date();
-  email: string = 'email@email.com';
-  createdAt: string;
-  updatedAt: string;
+  birthdate: Date;
+  email: string;
+  createdAt: Date;
+  updatedAt: Date;
 
   constructor(dto: IUserResponse) {
     this.id = dto.id;
@@ -21,7 +21,7 @@ export class User implements IUserEntity {
     this.avatarSrc = dto.avatarSrc;
     this.birthdate = new Date(dto.birthdate);
     this.email = dto.email;
-    this.createdAt = dto.createdAt;
-    this.updatedAt = dto.updatedAt;
+    this.createdAt = new Date(dto.createdAt);
+    this.updatedAt = new Date(dto.updatedAt);
   }
 }

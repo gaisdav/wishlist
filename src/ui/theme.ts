@@ -48,5 +48,10 @@ export const theme = extendTheme({
         variant: 'soft',
       },
     },
+    JoyAvatar: {
+      defaultProps: {
+        variant: 'soft',
+      },
+    },
   },
 });

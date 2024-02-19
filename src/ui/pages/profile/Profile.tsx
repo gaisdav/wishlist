@@ -5,6 +5,7 @@ import { useStore } from '../../hooks';
 import { ICreateWishDTO, IEditWishDTO, IWishEntity } from 'data/wish/entity';
 import { AddWishModal, EditWishModal, WishCard, WishCardSkeleton } from 'components/molecules';
 import { Icon, IconButton } from 'components/atoms';
+import { UserInfo } from 'components/molecules/UserInfo';
 
 const skeletons = (
   <>
@@ -18,6 +19,7 @@ const skeletons = (
 
 const Profile: FC<PropsWithChildren> = observer(() => {
   const { list, loading, addWish, editWish, deleteWish, isLoading } = useStore('wish');
+  const { entity: profile } = useStore('profile');
   const [modalMode, setModalMode] = useState<'edit' | 'add' | null>(null);
   const [editableEntity, setEditEntity] = useState<IWishEntity | null>(null);
 
@@ -71,11 +73,13 @@ const Profile: FC<PropsWithChildren> = observer(() => {
   return (
     <>
       <div className={css.profile}>
+        <UserInfo user={profile} />
+
+        <div className={css.wishes}>{content}</div>
+
         <IconButton disabled={loading} onClick={openCreateWishModal}>
           <Icon iconName="add" />
         </IconButton>
-
-        <div className={css.wishes}>{content}</div>
       </div>
 
       <AddWishModal loading={loading} open={modalMode === 'add'} onClose={handleCloseModal} onSubmit={submitAddWish} />

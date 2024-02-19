@@ -6,7 +6,7 @@
 .wishes {
   display: grid;
   gap: var(--grid-gap, 12px);
-  padding: 12px 16px;
+  padding: 12px 0;
   grid-template-columns: repeat(var(--grid-columns, 2), 1fr);
   background-color: var(--background-default);
   grid-auto-rows: 1fr;

@@ -7,10 +7,12 @@ export interface IUserEntity {
   avatarSrc?: string;
   birthdate: Date;
   email: string;
-  createdAt: string;
-  updatedAt: string;
+  createdAt: Date;
+  updatedAt: Date;
 }
 
-export interface IUserResponse extends Omit<IUserEntity, 'birthdate'> {
+export interface IUserResponse extends Omit<IUserEntity, 'birthdate' | 'createdAt' | 'updatedAt'> {
   birthdate: string;
+  createdAt: string;
+  updatedAt: string;
 }
