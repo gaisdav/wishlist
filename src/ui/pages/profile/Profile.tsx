@@ -73,7 +73,7 @@ const Profile: FC<PropsWithChildren> = observer(() => {
   return (
     <>
       <div className={css.profile}>
-        <UserInfo user={profile} />
+        <UserInfo user={profile} wishes={list.length} loading={loading} />
 
         <div className={css.wishes}>{content}</div>
 

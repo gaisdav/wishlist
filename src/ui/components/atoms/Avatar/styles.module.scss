@@ -1,2 +1,5 @@
 .avatar {
+  &:global(.MuiAvatar-root) {
+    border-radius: 20%;
+  }
 }

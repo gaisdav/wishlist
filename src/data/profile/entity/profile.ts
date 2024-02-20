@@ -8,7 +8,7 @@ export class Profile implements IProfileEntity {
   bio?: string = 'bio';
   avatarSrc?: string = 'https://loremflickr.com/640/480?lock=4649505131593728';
   // avatarSrc?: string;
-  birthdate: Date = new Date();
+  birthdate: Date = new Date('2021-02-22T00:00:00.000Z');
   email: string = 'email@email.com';
   createdAt: Date = new Date();
   updatedAt: Date = new Date();

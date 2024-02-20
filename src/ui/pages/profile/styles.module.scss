@@ -13,12 +13,10 @@
 
   @media (min-width: var(--screen-sm-min)) {
     --grid-columns: 4;
-    padding: 16px 24px;
   }
 
   @include sm {
     --grid-columns: 4;
-    padding: 16px 24px;
   }
 
   @include lg {

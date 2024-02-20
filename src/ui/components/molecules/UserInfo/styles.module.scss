@@ -1,2 +1,5 @@
 .userInfo {
+  display: grid;
+  grid-template-columns: auto 1fr;
+  grid-gap: 20px;
 }

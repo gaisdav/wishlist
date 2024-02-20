@@ -2,9 +2,10 @@ import { FC } from 'react';
 import { IUserInfo } from './types.ts';
 import { Avatar } from 'components/atoms/Avatar';
 import { Typography } from 'components/atoms';
+import css from './styles.module.scss';
 
-export const UserInfo: FC<IUserInfo> = ({ user }) => {
-  if (!user) return 'loading...';
+export const UserInfo: FC<IUserInfo> = ({ user, wishes, loading }) => {
+  if (!user || loading) return 'Loading...';
 
   const { firstName, avatarSrc, lastName } = user;
   const fullName = `${firstName} ${lastName}`;
@@ -12,15 +13,16 @@ export const UserInfo: FC<IUserInfo> = ({ user }) => {
   const birthday = user.birthdate.toLocaleDateString();
 
   return (
-    <div>
-      <Avatar alt={fullName} src={avatarSrc} size="lg">
+    <div className={css.userInfo}>
+      <Avatar alt={fullName} src={avatarSrc}>
         {initials}
       </Avatar>
 
-      <Typography>{fullName}</Typography>
-      <Typography>{birthday}</Typography>
-      <Typography>N wishes</Typography>
-      <Typography>N followers</Typography>
+      <div className={css.info}>
+        <Typography>{fullName}</Typography>
+        <Typography>Birthday: {birthday}</Typography>
+        <Typography>{wishes} wishes</Typography>
+      </div>
     </div>
   );
 };
