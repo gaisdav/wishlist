@@ -7,13 +7,12 @@ export class Profile implements IProfileEntity {
   lastName: string = 'lastName';
   bio?: string = 'bio';
   avatarSrc?: string = 'https://loremflickr.com/640/480?lock=4649505131593728';
-  // avatarSrc?: string;
   birthdate: Date = new Date('2021-02-22T00:00:00.000Z');
   email: string = 'email@email.com';
   createdAt: Date = new Date();
   updatedAt: Date = new Date();
 
-  // dto: IProfileResponse
+  // constructor(dto: IProfileResponse)
   constructor() {
     // this.id = dto.id;
     // this.username = dto.username;
