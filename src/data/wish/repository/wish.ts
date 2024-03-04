@@ -46,8 +46,8 @@ export class WishRepository implements IWishRepository {
     return delayedResponse(wish as IWishResponse, randomDelay(3000));
   }
 
-  deleteWish(id: string): Promise<IWishResponse> {
-    return this.fetcher.delete<IWishResponse>(
+  deleteWish(id: string): Promise<void> {
+    return this.fetcher.delete<void>(
       dynamicEndpoint(EEndpoint.WISHES_ID, {
         wishId: id,
       }),

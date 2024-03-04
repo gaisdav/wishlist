@@ -84,8 +84,8 @@ export class WishVM implements IWishVM {
     this._loadedWishes[id] = true;
 
     try {
-      const deletedWish = await this.service.deleteWish(id);
-      this._list = this._list.filter((wish) => wish.id !== deletedWish.id);
+      await this.service.deleteWish(id);
+      this._list = this._list.filter((wish) => wish.id !== id);
     } catch (error) {
       throwError(error);
     } finally {
