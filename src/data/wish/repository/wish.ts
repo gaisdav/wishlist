@@ -1,7 +1,8 @@
 import { IWishRepository } from './types.ts';
 import { ICreateWishDTO, IEditWishDTO, IWishEntity, IWishResponse } from '../entity';
-import { faker } from '@faker-js/faker';
 import { IFetcher } from 'libs/api';
+import { EEndpoint } from 'common/endpoints.ts';
+import { dynamicEndpoint } from 'common/utils.ts';
 
 function delayedResponse<T>(args: T, delayMs: number): Promise<T> {
   return new Promise((resolve) => {
@@ -17,44 +18,24 @@ export class WishRepository implements IWishRepository {
   constructor(private readonly fetcher: IFetcher) {}
 
   getList = async (): Promise<IWishResponse[]> => {
-    return await this.fetcher.get<IWishResponse[]>('/wishes');
+    return await this.fetcher.get<IWishResponse[]>(EEndpoint.WISHES);
   };
 
   createWish(dto: ICreateWishDTO): Promise<IWishResponse> {
-    const wish: IWishEntity = {
-      ...dto,
-      imageSrc: dto.imageSrc || faker.image.url(),
-      id: faker.string.uuid(),
-      updatedAt: new Date().toString(),
-      createdAt: faker.date.recent().toString(),
-    };
-
-    const listFromStorage = window.localStorage.getItem('wishes');
-    const list: IWishEntity[] = listFromStorage ? JSON.parse(listFromStorage) : [];
-    list.unshift(wish);
-    window.localStorage.setItem('wishes', JSON.stringify(list));
-    return delayedResponse(wish, randomDelay(3000));
+    return this.fetcher.post<IWishResponse>(EEndpoint.WISHES, {
+      data: dto,
+    });
   }
 
   editWish(id: string, dto: IEditWishDTO): Promise<IWishResponse> {
-    const listFromStorage = window.localStorage.getItem('wishes');
-    const list: IWishEntity[] = listFromStorage ? JSON.parse(listFromStorage) : [];
-    let wish: IWishResponse | null = null;
-    const newList = list.map((item) => {
-      if (item.id === id) {
-        wish = {
-          ...item,
-          ...dto,
-          updatedAt: new Date().toString(),
-        };
-        return wish;
-      }
-      return item;
-    });
-
-    window.localStorage.setItem('wishes', JSON.stringify(newList));
-
-    return delayedResponse(wish as unknown as IWishResponse, randomDelay(3000));
+    return this.fetcher.patch<IWishResponse>(
+      dynamicEndpoint(EEndpoint.WISHES_ID, {
+        wishId: id,
+      }),
+      {
+        data: dto,
+      },
+    );
   }
 
   getWish(id: string): Promise<IWishResponse> {
@@ -66,12 +47,10 @@ export class WishRepository implements IWishRepository {
   }
 
   deleteWish(id: string): Promise<IWishResponse> {
-    const listFromStorage = window.localStorage.getItem('wishes');
-    const list: IWishEntity[] = listFromStorage ? JSON.parse(listFromStorage) : [];
-    const wish = list.find((item) => item.id === id);
-    const newList = list.filter((item) => item.id !== id);
-    window.localStorage.setItem('wishes', JSON.stringify(newList));
-
-    return delayedResponse(wish as IWishResponse, randomDelay(3000));
+    return this.fetcher.delete<IWishResponse>(
+      dynamicEndpoint(EEndpoint.WISHES_ID, {
+        wishId: id,
+      }),
+    );
   }
 }

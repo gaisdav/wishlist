@@ -9,6 +9,7 @@ export default defineConfig({
     alias: {
       data: path.resolve(__dirname, 'src/data/'),
       libs: path.resolve(__dirname, 'src/libs/'),
+      common: path.resolve(__dirname, 'src/common/'),
       routes: path.resolve(__dirname, 'src/routes/'),
       store: path.resolve(__dirname, 'src/store/'),
       hooks: path.resolve(__dirname, 'src/ui/hooks/'),

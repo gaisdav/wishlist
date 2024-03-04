@@ -21,6 +21,7 @@
         "map": [
           ["data", "./src/data"],
           ["libs", "./src/libs"],
+          ["common", "./src/common"],
           ["routes", "./src/routes"],
           ["store", "./src/store"],
           ["hooks", "./src/ui/hooks"],

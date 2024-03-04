@@ -1,5 +1,6 @@
 import axios, { AxiosInstance, AxiosRequestConfig } from 'axios';
 import { IFetcher } from './types.ts';
+import { EEndpoint } from 'common/endpoints.ts';
 
 type Middleware = (config: AxiosRequestConfig) => AxiosRequestConfig;
 
@@ -18,23 +19,23 @@ export class Fetcher implements IFetcher {
     this.middlewares.push(middleware);
   }
 
-  async get<T = unknown>(url: string, options?: RequestInit): Promise<T> {
+  async get<T = unknown>(url: EEndpoint, options?: RequestInit): Promise<T> {
     return this.request<T>({ ...options, method: 'get', url });
   }
 
-  async post<T = unknown>(url: string, options?: RequestInit): Promise<T> {
+  async post<T = unknown>(url: EEndpoint, options?: RequestInit): Promise<T> {
     return this.request<T>({ ...options, url, method: 'POST' });
   }
 
-  async put<T = unknown>(url: string, options?: RequestInit): Promise<T> {
+  async put<T = unknown>(url: EEndpoint, options?: RequestInit): Promise<T> {
     return this.request<T>({ ...options, url, method: 'PUT' });
   }
 
-  async patch<T = unknown>(url: string, options?: RequestInit): Promise<T> {
+  async patch<T = unknown>(url: EEndpoint, options?: RequestInit): Promise<T> {
     return this.request<T>({ ...options, url, method: 'PATCH' });
   }
 
-  async delete<T = unknown>(url: string, options?: RequestInit): Promise<T> {
+  async delete<T = unknown>(url: EEndpoint, options?: RequestInit): Promise<T> {
     return this.request<T>({ ...options, method: 'DELETE', url });
   }
 
