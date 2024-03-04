@@ -1,6 +1,7 @@
 import { IWishRepository } from './types.ts';
 import { ICreateWishDTO, IEditWishDTO, IWishEntity, IWishResponse } from '../entity';
 import { faker } from '@faker-js/faker';
+import { IFetcher } from 'libs/api';
 
 function delayedResponse<T>(args: T, delayMs: number): Promise<T> {
   return new Promise((resolve) => {
@@ -13,13 +14,11 @@ function delayedResponse<T>(args: T, delayMs: number): Promise<T> {
 const randomDelay = (ms: number) => Math.floor(Math.random() * ms);
 
 export class WishRepository implements IWishRepository {
-  getList(): Promise<IWishResponse[]> {
-    const listFromStorage = window.localStorage.getItem('wishes');
+  constructor(private readonly fetcher: IFetcher) {}
 
-    const list: IWishResponse[] = listFromStorage ? JSON.parse(listFromStorage) : [];
-
-    return delayedResponse(list, randomDelay(3000));
-  }
+  getList = async (): Promise<IWishResponse[]> => {
+    return await this.fetcher.get<IWishResponse[]>('/wishes');
+  };
 
   createWish(dto: ICreateWishDTO): Promise<IWishResponse> {
     const wish: IWishEntity = {

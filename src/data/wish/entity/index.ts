@@ -1,2 +1,2 @@
 export * from './wish.ts';
-export * from './types.ts';
+export * from '../types.ts';

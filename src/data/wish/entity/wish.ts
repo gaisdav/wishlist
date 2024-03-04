@@ -1,4 +1,4 @@
-import { IWishEntity, IWishResponse } from './types.ts';
+import { IWishEntity, IWishResponse } from '../types.ts';
 
 export class Wish implements IWishEntity {
   id: string = '';

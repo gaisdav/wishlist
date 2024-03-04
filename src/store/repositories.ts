@@ -1,5 +1,6 @@
 import { IRepositories } from './types.ts';
 import { IWishRepository, WishRepository } from 'data/wish/repository';
+import { IFetcher } from 'libs/api';
 
 export class RepositoriesStore implements IRepositories {
   private repositories: IRepositories | null = null;
@@ -7,12 +8,12 @@ export class RepositoriesStore implements IRepositories {
   get wish(): IWishRepository {
     if (!this.repositories?.wish) {
       this.repositories = {
-        wish: new WishRepository(),
+        wish: new WishRepository(this.fetcher),
       };
     }
 
     return this.repositories.wish;
   }
 
-  constructor() {}
+  constructor(private readonly fetcher: IFetcher) {}
 }

@@ -75,11 +75,11 @@ const Profile: FC<PropsWithChildren> = observer(() => {
       <div className={css.profile}>
         <UserInfo user={profile} wishes={list.length} loading={loading} />
 
-        <div className={css.wishes}>{content}</div>
-
         <IconButton disabled={loading} onClick={openCreateWishModal}>
           <Icon iconName="add" />
         </IconButton>
+
+        <div className={css.wishes}>{content}</div>
       </div>
 
       <AddWishModal loading={loading} open={modalMode === 'add'} onClose={handleCloseModal} onSubmit={submitAddWish} />
