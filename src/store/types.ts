@@ -1,15 +1,17 @@
 import { IWishRepository } from 'data/wish/repository';
 import { IWishService } from 'data/wish/service';
 import { IWishVM } from 'data/wish/vm';
-import { IProfileVM } from 'data/profile/vm';
+import { IProfileRepository, IProfileService, IProfileVM } from 'data/profile/vm';
 import { IFetcher } from 'libs/api';
 
 export interface IRepositories {
-  wish: IWishRepository;
+  wish?: IWishRepository;
+  profile?: IProfileRepository;
 }
 
 export interface IServices {
   wish: IWishService;
+  profile: IProfileService;
 }
 
 export interface IVMs {

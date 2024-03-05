@@ -5,6 +5,7 @@ import Profile from '../ui/pages/profile/Profile.tsx';
 import { IVMs } from '../store';
 import Wish from '../ui/pages/wish/Wish.tsx';
 import { ErrorPage } from 'pages/error/ErrorPage.tsx';
+import ProfileEdit from 'pages/profileEdit/ProfileEdit.tsx';
 
 export const initRoutes = ({ wish }: IVMs) => {
   return createBrowserRouter([
@@ -34,6 +35,15 @@ export const initRoutes = ({ wish }: IVMs) => {
               },
             },
           ],
+        },
+        {
+          path: ERoute.PROFILE_EDIT,
+          element: <ProfileEdit />,
+          // loader: async () => {
+          //   wish.getList();
+          //
+          //   return wish.list;
+          // },
         },
       ],
     },

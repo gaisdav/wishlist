@@ -9,6 +9,7 @@ export interface IUserEntity {
   email: string;
   createdAt: Date;
   updatedAt: Date;
+  deletedAt?: Date;
 }
 
 export interface IUserResponse extends Omit<IUserEntity, 'birthdate' | 'createdAt' | 'updatedAt'> {
