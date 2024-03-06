@@ -15,9 +15,9 @@ export class Profile implements IProfileEntity {
   constructor(dto: IProfileResponse) {
     this.id = dto.id;
     this.username = dto.username;
-    this.firstName = dto.firstName;
-    this.lastName = dto.lastName;
-    this.bio = dto.bio;
+    this.firstName = dto.firstName.trim();
+    this.lastName = dto.lastName.trim();
+    this.bio = dto.bio?.trim();
     this.avatarSrc = dto.avatarSrc;
     this.birthdate = new Date(dto.birthdate);
     this.email = dto.email;

@@ -10,7 +10,18 @@ export class ProfileService implements IProfileService {
   };
 
   getProfile = async (): Promise<IProfileEntity> => {
-    const profile = await this.repository.getProfile();
-    return new Profile(profile);
+    // const profile = await this.repository.getProfile();
+    return new Profile({
+      id: 'dto.id',
+      username: ' dto.username',
+      firstName: ' dto.firstName',
+      lastName: ' dto.lastName',
+      bio: ' dto.bio',
+      avatarSrc: ' dto.avatarSrc',
+      birthdate: ' new Date(dto.birthdate)',
+      email: ' dto.email',
+      createdAt: ' new Date(dto.createdAt)',
+      updatedAt: ' new Date(dto.updatedAt)',
+    });
   };
 }
