@@ -25,8 +25,6 @@ export class ProfileVM implements IProfileVM {
     } catch (error) {
       throwError(error);
     } finally {
-      console.log('asdf');
-      console.log(this._entity);
       this._loading = false;
     }
   };

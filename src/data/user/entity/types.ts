@@ -1,12 +1,12 @@
 export interface IUserEntity {
   id: string;
   username: string;
+  email: string;
   firstName: string;
   lastName: string;
   bio?: string;
-  avatarSrc?: string;
   birthdate: Date;
-  email: string;
+  avatarSrc?: string;
   createdAt: Date;
   updatedAt: Date;
   deletedAt?: Date;

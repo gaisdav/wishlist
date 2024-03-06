@@ -4,11 +4,11 @@ import { useRouteError } from 'react-router-dom';
 
 export const ErrorPage: FC<PropsWithChildren> = observer(() => {
   const error = useRouteError();
-  console.log(error);
+  const err = error instanceof Error ? error : new Error('Error');
 
   return (
     <div>
-      <p style={{ color: 'red', fontSize: '30px' }}>Error (404?)</p>
+      <p style={{ color: 'red', fontSize: '30px' }}>Error (404?) {err.message}</p>
     </div>
   );
 });
