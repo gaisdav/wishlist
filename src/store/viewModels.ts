@@ -16,7 +16,7 @@ export class VMStore implements IVMs {
 
   get profile(): IProfileVM {
     if (!this._profile) {
-      this._profile = new ProfileVM();
+      this._profile = new ProfileVM(this.services.profile);
     }
 
     return this._profile;

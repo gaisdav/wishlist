@@ -5,8 +5,8 @@ import { IProfileRepository, IProfileService, IProfileVM } from 'data/profile/vm
 import { IFetcher } from 'libs/api';
 
 export interface IRepositories {
-  wish?: IWishRepository;
-  profile?: IProfileRepository;
+  wish: IWishRepository;
+  profile: IProfileRepository;
 }
 
 export interface IServices {

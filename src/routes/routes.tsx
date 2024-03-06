@@ -7,20 +7,25 @@ import Wish from '../ui/pages/wish/Wish.tsx';
 import { ErrorPage } from 'pages/error/ErrorPage.tsx';
 import ProfileEdit from 'pages/profileEdit/ProfileEdit.tsx';
 
-export const initRoutes = ({ wish }: IVMs) => {
+export const initRoutes = (store: IVMs) => {
   return createBrowserRouter([
     {
       path: '/',
       Component: AppWrapper,
       errorElement: <ErrorPage />,
+      loader: async () => {
+        store.profile.getProfile();
+
+        return store.profile.entity;
+      },
       children: [
         {
           path: ERoute.HOME,
           element: <Profile />,
           loader: async () => {
-            wish.getList();
+            store.wish.getList();
 
-            return wish.list;
+            return store.wish.list;
           },
           children: [
             {
@@ -28,10 +33,10 @@ export const initRoutes = ({ wish }: IVMs) => {
               element: <Wish />,
               loader: async ({ params }) => {
                 if (params.wishId) {
-                  wish.getWish(params.wishId);
+                  store.wish.getWish(params.wishId);
                 }
 
-                return wish.entity;
+                return store.wish.entity;
               },
             },
           ],
@@ -39,11 +44,6 @@ export const initRoutes = ({ wish }: IVMs) => {
         {
           path: ERoute.PROFILE_EDIT,
           element: <ProfileEdit />,
-          // loader: async () => {
-          //   wish.getList();
-          //
-          //   return wish.list;
-          // },
         },
       ],
     },

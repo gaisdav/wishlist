@@ -5,26 +5,23 @@ import { IProfileRepository } from 'data/profile/types.ts';
 import { ProfileRepository } from 'data/profile/repository';
 
 export class RepositoriesStore implements IRepositories {
-  private repositories: IRepositories | null = null;
+  private _wish?: IWishRepository;
+  private _profile?: IProfileRepository;
 
   get wish(): IWishRepository {
-    if (!this.repositories?.wish) {
-      this.repositories = {
-        wish: new WishRepository(this.fetcher),
-      };
+    if (!this?._wish) {
+      this._wish = new WishRepository(this.fetcher);
     }
 
-    return this.repositories.wish;
+    return this._wish;
   }
 
   get profile(): IProfileRepository {
-    if (!this.repositories?.profile) {
-      this.repositories = {
-        profile: new ProfileRepository(this.fetcher),
-      };
+    if (!this._profile) {
+      this._profile = new ProfileRepository(this.fetcher);
     }
 
-    return this.repositories?.profile;
+    return this._profile;
   }
 
   constructor(private readonly fetcher: IFetcher) {}
