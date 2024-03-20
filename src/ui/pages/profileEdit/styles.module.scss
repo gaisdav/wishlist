@@ -1,4 +1,11 @@
 @import '../../common/styles/breakpoints';
 
 .profile-edit {
+  display: grid;
+  grid-template-columns: 1fr;
+  grid-gap: 20px;
+}
+
+.field {
+  max-width: 400px;
 }

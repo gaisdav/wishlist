@@ -18,7 +18,7 @@ export class ProfileService implements IProfileService {
       lastName: ' dto.lastName',
       bio: ' dto.bio',
       avatarSrc: ' dto.avatarSrc',
-      birthdate: ' new Date(dto.birthdate)',
+      birthdate: '2018-07-22',
       email: ' dto.email',
       createdAt: ' new Date(dto.createdAt)',
       updatedAt: ' new Date(dto.updatedAt)',

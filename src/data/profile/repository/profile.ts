@@ -6,7 +6,7 @@ export class ProfileRepository implements IProfileRepository {
   constructor(private readonly fetcher: IFetcher) {}
 
   editProfile(dto: IProfileEditDTO): Promise<IProfileResponse> {
-    return this.fetcher.put(EEndpoint.PROFILE, { data: dto });
+    return this.fetcher.patch(EEndpoint.PROFILE, { data: dto });
   }
 
   getProfile(): Promise<IProfileResponse> {

@@ -37,6 +37,7 @@ const RAW_RUNTIME_STATE =
           ["@vitejs/plugin-react", "virtual:96a9c556c3dfde8c303e4aa460a2c3f624fe7adf234617928a7f51d0403b8b940dc4043274a212527347177482b828db47f294af727bb5d22cb8d15e037f2b43#npm:4.2.1"],\
           ["axios", "npm:1.6.7"],\
           ["classnames", "npm:2.5.1"],\
+          ["date-fns", "npm:3.3.1"],\
           ["eslint", "npm:8.57.0"],\
           ["eslint-config-prettier", "virtual:96a9c556c3dfde8c303e4aa460a2c3f624fe7adf234617928a7f51d0403b8b940dc4043274a212527347177482b828db47f294af727bb5d22cb8d15e037f2b43#npm:9.1.0"],\
           ["eslint-import-resolver-alias", "virtual:96a9c556c3dfde8c303e4aa460a2c3f624fe7adf234617928a7f51d0403b8b940dc4043274a212527347177482b828db47f294af727bb5d22cb8d15e037f2b43#npm:1.1.2"],\
@@ -4905,6 +4906,15 @@ const RAW_RUNTIME_STATE =
         "linkType": "HARD"\
       }]\
     ]],\
+    ["date-fns", [\
+      ["npm:3.3.1", {\
+        "packageLocation": "./.yarn/cache/date-fns-npm-3.3.1-794b72f5e7-9823193676.zip/node_modules/date-fns/",\
+        "packageDependencies": [\
+          ["date-fns", "npm:3.3.1"]\
+        ],\
+        "linkType": "HARD"\
+      }]\
+    ]],\
     ["debug", [\
       ["npm:3.2.7", {\
         "packageLocation": "./.yarn/cache/debug-npm-3.2.7-754e818c7a-d86fd7be2b.zip/node_modules/debug/",\
@@ -9273,6 +9283,7 @@ const RAW_RUNTIME_STATE =
           ["@vitejs/plugin-react", "virtual:96a9c556c3dfde8c303e4aa460a2c3f624fe7adf234617928a7f51d0403b8b940dc4043274a212527347177482b828db47f294af727bb5d22cb8d15e037f2b43#npm:4.2.1"],\
           ["axios", "npm:1.6.7"],\
           ["classnames", "npm:2.5.1"],\
+          ["date-fns", "npm:3.3.1"],\
           ["eslint", "npm:8.57.0"],\
           ["eslint-config-prettier", "virtual:96a9c556c3dfde8c303e4aa460a2c3f624fe7adf234617928a7f51d0403b8b940dc4043274a212527347177482b828db47f294af727bb5d22cb8d15e037f2b43#npm:9.1.0"],\
           ["eslint-import-resolver-alias", "virtual:96a9c556c3dfde8c303e4aa460a2c3f624fe7adf234617928a7f51d0403b8b940dc4043274a212527347177482b828db47f294af727bb5d22cb8d15e037f2b43#npm:1.1.2"],\

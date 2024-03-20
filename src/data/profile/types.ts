@@ -9,7 +9,9 @@ export interface IProfileResponse extends Omit<IProfileEntity, 'birthdate' | 'cr
 }
 
 export interface IProfileEditDTO
-  extends Omit<Partial<IProfileEntity>, 'id' | 'createdAt' | 'updatedAt' | 'deletedAt'> {}
+  extends Omit<Partial<IProfileEntity>, 'id' | 'createdAt' | 'updatedAt' | 'deletedAt' | 'birthdate'> {
+  birthdate: string;
+}
 
 export interface IProfileVM {
   loading: boolean;
