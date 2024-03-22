@@ -30,6 +30,7 @@ const RAW_RUNTIME_STATE =
           ["@emotion/styled", "virtual:96a9c556c3dfde8c303e4aa460a2c3f624fe7adf234617928a7f51d0403b8b940dc4043274a212527347177482b828db47f294af727bb5d22cb8d15e037f2b43#npm:11.11.0"],\
           ["@faker-js/faker", "npm:8.4.1"],\
           ["@mui/joy", "virtual:96a9c556c3dfde8c303e4aa460a2c3f624fe7adf234617928a7f51d0403b8b940dc4043274a212527347177482b828db47f294af727bb5d22cb8d15e037f2b43#npm:5.0.0-beta.30"],\
+          ["@types/node", "npm:20.11.30"],\
           ["@types/react", "npm:18.2.64"],\
           ["@types/react-dom", "npm:18.2.20"],\
           ["@typescript-eslint/eslint-plugin", "virtual:96a9c556c3dfde8c303e4aa460a2c3f624fe7adf234617928a7f51d0403b8b940dc4043274a212527347177482b828db47f294af727bb5d22cb8d15e037f2b43#npm:6.21.0"],\
@@ -3711,6 +3712,14 @@ const RAW_RUNTIME_STATE =
         "packageLocation": "./.yarn/cache/@types-node-npm-20.11.25-b6ac39dd46-861265f1bb.zip/node_modules/@types/node/",\
         "packageDependencies": [\
           ["@types/node", "npm:20.11.25"],\
+          ["undici-types", "npm:5.26.5"]\
+        ],\
+        "linkType": "HARD"\
+      }],\
+      ["npm:20.11.30", {\
+        "packageLocation": "./.yarn/cache/@types-node-npm-20.11.30-b20dd3f11f-78515bc768.zip/node_modules/@types/node/",\
+        "packageDependencies": [\
+          ["@types/node", "npm:20.11.30"],\
           ["undici-types", "npm:5.26.5"]\
         ],\
         "linkType": "HARD"\
@@ -9101,7 +9110,7 @@ const RAW_RUNTIME_STATE =
           ["vite", "virtual:96a9c556c3dfde8c303e4aa460a2c3f624fe7adf234617928a7f51d0403b8b940dc4043274a212527347177482b828db47f294af727bb5d22cb8d15e037f2b43#npm:5.1.5"],\
           ["@types/less", null],\
           ["@types/lightningcss", null],\
-          ["@types/node", null],\
+          ["@types/node", "npm:20.11.30"],\
           ["@types/sass", null],\
           ["@types/stylus", null],\
           ["@types/sugarss", null],\
@@ -9276,6 +9285,7 @@ const RAW_RUNTIME_STATE =
           ["@emotion/styled", "virtual:96a9c556c3dfde8c303e4aa460a2c3f624fe7adf234617928a7f51d0403b8b940dc4043274a212527347177482b828db47f294af727bb5d22cb8d15e037f2b43#npm:11.11.0"],\
           ["@faker-js/faker", "npm:8.4.1"],\
           ["@mui/joy", "virtual:96a9c556c3dfde8c303e4aa460a2c3f624fe7adf234617928a7f51d0403b8b940dc4043274a212527347177482b828db47f294af727bb5d22cb8d15e037f2b43#npm:5.0.0-beta.30"],\
+          ["@types/node", "npm:20.11.30"],\
           ["@types/react", "npm:18.2.64"],\
           ["@types/react-dom", "npm:18.2.20"],\
           ["@typescript-eslint/eslint-plugin", "virtual:96a9c556c3dfde8c303e4aa460a2c3f624fe7adf234617928a7f51d0403b8b940dc4043274a212527347177482b828db47f294af727bb5d22cb8d15e037f2b43#npm:6.21.0"],\
