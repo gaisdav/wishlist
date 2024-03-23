@@ -3,9 +3,10 @@ import { ERoute } from './types.ts';
 import { AppWrapper } from 'components/organisms';
 import Profile from '../ui/pages/profile/Profile.tsx';
 import { IVMs } from '../store';
-import Wish from '../ui/pages/wish/Wish.tsx';
 import { ErrorPage } from 'pages/error/ErrorPage.tsx';
 import ProfileEdit from 'pages/profileEdit/ProfileEdit.tsx';
+import Login from 'pages/login/Login.tsx';
+import Wish from 'pages/wish/Wish.tsx';
 
 export const initRoutes = (store: IVMs) => {
   return createBrowserRouter([
@@ -44,6 +45,10 @@ export const initRoutes = (store: IVMs) => {
         {
           path: ERoute.PROFILE_EDIT,
           element: <ProfileEdit />,
+        },
+        {
+          path: ERoute.LOGIN,
+          element: <Login />,
         },
       ],
     },

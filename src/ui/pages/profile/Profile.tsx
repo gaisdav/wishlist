@@ -6,7 +6,6 @@ import { ICreateWishDTO, IEditWishDTO, IWishEntity } from 'data/wish/entity';
 import { AddWishModal, EditWishModal, WishCard, WishCardSkeleton } from 'components/molecules';
 import { Icon, IconButton } from 'components/atoms';
 import { UserInfo } from 'components/molecules/UserInfo';
-import { getGoogleAuthUrl } from 'common/utils.ts';
 
 const skeletons = (
   <>
@@ -17,8 +16,6 @@ const skeletons = (
     <WishCardSkeleton />
   </>
 );
-
-const googleAuthURI = getGoogleAuthUrl();
 
 const Profile: FC<PropsWithChildren> = observer(() => {
   const { list, loading, addWish, editWish, deleteWish, isLoading } = useStore('wish');
@@ -77,10 +74,6 @@ const Profile: FC<PropsWithChildren> = observer(() => {
     <>
       <div className={css.profile}>
         <UserInfo user={profile} wishes={list.length} loading={loading} />
-
-        <a href={googleAuthURI} rel="noreferrer">
-          Google Auth
-        </a>
 
         <IconButton disabled={loading} onClick={openCreateWishModal}>
           <Icon iconName="add" />

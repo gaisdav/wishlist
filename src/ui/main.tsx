@@ -1,5 +1,6 @@
 import React from 'react';
 import ReactDOM from 'react-dom/client';
+import './main.css';
 import { CssVarsProvider } from '@mui/joy/styles';
 import CssBaseline from '@mui/joy/CssBaseline';
 import { theme } from './theme.ts';
