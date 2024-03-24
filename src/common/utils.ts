@@ -24,6 +24,9 @@ export const dynamicEndpoint = (route: EEndpoint, params: Record<string, string 
   return generatedRoute;
 };
 
+/**
+ * Функция для генерации урла для авторизации через Google
+ */
 const CLIENT_ID = import.meta.env.VITE_GOOGLE_CLIENT_ID;
 const REDIRECT_URI = import.meta.env.VITE_GOOGLE_REDIRECT_URI;
 export const getGoogleAuthUrl = (): string => {
@@ -31,5 +34,19 @@ export const getGoogleAuthUrl = (): string => {
     throw new Error('Google Client ID or Redirect URI are not provided');
   }
 
-  return `https://accounts.google.com/o/oauth2/v2/auth/oauthchooseaccount?client_id=${CLIENT_ID}&redirect_uri=${REDIRECT_URI}&response_type=code&flowName=GeneralOAuthFlow&scope=profile email`;
+  const rootUrl = 'https://accounts.google.com/o/oauth2/v2/auth/oauthchooseaccount';
+
+  const params = {
+    client_id: CLIENT_ID,
+    redirect_uri: REDIRECT_URI,
+    response_type: 'code',
+    flowName: 'GeneralOAuthFlow',
+    access_type: 'offline',
+    prompt: 'consent',
+    scope: ['profile', 'email'].join(' '),
+  };
+
+  const qs = new URLSearchParams(params);
+
+  return `${rootUrl}?${qs.toString()}`;
 };

@@ -47,7 +47,7 @@ export class Fetcher implements IFetcher {
 
     // eslint-disable-next-line no-useless-catch
     try {
-      const { data } = await this.axiosInstance.request<T>(modifiedConfig);
+      const { data } = await this.axiosInstance.request<T>({ withCredentials: true, ...modifiedConfig });
       return data;
     } catch (error) {
       throw error;
