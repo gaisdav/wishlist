@@ -1,12 +1,14 @@
 import { AxiosRequestConfig } from 'axios';
 import { EEndpoint } from 'common/endpoints.ts';
 
-type Middleware = (config: AxiosRequestConfig) => AxiosRequestConfig;
+export type Middleware = (config: AxiosRequestConfig) => AxiosRequestConfig;
+export type ErrorMiddleware = (error: Error) => void;
 
 interface RequestInit extends Omit<AxiosRequestConfig, 'url' | 'method'> {}
 
 export interface IFetcher {
-  use(middleware: Middleware): void;
+  useRequestMiddleware(middleware: Middleware): void;
+  useErrorMiddleware(middleware: ErrorMiddleware): void;
   get<T = unknown>(url: EEndpoint, options?: RequestInit): Promise<T>;
   post<T = unknown>(url: EEndpoint, options?: RequestInit): Promise<T>;
   put<T = unknown>(url: EEndpoint, options?: RequestInit): Promise<T>;
