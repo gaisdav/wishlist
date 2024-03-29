@@ -7,7 +7,7 @@ export class Profile implements IProfileEntity {
   lastName: string;
   bio?: string;
   avatarSrc?: string;
-  birthdate: Date;
+  birthdate: Date | null;
   email: string;
   createdAt: Date;
   updatedAt: Date;
@@ -19,7 +19,7 @@ export class Profile implements IProfileEntity {
     this.lastName = dto.lastName.trim();
     this.bio = dto.bio?.trim();
     this.avatarSrc = dto.avatarSrc;
-    this.birthdate = new Date(dto.birthdate);
+    this.birthdate = dto.birthdate ? new Date(dto.birthdate) : null;
     this.email = dto.email;
     this.createdAt = new Date(dto.createdAt);
     this.updatedAt = new Date(dto.updatedAt);

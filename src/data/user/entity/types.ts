@@ -5,7 +5,7 @@ export interface IUserEntity {
   firstName: string;
   lastName: string;
   bio?: string;
-  birthdate: Date;
+  birthdate?: Date | null;
   avatarSrc?: string;
   createdAt: Date;
   updatedAt: Date;

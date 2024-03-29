@@ -25,7 +25,7 @@ const ProfileEdit: FC<PropsWithChildren> = observer(() => {
       firstName: entity?.firstName,
       lastName: entity?.lastName,
       bio: entity?.bio,
-      birthdate: entity ? format(entity.birthdate, 'yyyy-MM-dd') : undefined,
+      birthdate: entity?.birthdate ? format(entity.birthdate, 'yyyy-MM-dd') : undefined,
     },
   });
 

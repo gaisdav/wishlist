@@ -11,7 +11,7 @@ export const UserInfo: FC<IUserInfo> = ({ user, wishes, loading }) => {
   const { firstName, avatarSrc, lastName } = user;
   const fullName = `${firstName} ${lastName}`;
   const initials = `${firstName[0]}${lastName[0]}`.toUpperCase();
-  const birthday = user.birthdate.toLocaleDateString();
+  const birthday = user.birthdate?.toLocaleDateString();
 
   return (
     <div className={css.userInfo}>
@@ -21,9 +21,8 @@ export const UserInfo: FC<IUserInfo> = ({ user, wishes, loading }) => {
 
       <div className={css.info}>
         <Typography>{fullName}</Typography>
-        <Typography>Birthday: {birthday}</Typography>
+        {birthday && <Typography>Birthday: {birthday}</Typography>}
         <Typography>{wishes} wishes</Typography>
-
         <Link to={ERoute.PROFILE_EDIT}>
           <IconButton disabled={loading}>
             <Icon iconName="edit" />
