@@ -13,6 +13,22 @@ export const UserInfo: FC<IUserInfo> = ({ user, wishes, loading }) => {
   const initials = `${firstName[0]}${lastName[0]}`.toUpperCase();
   const birthday = user.birthdate?.toLocaleDateString();
 
+  const canShare = 'canShare' in navigator;
+
+  const handleShare = async () => {
+    const shareUrl = window.location.origin + '/user/' + user.id;
+
+    if (canShare) {
+      await navigator.share({
+        title: `${firstName}'s wishlist`,
+        text: `Hey! here's ${firstName}'s wishlist`,
+        url: shareUrl,
+      });
+    } else {
+      await navigator.clipboard.writeText(shareUrl);
+    }
+  };
+
   return (
     <div className={css.userInfo}>
       <Avatar alt={fullName} src={avatarSrc}>
@@ -28,6 +44,9 @@ export const UserInfo: FC<IUserInfo> = ({ user, wishes, loading }) => {
             <Icon iconName="edit" />
           </IconButton>
         </Link>
+        <IconButton disabled={loading} onClick={handleShare}>
+          <Icon className={css.shareIcon} iconName={canShare ? 'reply' : 'link'} />
+        </IconButton>
       </div>
     </div>
   );
