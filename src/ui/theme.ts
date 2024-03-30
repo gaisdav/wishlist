@@ -53,5 +53,10 @@ export const theme = extendTheme({
         variant: 'soft',
       },
     },
+    JoySnackbar: {
+      defaultProps: {
+        variant: 'soft',
+      },
+    },
   },
 });

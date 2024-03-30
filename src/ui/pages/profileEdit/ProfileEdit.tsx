@@ -35,8 +35,6 @@ const ProfileEdit: FC<PropsWithChildren> = observer(() => {
 
   const handleSave = async (data: IProfileEditDTO) => {
     await editProfile(data);
-
-    navigate(ERoute.HOME);
   };
 
   const handleCancel = () => {
@@ -49,88 +47,92 @@ const ProfileEdit: FC<PropsWithChildren> = observer(() => {
   }
 
   return (
-    <form className={css['profile-edit']} onSubmit={handleSubmit(handleSave)}>
-      <Controller
-        rules={{ required: 'Required field' }}
-        disabled={loading}
-        name="username"
-        control={control}
-        render={({ field, fieldState: { invalid, error } }) => {
-          return (
-            <Input className={css.field} label="Username" error={invalid} helperText={error?.message} {...field} />
-          );
-        }}
-      />
+    <>
+      <form className={css['profile-edit']} onSubmit={handleSubmit(handleSave)}>
+        <Controller
+          rules={{ required: 'Required field' }}
+          disabled={loading}
+          name="username"
+          control={control}
+          render={({ field, fieldState: { invalid, error } }) => {
+            return (
+              <Input className={css.field} label="Username" error={invalid} helperText={error?.message} {...field} />
+            );
+          }}
+        />
 
-      <Controller
-        rules={{ required: 'Required field' }}
-        disabled={loading}
-        name="email"
-        control={control}
-        render={({ field, fieldState: { invalid, error } }) => {
-          return <Input className={css.field} label="Email" error={invalid} helperText={error?.message} {...field} />;
-        }}
-      />
+        <Controller
+          rules={{ required: 'Required field' }}
+          disabled={loading}
+          name="email"
+          control={control}
+          render={({ field, fieldState: { invalid, error } }) => {
+            return <Input className={css.field} label="Email" error={invalid} helperText={error?.message} {...field} />;
+          }}
+        />
 
-      <Controller
-        rules={{ required: 'Required field' }}
-        disabled={loading}
-        name="firstName"
-        control={control}
-        render={({ field, fieldState: { invalid, error } }) => {
-          return (
-            <Input className={css.field} label="First name" error={invalid} helperText={error?.message} {...field} />
-          );
-        }}
-      />
+        <Controller
+          rules={{ required: 'Required field' }}
+          disabled={loading}
+          name="firstName"
+          control={control}
+          render={({ field, fieldState: { invalid, error } }) => {
+            return (
+              <Input className={css.field} label="First name" error={invalid} helperText={error?.message} {...field} />
+            );
+          }}
+        />
 
-      <Controller
-        rules={{ required: 'Required field' }}
-        disabled={loading}
-        name="lastName"
-        control={control}
-        render={({ field, fieldState: { invalid, error } }) => {
-          return (
-            <Input className={css.field} label="Last name" error={invalid} helperText={error?.message} {...field} />
-          );
-        }}
-      />
+        <Controller
+          rules={{ required: 'Required field' }}
+          disabled={loading}
+          name="lastName"
+          control={control}
+          render={({ field, fieldState: { invalid, error } }) => {
+            return (
+              <Input className={css.field} label="Last name" error={invalid} helperText={error?.message} {...field} />
+            );
+          }}
+        />
 
-      <Controller
-        disabled={loading}
-        name="birthdate"
-        control={control}
-        render={({ field, fieldState: { invalid, error } }) => {
-          return (
-            <Input
-              type="date"
-              className={css.field}
-              label="Birthdate"
-              error={invalid}
-              helperText={error?.message}
-              {...field}
-            />
-          );
-        }}
-      />
+        <Controller
+          disabled={loading}
+          name="birthdate"
+          control={control}
+          render={({ field, fieldState: { invalid, error } }) => {
+            return (
+              <Input
+                type="date"
+                className={css.field}
+                label="Birthdate"
+                error={invalid}
+                helperText={error?.message}
+                {...field}
+              />
+            );
+          }}
+        />
 
-      <Controller
-        disabled={loading}
-        name="bio"
-        control={control}
-        render={({ field, fieldState: { invalid, error } }) => {
-          return <Textarea className={css.field} label="Bio" error={invalid} helperText={error?.message} {...field} />;
-        }}
-      />
+        <Controller
+          disabled={loading}
+          name="bio"
+          control={control}
+          render={({ field, fieldState: { invalid, error } }) => {
+            return (
+              <Textarea className={css.field} label="Bio" error={invalid} helperText={error?.message} {...field} />
+            );
+          }}
+        />
 
-      <Button className={css.field} type="submit" disabled={!isDirty || loading}>
-        Save
-      </Button>
+        <Button className={css.field} type="submit" disabled={!isDirty || loading}>
+          Save
+        </Button>
 
-      <Button className={css.field} onClick={handleCancel} disabled={loading}>
-        Cancel
-      </Button>
-    </form>
+        <Button className={css.field} onClick={handleCancel} disabled={loading}>
+          Cancel
+        </Button>
+      </form>
+    </>
   );
 });
 

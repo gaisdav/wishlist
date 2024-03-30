@@ -60,7 +60,6 @@ export class Fetcher implements IFetcher {
           middleware(error);
         }
       }
-
       throw error;
     }
   }

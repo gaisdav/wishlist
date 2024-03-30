@@ -1,6 +1,7 @@
 import { IProfileEditDTO, IProfileEntity, IProfileService, IProfileVM } from '../types.ts';
 import { makeAutoObservable } from 'mobx';
 import { throwError } from 'data/utils';
+import { INotificationVM } from 'data/notification/vm/types.ts';
 
 export class ProfileVM implements IProfileVM {
   private _loading: boolean = false;
@@ -14,7 +15,10 @@ export class ProfileVM implements IProfileVM {
     return this._entity;
   }
 
-  constructor(private service: IProfileService) {
+  constructor(
+    private notification: INotificationVM,
+    private service: IProfileService,
+  ) {
     makeAutoObservable(this);
   }
 
@@ -33,7 +37,9 @@ export class ProfileVM implements IProfileVM {
     this._loading = true;
     try {
       this._entity = await this.service.editProfile(dto);
+      this.notification.successNotification('Profile edited successfully');
     } catch (error) {
+      this.notification.errorNotification(error);
       throwError(error);
     } finally {
       this._loading = false;

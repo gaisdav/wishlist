@@ -8,3 +8,4 @@ export * from './Textarea';
 export * from './Typography';
 export * from './Img';
 export * from './LinearProgress';
+export * from './Snackbar';
