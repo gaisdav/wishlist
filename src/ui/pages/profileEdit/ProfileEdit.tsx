@@ -35,6 +35,8 @@ const ProfileEdit: FC<PropsWithChildren> = observer(() => {
 
   const handleSave = async (data: IProfileEditDTO) => {
     await editProfile(data);
+
+    navigate(ERoute.HOME);
   };
 
   const handleCancel = () => {
