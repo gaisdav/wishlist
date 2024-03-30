@@ -1,4 +1,4 @@
-import { FC, PropsWithChildren } from 'react';
+import { FC, PropsWithChildren, useEffect } from 'react';
 import { observer } from 'mobx-react-lite';
 import { useStore } from '../../hooks';
 import css from './styles.module.scss';
@@ -10,7 +10,7 @@ import { useNavigate } from 'react-router-dom';
 import { ERoute } from 'routes/types.ts';
 
 const ProfileEdit: FC<PropsWithChildren> = observer(() => {
-  const { entity, editProfile } = useStore('profile');
+  const { entity, editProfile, loading } = useStore('profile');
   const navigate = useNavigate();
 
   const {
@@ -19,15 +19,19 @@ const ProfileEdit: FC<PropsWithChildren> = observer(() => {
     reset,
     formState: { isDirty },
   } = useForm<IProfileEditDTO>({
-    defaultValues: {
+    defaultValues: {},
+  });
+
+  useEffect(() => {
+    reset({
       username: entity?.username,
       email: entity?.email,
       firstName: entity?.firstName,
       lastName: entity?.lastName,
       bio: entity?.bio,
       birthdate: entity?.birthdate ? format(entity.birthdate, 'yyyy-MM-dd') : undefined,
-    },
-  });
+    });
+  }, [entity, loading, reset]);
 
   const handleSave = async (data: IProfileEditDTO) => {
     await editProfile(data);
@@ -38,11 +42,15 @@ const ProfileEdit: FC<PropsWithChildren> = observer(() => {
     navigate(ERoute.HOME);
   };
 
+  if (loading) {
+    return <div>Loading...</div>;
+  }
+
   return (
     <form className={css['profile-edit']} onSubmit={handleSubmit(handleSave)}>
       <Controller
         rules={{ required: 'Required field' }}
-        disabled={false}
+        disabled={loading}
         name="username"
         control={control}
         render={({ field, fieldState: { invalid, error } }) => {
@@ -54,7 +62,7 @@ const ProfileEdit: FC<PropsWithChildren> = observer(() => {
 
       <Controller
         rules={{ required: 'Required field' }}
-        disabled={false}
+        disabled={loading}
         name="email"
         control={control}
         render={({ field, fieldState: { invalid, error } }) => {
@@ -64,7 +72,7 @@ const ProfileEdit: FC<PropsWithChildren> = observer(() => {
 
       <Controller
         rules={{ required: 'Required field' }}
-        disabled={false}
+        disabled={loading}
         name="firstName"
         control={control}
         render={({ field, fieldState: { invalid, error } }) => {
@@ -76,7 +84,7 @@ const ProfileEdit: FC<PropsWithChildren> = observer(() => {
 
       <Controller
         rules={{ required: 'Required field' }}
-        disabled={false}
+        disabled={loading}
         name="lastName"
         control={control}
         render={({ field, fieldState: { invalid, error } }) => {
@@ -87,8 +95,7 @@ const ProfileEdit: FC<PropsWithChildren> = observer(() => {
       />
 
       <Controller
-        rules={{ required: 'Required field' }}
-        disabled={false}
+        disabled={loading}
         name="birthdate"
         control={control}
         render={({ field, fieldState: { invalid, error } }) => {
@@ -106,7 +113,7 @@ const ProfileEdit: FC<PropsWithChildren> = observer(() => {
       />
 
       <Controller
-        disabled={false}
+        disabled={loading}
         name="bio"
         control={control}
         render={({ field, fieldState: { invalid, error } }) => {
@@ -114,10 +121,11 @@ const ProfileEdit: FC<PropsWithChildren> = observer(() => {
         }}
       />
 
-      <Button className={css.field} type="submit" disabled={!isDirty}>
+      <Button className={css.field} type="submit" disabled={!isDirty || loading}>
         Save
       </Button>
-      <Button className={css.field} onClick={handleCancel}>
+
+      <Button className={css.field} onClick={handleCancel} disabled={loading}>
         Cancel
       </Button>
     </form>
