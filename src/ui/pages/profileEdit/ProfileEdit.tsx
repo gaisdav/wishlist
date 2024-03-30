@@ -34,6 +34,7 @@ const ProfileEdit: FC<PropsWithChildren> = observer(() => {
   }, [entity, loading, reset]);
 
   const handleSave = async (data: IProfileEditDTO) => {
+    // TODO add displaying validation errors
     await editProfile(data);
   };
 
