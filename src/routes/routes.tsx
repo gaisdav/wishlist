@@ -14,6 +14,7 @@ export const initRoutes = (store: IVMs) => {
       path: '/',
       Component: AppWrapper,
       errorElement: <ErrorPage />,
+      ErrorBoundary: ErrorPage,
       loader: async () => {
         store.profile.getProfile();
 

@@ -8,6 +8,7 @@ import { Store } from 'store/store.ts';
 import { initRoutes } from 'routes/routes.tsx';
 import { AppStateProvider } from 'providers/store.tsx';
 import { RouterProvider } from 'react-router-dom';
+import { ErrorBoundary } from 'components/organisms/ErrorBoundary';
 
 const storeInstance = new Store();
 const store = storeInstance.viewModels;
