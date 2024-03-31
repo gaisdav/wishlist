@@ -13,4 +13,12 @@ export class UserRepository implements IUserRepository {
 
     return await this.fetcher.get<IUserResponse>(endpoint);
   };
+
+  findUsers = async (search: string): Promise<IUserResponse[]> => {
+    return await this.fetcher.get<IUserResponse[]>(EEndpoint.USERS, {
+      params: {
+        search,
+      },
+    });
+  };
 }

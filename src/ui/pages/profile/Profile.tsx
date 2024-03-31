@@ -19,6 +19,7 @@ const skeletons = (
 
 const Profile: FC<PropsWithChildren> = observer(() => {
   const {
+    user: { users, getUsers, usersLoading },
     profile: { entity: profile },
     wish: { list, loading, addWish, editWish, deleteWish, isLoading },
   } = useRouteStore();
@@ -75,6 +76,10 @@ const Profile: FC<PropsWithChildren> = observer(() => {
   return (
     <>
       <div className={css.profile}>
+        <input type="search" onChange={(e) => getUsers(e.target.value)} />
+
+        <div>{usersLoading ? 'Loading...' : users.map((user) => <div key={user.id}>{user.firstName}</div>)}</div>
+
         <UserInfo isProfile user={profile} wishes={list.length} loading={loading} />
 
         <IconButton disabled={loading} onClick={openCreateWishModal}>

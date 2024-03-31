@@ -9,4 +9,10 @@ export class UserService implements IUserService {
 
     return new User(wish);
   }
+
+  async getUsers(search: string = ''): Promise<IUserEntity[]> {
+    const wishes = await this.repository.findUsers(search);
+
+    return wishes.map((wish) => new User(wish));
+  }
 }

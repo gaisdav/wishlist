@@ -20,14 +20,19 @@ export interface IUserResponse extends Omit<IUserEntity, 'birthdate' | 'createdA
 
 export interface IUserRepository {
   findOneById: (username: string) => Promise<IUserResponse>;
+  findUsers: (search: string) => Promise<IUserResponse[]>;
 }
 
 export interface IUserService {
   getUser: (username: string) => Promise<IUserEntity>;
+  getUsers: (search: string) => Promise<IUserEntity[]>;
 }
 
 export interface IUserVM {
   loading: boolean;
-  entity: IUserEntity | null;
+  usersLoading: boolean;
+  user: IUserEntity | null;
+  users: IUserEntity[];
   getUser: (username: string) => Promise<void>;
+  getUsers: (search: string) => Promise<void>;
 }

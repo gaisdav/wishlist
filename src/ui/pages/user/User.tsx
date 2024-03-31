@@ -22,7 +22,7 @@ const User: FC<PropsWithChildren> = observer(() => {
   const navigate = useNavigate();
 
   const {
-    user: { loading, entity: user },
+    user: { loading, user },
     profile: { entity: profile },
     wish: { loading: wishLoading, list, isLoading },
   } = useRouteStore();
