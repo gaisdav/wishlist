@@ -133,7 +133,7 @@ const ProfileEdit: FC<PropsWithChildren> = observer(() => {
         </Button>
 
         <Button className={css.field} onClick={handleCancel} disabled={loading}>
-          Cancel
+          {isDirty ? 'Cancel' : 'Back'}
         </Button>
       </form>
     </>

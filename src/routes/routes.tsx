@@ -60,10 +60,12 @@ export const initRoutes = (store: IVMs) => {
         {
           path: ERoute.PROFILE_EDIT,
           element: <ProfileEdit />,
+          loader: async () => store,
         },
         {
           path: ERoute.LOGIN,
           element: <Login />,
+          loader: async () => store,
         },
       ],
     },
