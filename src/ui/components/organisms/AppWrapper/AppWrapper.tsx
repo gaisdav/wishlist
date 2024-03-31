@@ -1,13 +1,15 @@
 import css from './styles.module.scss';
 import { FC } from 'react';
 import { Outlet } from 'react-router-dom';
-import { useStore } from 'hooks/useStore.tsx';
 import { Snackbar } from 'components/atoms';
 import { observer } from 'mobx-react-lite';
 import { ErrorBoundary } from 'components/organisms/ErrorBoundary';
+import { useRouteStore } from 'hooks/useRouteStore.tsx';
 
 export const AppWrapper: FC = observer(() => {
-  const { notification, removeNotification } = useStore('notification');
+  const {
+    notification: { notification, removeNotification },
+  } = useRouteStore();
 
   return (
     <>

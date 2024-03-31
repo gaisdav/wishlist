@@ -13,7 +13,21 @@ export interface IUserEntity {
 }
 
 export interface IUserResponse extends Omit<IUserEntity, 'birthdate' | 'createdAt' | 'updatedAt'> {
-  birthdate: string;
+  birthdate?: string;
   createdAt: string;
   updatedAt: string;
+}
+
+export interface IUserRepository {
+  findOneById: (username: string) => Promise<IUserResponse>;
+}
+
+export interface IUserService {
+  getUser: (username: string) => Promise<IUserEntity>;
+}
+
+export interface IUserVM {
+  loading: boolean;
+  entity: IUserEntity | null;
+  getUser: (username: string) => Promise<void>;
 }

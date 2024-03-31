@@ -1,4 +1,4 @@
-import { IUserEntity, IUserResponse } from './types.ts';
+import { IUserEntity, IUserResponse } from '../types.ts';
 
 export class User implements IUserEntity {
   id: string;
@@ -7,7 +7,7 @@ export class User implements IUserEntity {
   lastName: string;
   bio?: string;
   avatarSrc?: string;
-  birthdate: Date;
+  birthdate?: Date | null;
   email: string;
   createdAt: Date;
   updatedAt: Date;
@@ -19,7 +19,7 @@ export class User implements IUserEntity {
     this.lastName = dto.lastName;
     this.bio = dto.bio;
     this.avatarSrc = dto.avatarSrc;
-    this.birthdate = new Date(dto.birthdate);
+    this.birthdate = dto.birthdate ? new Date(dto.birthdate) : null;
     this.email = dto.email;
     this.createdAt = new Date(dto.createdAt);
     this.updatedAt = new Date(dto.updatedAt);

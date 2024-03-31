@@ -7,8 +7,10 @@ import { ErrorPage } from 'pages/error/ErrorPage.tsx';
 import ProfileEdit from 'pages/profileEdit/ProfileEdit.tsx';
 import Login from 'pages/login/Login.tsx';
 import Wish from 'pages/wish/Wish.tsx';
+import User from 'pages/user/User.tsx';
 
 export const initRoutes = (store: IVMs) => {
+  const { profile, wish, user } = store;
   return createBrowserRouter([
     {
       path: '/',
@@ -16,18 +18,18 @@ export const initRoutes = (store: IVMs) => {
       errorElement: <ErrorPage />,
       ErrorBoundary: ErrorPage,
       loader: async () => {
-        store.profile.getProfile();
+        profile.getProfile();
 
-        return store.profile.entity;
+        return store;
       },
       children: [
         {
           path: ERoute.HOME,
           element: <Profile />,
           loader: async () => {
-            store.wish.getList();
+            wish.getList();
 
-            return store.wish.list;
+            return store;
           },
           children: [
             {
@@ -35,13 +37,25 @@ export const initRoutes = (store: IVMs) => {
               element: <Wish />,
               loader: async ({ params }) => {
                 if (params.wishId) {
-                  store.wish.getWish(params.wishId);
+                  wish.getWish(params.wishId);
                 }
 
-                return store.wish.entity;
+                return store;
               },
             },
           ],
+        },
+        {
+          path: ERoute.USER,
+          element: <User />,
+          loader: async ({ params }) => {
+            if (params.username) {
+              user.getUser(params.username);
+              wish.getList();
+            }
+
+            return store;
+          },
         },
         {
           path: ERoute.PROFILE_EDIT,

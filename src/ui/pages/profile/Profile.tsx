@@ -1,7 +1,7 @@
 import css from './styles.module.scss';
 import { FC, PropsWithChildren, useCallback, useState } from 'react';
 import { observer } from 'mobx-react-lite';
-import { useStore } from '../../hooks';
+import { useRouteStore } from '../../hooks';
 import { ICreateWishDTO, IEditWishDTO, IWishEntity } from 'data/wish/entity';
 import { AddWishModal, EditWishModal, WishCard, WishCardSkeleton } from 'components/molecules';
 import { Icon, IconButton } from 'components/atoms';
@@ -18,8 +18,10 @@ const skeletons = (
 );
 
 const Profile: FC<PropsWithChildren> = observer(() => {
-  const { list, loading, addWish, editWish, deleteWish, isLoading } = useStore('wish');
-  const { entity: profile } = useStore('profile');
+  const {
+    profile: { entity: profile },
+    wish: { list, loading, addWish, editWish, deleteWish, isLoading },
+  } = useRouteStore();
   const [modalMode, setModalMode] = useState<'edit' | 'add' | null>(null);
   const [editableEntity, setEditEntity] = useState<IWishEntity | null>(null);
 
@@ -73,7 +75,7 @@ const Profile: FC<PropsWithChildren> = observer(() => {
   return (
     <>
       <div className={css.profile}>
-        <UserInfo user={profile} wishes={list.length} loading={loading} />
+        <UserInfo isProfile user={profile} wishes={list.length} loading={loading} />
 
         <IconButton disabled={loading} onClick={openCreateWishModal}>
           <Icon iconName="add" />

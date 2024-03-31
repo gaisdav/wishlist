@@ -1,6 +1,5 @@
 import { FC, PropsWithChildren, useEffect } from 'react';
 import { observer } from 'mobx-react-lite';
-import { useStore } from '../../hooks';
 import css from './styles.module.scss';
 import { Controller, useForm } from 'react-hook-form';
 import { IProfileEditDTO } from 'data/profile/types.ts';
@@ -8,9 +7,13 @@ import { Button, Input, Textarea } from 'components/atoms';
 import { format } from 'date-fns';
 import { useNavigate } from 'react-router-dom';
 import { ERoute } from 'routes/types.ts';
+import { useRouteStore } from '../../hooks';
 
 const ProfileEdit: FC<PropsWithChildren> = observer(() => {
-  const { entity, editProfile, loading } = useStore('profile');
+  const {
+    profile: { entity, editProfile, loading },
+  } = useRouteStore();
+
   const navigate = useNavigate();
 
   const {
