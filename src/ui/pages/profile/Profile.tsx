@@ -6,6 +6,9 @@ import { ICreateWishDTO, IEditWishDTO, IWishEntity } from 'data/wish/entity';
 import { AddWishModal, EditWishModal, WishCard, WishCardSkeleton } from 'components/molecules';
 import { Icon, IconButton } from 'components/atoms';
 import { UserInfo } from 'components/molecules/UserInfo';
+import { useNavigate } from 'react-router-dom';
+import { ERoute } from 'routes/types.ts';
+import { dynamicRoute } from 'common/utils.ts';
 
 const skeletons = (
   <>
@@ -23,6 +26,7 @@ const Profile: FC<PropsWithChildren> = observer(() => {
     profile: { entity: profile },
     wish: { list, loading, addWish, editWish, deleteWish, isLoading },
   } = useRouteStore();
+  const navigate = useNavigate();
   const [modalMode, setModalMode] = useState<'edit' | 'add' | null>(null);
   const [editableEntity, setEditEntity] = useState<IWishEntity | null>(null);
 
@@ -73,12 +77,25 @@ const Profile: FC<PropsWithChildren> = observer(() => {
           />
         ));
 
+  const handleUserNavigate = (username: string) => {
+    const route = dynamicRoute(ERoute.USER, { username });
+    navigate(route);
+  };
+
   return (
     <>
       <div className={css.profile}>
         <input type="search" onChange={(e) => getUsers(e.target.value)} />
 
-        <div>{usersLoading ? 'Loading...' : users.map((user) => <div key={user.id}>{user.firstName}</div>)}</div>
+        <ul>
+          {usersLoading
+            ? 'Loading...'
+            : users.map((user) => (
+                <li key={user.id}>
+                  <button onClick={() => handleUserNavigate(user.username)}>{user.firstName}</button>
+                </li>
+              ))}
+        </ul>
 
         <UserInfo isProfile user={profile} wishes={list.length} loading={loading} />
 

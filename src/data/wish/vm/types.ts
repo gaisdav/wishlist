@@ -6,7 +6,8 @@ export interface IWishVM {
   entity: IWishEntity | null;
   isLoading(id: string): boolean;
 
-  getList(): Promise<void>;
+  getList(username: string): Promise<void>;
+  getProfileList(): Promise<void>;
   addWish(dto: ICreateWishDTO): Promise<void>;
   editWish(id: string, dto: IEditWishDTO): Promise<void>;
   getWish(id: string): Promise<void>;

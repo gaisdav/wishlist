@@ -17,8 +17,16 @@ const randomDelay = (ms: number) => Math.floor(Math.random() * ms);
 export class WishRepository implements IWishRepository {
   constructor(private readonly fetcher: IFetcher) {}
 
-  getList = async (): Promise<IWishResponse[]> => {
-    return await this.fetcher.get<IWishResponse[]>(EEndpoint.WISHES);
+  getList = async (username: string): Promise<IWishResponse[]> => {
+    return await this.fetcher.get<IWishResponse[]>(EEndpoint.WISHES, {
+      params: {
+        username,
+      },
+    });
+  };
+
+  getProfileList = async (): Promise<IWishResponse[]> => {
+    return await this.fetcher.get<IWishResponse[]>(EEndpoint.WISHES_PROFILE);
   };
 
   createWish(dto: ICreateWishDTO): Promise<IWishResponse> {

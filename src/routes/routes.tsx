@@ -27,7 +27,7 @@ export const initRoutes = (store: IVMs) => {
           path: ERoute.HOME,
           element: <Profile />,
           loader: async () => {
-            wish.getList();
+            wish.getProfileList();
 
             return store;
           },
@@ -49,10 +49,9 @@ export const initRoutes = (store: IVMs) => {
           path: ERoute.USER,
           element: <User />,
           loader: async ({ params }) => {
-            if (params.username) {
-              user.getUser(params.username);
-              wish.getList();
-            }
+            const username = params.username || '';
+            user.getUser(username);
+            wish.getList(username);
 
             return store;
           },

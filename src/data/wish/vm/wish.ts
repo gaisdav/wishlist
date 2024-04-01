@@ -30,10 +30,21 @@ export class WishVM implements IWishVM {
     return this._loadedWishes[id] ?? false;
   };
 
-  getList = async (): Promise<void> => {
+  getList = async (username: string = ''): Promise<void> => {
     try {
       this._loading = true;
-      this._list = await this.service.getList();
+      this._list = await this.service.getList(username);
+    } catch (error) {
+      throwError(error);
+    } finally {
+      this._loading = false;
+    }
+  };
+
+  getProfileList = async (): Promise<void> => {
+    try {
+      this._loading = true;
+      this._list = await this.service.getProfileList();
     } catch (error) {
       throwError(error);
     } finally {
@@ -60,7 +71,8 @@ export class WishVM implements IWishVM {
 
     try {
       this._list[editedWishIndex] = { ...oldWish, ...dto };
-      this._list[editedWishIndex] = await this.service.editWish(id, dto);
+      const wish = await this.service.editWish(id, dto);
+      this._list[editedWishIndex] = { ...this._list[editedWishIndex], ...wish };
     } catch (error) {
       this._list[editedWishIndex] = oldWish;
       throwError(error);

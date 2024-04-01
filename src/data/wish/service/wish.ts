@@ -5,8 +5,14 @@ import { IWishRepository } from '../repository';
 export class WishService implements IWishService {
   constructor(private repository: IWishRepository) {}
 
-  async getList(): Promise<IWishEntity[]> {
-    const list = await this.repository.getList();
+  async getList(username: string): Promise<IWishEntity[]> {
+    const list = await this.repository.getList(username);
+
+    return list.map((item) => new Wish(item));
+  }
+
+  async getProfileList(): Promise<IWishEntity[]> {
+    const list = await this.repository.getProfileList();
 
     return list.map((item) => new Wish(item));
   }
