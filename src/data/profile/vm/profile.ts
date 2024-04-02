@@ -27,6 +27,7 @@ export class ProfileVM implements IProfileVM {
     try {
       this._entity = await this.service.getProfile();
     } catch (error) {
+      this.notification.errorNotification(error);
       throwError(error);
     } finally {
       this._loading = false;

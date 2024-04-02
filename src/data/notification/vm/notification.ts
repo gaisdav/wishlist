@@ -17,13 +17,12 @@ export class NotificationsVM implements INotificationVM {
   };
 
   errorNotification = (error: string | Error | unknown): void => {
-    let message = 'Unknown error';
-
+    let message = 'Unknown error.';
     if (error instanceof AxiosError) {
       // TODO add error type
-      message = error.response?.data?.errorMessage ?? error.message;
+      message = `${error.name}. ${error.response?.data?.errorMessage ?? error.message}.`;
     } else if (error instanceof Error) {
-      message = `${error.name} ${error.message}`;
+      message = `${error.name}. ${error.message}.`;
     } else if (typeof error === 'string') {
       message = error;
     }
