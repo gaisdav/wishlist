@@ -31,19 +31,18 @@ export const initRoutes = (store: IVMs) => {
 
             return store;
           },
-          children: [
-            {
-              path: ERoute.MY_WISH,
-              element: <Wish />,
-              loader: async ({ params }) => {
-                if (params.wishId) {
-                  wish.getWish(params.wishId);
-                }
+        },
+        {
+          path: ERoute.MY_WISH,
+          element: <Wish />,
+          loader: async ({ params }) => {
+            console.log(params);
+            if (params.wishId) {
+              wish.getWish(params.wishId);
+            }
 
-                return store;
-              },
-            },
-          ],
+            return store;
+          },
         },
         {
           path: ERoute.USER,

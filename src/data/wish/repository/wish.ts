@@ -1,18 +1,8 @@
 import { IWishRepository } from './types.ts';
-import { ICreateWishDTO, IEditWishDTO, IWishEntity, IWishResponse } from '../entity';
+import { ICreateWishDTO, IEditWishDTO, IWishResponse } from '../entity';
 import { IFetcher } from 'libs/api';
 import { EEndpoint } from 'common/endpoints.ts';
 import { dynamicEndpoint } from 'common/utils.ts';
-
-function delayedResponse<T>(args: T, delayMs: number): Promise<T> {
-  return new Promise((resolve) => {
-    setTimeout(() => {
-      resolve(args);
-    }, delayMs);
-  });
-}
-
-const randomDelay = (ms: number) => Math.floor(Math.random() * ms);
 
 export class WishRepository implements IWishRepository {
   constructor(private readonly fetcher: IFetcher) {}
@@ -47,11 +37,11 @@ export class WishRepository implements IWishRepository {
   }
 
   getWish(id: string): Promise<IWishResponse> {
-    const listFromStorage = window.localStorage.getItem('wishes');
-    const list: IWishEntity[] = listFromStorage ? JSON.parse(listFromStorage) : [];
-    const wish = list.find((item) => item.id === id);
-
-    return delayedResponse(wish as IWishResponse, randomDelay(3000));
+    return this.fetcher.get<IWishResponse>(
+      dynamicEndpoint(EEndpoint.WISHES_ID, {
+        wishId: id,
+      }),
+    );
   }
 
   deleteWish(id: string): Promise<void> {
