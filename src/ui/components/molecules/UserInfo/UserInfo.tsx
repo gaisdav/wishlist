@@ -22,7 +22,7 @@ export const UserInfo: FC<IUserInfo> = ({ user, isProfile, wishes, loading }) =>
     if (canShare) {
       await navigator.share({
         title: `${firstName}'s wishlist`,
-        text: `Hey! here's ${firstName}'s wishlist`,
+        text: `Hey! Here's ${firstName}'s wishlist`,
         url: shareUrl,
       });
     } else {

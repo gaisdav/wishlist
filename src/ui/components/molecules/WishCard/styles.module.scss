@@ -32,3 +32,9 @@
   left: 0;
   width: 100%;
 }
+
+.action {
+  position: absolute;
+  top: var(--Card-padding);
+  right: var(--Card-padding);
+}

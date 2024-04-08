@@ -1,4 +1,5 @@
 import { IWishEntity, IWishResponse } from '../types.ts';
+import { IUserEntity } from 'data/user/types.ts';
 
 export class Wish implements IWishEntity {
   id: string = '';
@@ -7,6 +8,7 @@ export class Wish implements IWishEntity {
   description?: string;
   createdAt: string = '';
   updatedAt: string = '';
+  author: IUserEntity | null = null;
 
   constructor(data: IWishResponse) {
     this.id = data.id;
@@ -15,5 +17,6 @@ export class Wish implements IWishEntity {
     this.description = data.description;
     this.createdAt = data.createdAt;
     this.updatedAt = data.updatedAt;
+    this.author = data.author;
   }
 }

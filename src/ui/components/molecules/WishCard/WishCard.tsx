@@ -2,10 +2,34 @@ import { FC } from 'react';
 import cn from 'classnames';
 import css from './styles.module.scss';
 import { IWishCard } from './types.ts';
-import { Box } from '@mui/joy';
+// TODO move to atoms
+import { Dropdown, ListItemDecorator, Menu, MenuButton, MenuItem } from '@mui/joy';
 import { Card, Icon, IconButton, Img, LinearProgress, Typography } from 'components/atoms';
+import { dynamicRoute } from 'common/utils.ts';
+import { ERoute } from 'routes/types.ts';
 
-export const WishCard: FC<IWishCard> = ({ wish: { id, title, description, imageSrc }, loading, onEdit, onDelete }) => {
+export const WishCard: FC<IWishCard> = ({
+  wish: { id, title, description, imageSrc, author },
+  loading,
+  onEdit,
+  onDelete,
+}) => {
+  const canShare = 'canShare' in navigator;
+  const route = dynamicRoute(ERoute.USER_WISH, { wishId: id, userId: author?.id });
+  const shareUrl = `${window.location.origin}/${route}`;
+
+  const handleShare = async () => {
+    if (canShare) {
+      await navigator.share({
+        title: 'My wish!',
+        text: `Hey! Here's my wish`,
+        url: shareUrl,
+      });
+    } else {
+      await navigator.clipboard.writeText(shareUrl);
+    }
+  };
+
   const handleEdit = () => {
     if (onEdit) {
       onEdit(id);
@@ -18,8 +42,33 @@ export const WishCard: FC<IWishCard> = ({ wish: { id, title, description, imageS
   };
 
   return (
-    <Box className={cn(css.wishCard, { [css.loading]: loading })}>
+    <Card className={cn(css.wishCard, { [css.loading]: loading })}>
       {loading ? <LinearProgress className={css.linearProgress} size="sm" /> : null}
+      <Dropdown>
+        <MenuButton slots={{ root: IconButton }} className={css.action}>
+          <Icon iconName="more_vert" />
+        </MenuButton>
+        <Menu>
+          <MenuItem onClick={handleEdit}>
+            <ListItemDecorator>
+              <Icon iconName="edit" />
+            </ListItemDecorator>
+            Edit wish
+          </MenuItem>
+          <MenuItem onClick={handleDelete}>
+            <ListItemDecorator>
+              <Icon iconName="delete" />
+            </ListItemDecorator>
+            Delete wish
+          </MenuItem>
+          <MenuItem onClick={handleShare}>
+            <ListItemDecorator>
+              <Icon iconName="reply" />
+            </ListItemDecorator>
+            Share wish
+          </MenuItem>
+        </Menu>
+      </Dropdown>
 
       {imageSrc ? (
         <Card className={css.wishPic}>
@@ -30,16 +79,6 @@ export const WishCard: FC<IWishCard> = ({ wish: { id, title, description, imageS
       <Typography>{title}</Typography>
 
       <Typography>{description}</Typography>
-
-      <div>
-        <IconButton disabled={loading} size="sm" onClick={handleEdit}>
-          <Icon iconName="edit" />
-        </IconButton>
-
-        <IconButton disabled={loading} size="sm" onClick={handleDelete}>
-          <Icon iconName="delete" />
-        </IconButton>
-      </div>
-    </Box>
+    </Card>
   );
 };

@@ -58,5 +58,20 @@ export const theme = extendTheme({
         variant: 'soft',
       },
     },
+    JoyMenuButton: {
+      defaultProps: {
+        variant: 'soft',
+      },
+    },
+    JoyMenuItem: {
+      defaultProps: {
+        variant: 'soft',
+      },
+    },
+    JoyMenuList: {
+      defaultProps: {
+        variant: 'soft',
+      },
+    },
   },
 });

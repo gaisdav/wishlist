@@ -1,7 +1,9 @@
-import { FC } from 'react';
+import { forwardRef } from 'react';
 import { IconButton as JoyIconButton } from '@mui/joy';
 import { IIconButtonProps } from './types.ts';
 
-export const IconButton: FC<IIconButtonProps> = ({ ...props }) => {
-  return <JoyIconButton {...props}></JoyIconButton>;
-};
+export const IconButton = forwardRef<HTMLButtonElement, IIconButtonProps>((props, ref) => {
+  return <JoyIconButton {...props} ref={ref}></JoyIconButton>;
+});
+
+IconButton.displayName = 'IconButton';

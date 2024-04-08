@@ -2,7 +2,7 @@
 import { ERoute } from 'routes/types.ts';
 import { EEndpoint } from 'common/endpoints.ts';
 
-export const dynamicRoute = (route: ERoute, params: Record<string, string | number>): ERoute => {
+export const dynamicRoute = (route: ERoute, params: Record<string, unknown>): ERoute => {
   let generatedRoute = route;
 
   // Заменяем все параметры в пути
