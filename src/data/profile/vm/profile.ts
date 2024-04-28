@@ -15,6 +15,10 @@ export class ProfileVM implements IProfileVM {
     return this._entity;
   }
 
+  get isAuthed(): boolean {
+    return Boolean(this._entity);
+  }
+
   constructor(
     private notification: INotificationVM,
     private service: IProfileService,

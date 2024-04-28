@@ -1,7 +1,7 @@
 import css from './styles.module.scss';
 import { FC } from 'react';
 import { observer } from 'mobx-react-lite';
-import { getGoogleAuthUrl } from 'common/utils.ts';
+import { getGoogleAuthUrl } from 'common/utils/utils.ts';
 import { GoogleIcon, Link } from 'components/atoms';
 
 const googleAuthURI = getGoogleAuthUrl();

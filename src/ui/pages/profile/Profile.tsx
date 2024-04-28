@@ -8,7 +8,7 @@ import { Icon, IconButton } from 'components/atoms';
 import { UserInfo } from 'components/molecules/UserInfo';
 import { useNavigate } from 'react-router-dom';
 import { ERoute } from 'routes/types.ts';
-import { dynamicRoute } from 'common/utils.ts';
+import { dynamicRoute } from 'common/utils/utils.ts';
 
 const skeletons = (
   <>

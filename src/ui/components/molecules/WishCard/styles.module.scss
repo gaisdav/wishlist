@@ -10,7 +10,8 @@
 
 .wishCard {
   position: relative;
-  margin-bottom: 12px;
+  height: 100%;
+  width: 100%;
 
   &.loading {
     opacity: 0.5;
@@ -34,7 +35,16 @@
 }
 
 .action {
-  position: absolute;
-  top: var(--Card-padding);
-  right: var(--Card-padding);
+  height: fit-content;
+  width: fit-content;
+}
+
+.titleWrapper {
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 8px;
+}
+
+.link {
+  text-decoration: none;
 }

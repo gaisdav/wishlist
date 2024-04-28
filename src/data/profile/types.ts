@@ -16,6 +16,7 @@ export interface IProfileEditDTO
 export interface IProfileVM {
   loading: boolean;
   entity: IProfileEntity | null;
+  isAuthed: boolean;
 
   getProfile(): Promise<void>;
   editProfile(dto: IProfileEditDTO): Promise<void>;

@@ -4,31 +4,28 @@ import { Avatar } from 'components/atoms/Avatar';
 import { Icon, IconButton, Link, Typography } from 'components/atoms';
 import css from './styles.module.scss';
 import { ERoute } from 'routes/types.ts';
-import { dynamicRoute } from 'common/utils.ts';
+import { dynamicRoute } from 'common/utils/utils.ts';
+import { useShareData } from 'hooks/useShareData';
+import { getFullName } from 'common/utils/getFullName.ts';
+import { getInitials } from 'common/utils/getInitials.ts';
+import { getLocaleBirthday } from 'common/utils/getLocaleBirthday.ts';
 
 export const UserInfo: FC<IUserInfo> = ({ user, isProfile, wishes, loading }) => {
-  if (!user || loading) return 'Loading...';
-
-  const { firstName, avatarSrc, lastName } = user;
-  const fullName = `${firstName} ${lastName}`;
-  const initials = `${firstName[0]}${lastName[0]}`.toUpperCase();
-  const birthday = user.birthdate?.toLocaleDateString();
-
-  const canShare = 'canShare' in navigator;
-  const route = dynamicRoute(ERoute.USER, { username: user.username });
+  const route = dynamicRoute(ERoute.USER, { username: user?.username });
   const shareUrl = window.location.origin + route;
 
-  const handleShare = async () => {
-    if (canShare) {
-      await navigator.share({
-        title: `${firstName}'s wishlist`,
-        text: `Hey! Here's ${firstName}'s wishlist`,
-        url: shareUrl,
-      });
-    } else {
-      await navigator.clipboard.writeText(shareUrl);
-    }
-  };
+  const { firstName, avatarSrc } = user || {};
+  const fullName = getFullName(user);
+  const initials = getInitials(user);
+  const birthday = getLocaleBirthday(user);
+
+  const { share, shareIcon } = useShareData({
+    title: `${firstName}'s wishlist`,
+    text: `Hey! Here's ${firstName}'s wishlist`,
+    url: shareUrl,
+  });
+
+  if (loading) return 'Loading...';
 
   return (
     <div className={css.userInfo}>
@@ -47,8 +44,8 @@ export const UserInfo: FC<IUserInfo> = ({ user, isProfile, wishes, loading }) =>
             </IconButton>
           </Link>
         )}
-        <IconButton disabled={loading} onClick={handleShare}>
-          <Icon className={css.shareIcon} iconName={canShare ? 'reply' : 'link'} />
+        <IconButton disabled={loading} onClick={share}>
+          <Icon className={css.shareIcon} iconName={shareIcon} />
         </IconButton>
       </div>
     </div>

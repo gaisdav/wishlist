@@ -33,24 +33,23 @@ export const initRoutes = (store: IVMs) => {
           },
         },
         {
-          path: ERoute.MY_WISH,
-          element: <Wish />,
-          loader: async ({ params }) => {
-            console.log(params);
-            if (params.wishId) {
-              wish.getWish(params.wishId);
-            }
-
-            return store;
-          },
-        },
-        {
           path: ERoute.USER,
           element: <User />,
           loader: async ({ params }) => {
             const username = params.username || '';
             user.getUser(username);
             wish.getList(username);
+
+            return store;
+          },
+        },
+        {
+          path: ERoute.USER_WISH,
+          element: <Wish />,
+          loader: async ({ params }) => {
+            if (params.wishId) {
+              wish.getWish(params.wishId);
+            }
 
             return store;
           },

@@ -2,7 +2,7 @@ import { IWishRepository } from './types.ts';
 import { ICreateWishDTO, IEditWishDTO, IWishResponse } from '../entity';
 import { IFetcher } from 'libs/api';
 import { EEndpoint } from 'common/endpoints.ts';
-import { dynamicEndpoint } from 'common/utils.ts';
+import { dynamicEndpoint } from 'common/utils/utils.ts';
 
 export class WishRepository implements IWishRepository {
   constructor(private readonly fetcher: IFetcher) {}

@@ -1,12 +1,13 @@
-import { FC } from 'react';
+import { FC, MouseEventHandler } from 'react';
 import cn from 'classnames';
 import css from './styles.module.scss';
 import { IWishCard } from './types.ts';
 // TODO move to atoms
 import { Dropdown, ListItemDecorator, Menu, MenuButton, MenuItem } from '@mui/joy';
-import { Card, Icon, IconButton, Img, LinearProgress, Typography } from 'components/atoms';
-import { dynamicRoute } from 'common/utils.ts';
+import { Card, Icon, IconButton, Img, LinearProgress, Link, Typography } from 'components/atoms';
+import { dynamicRoute } from 'common/utils/utils.ts';
 import { ERoute } from 'routes/types.ts';
+import { useShareData } from 'hooks/useShareData';
 
 export const WishCard: FC<IWishCard> = ({
   wish: { id, title, description, imageSrc, author },
@@ -14,21 +15,13 @@ export const WishCard: FC<IWishCard> = ({
   onEdit,
   onDelete,
 }) => {
-  const canShare = 'canShare' in navigator;
-  const route = dynamicRoute(ERoute.USER_WISH, { wishId: id, userId: author?.id });
-  const shareUrl = `${window.location.origin}/${route}`;
-
-  const handleShare = async () => {
-    if (canShare) {
-      await navigator.share({
-        title: 'My wish!',
-        text: `Hey! Here's my wish`,
-        url: shareUrl,
-      });
-    } else {
-      await navigator.clipboard.writeText(shareUrl);
-    }
-  };
+  const route = dynamicRoute(ERoute.USER_WISH, { wishId: id, username: author?.username });
+  const shareUrl = `${window.location.origin}${route}`;
+  const { share, shareIcon } = useShareData({
+    title: 'My wish!',
+    text: `Hey! Here's my wish`,
+    url: shareUrl,
+  });
 
   const handleEdit = () => {
     if (onEdit) {
@@ -41,44 +34,49 @@ export const WishCard: FC<IWishCard> = ({
     }
   };
 
+  const handlePreventEvent: MouseEventHandler = (event) => {
+    event.stopPropagation();
+    event.preventDefault();
+  };
+
   return (
-    <Card className={cn(css.wishCard, { [css.loading]: loading })}>
-      {loading ? <LinearProgress className={css.linearProgress} size="sm" /> : null}
-      <Dropdown>
-        <MenuButton slots={{ root: IconButton }} className={css.action}>
-          <Icon iconName="more_vert" />
-        </MenuButton>
-        <Menu>
-          <MenuItem onClick={handleEdit}>
-            <ListItemDecorator>
-              <Icon iconName="edit" />
-            </ListItemDecorator>
-            Edit wish
-          </MenuItem>
-          <MenuItem onClick={handleDelete}>
-            <ListItemDecorator>
-              <Icon iconName="delete" />
-            </ListItemDecorator>
-            Delete wish
-          </MenuItem>
-          <MenuItem onClick={handleShare}>
-            <ListItemDecorator>
-              <Icon iconName="reply" />
-            </ListItemDecorator>
-            Share wish
-          </MenuItem>
-        </Menu>
-      </Dropdown>
+    <Link to={route} className={css.link}>
+      <Card className={cn(css.wishCard, { [css.loading]: loading })}>
+        {loading ? <LinearProgress className={css.linearProgress} size="sm" /> : null}
 
-      {imageSrc ? (
-        <Card className={css.wishPic}>
-          <Img className={css.backgroundImg} alt="gift" src={imageSrc} />
-        </Card>
-      ) : null}
+        {imageSrc ? <Img className={css.backgroundImg} alt="gift" src={imageSrc} /> : null}
 
-      <Typography>{title}</Typography>
+        <div className={css.titleWrapper}>
+          <Typography>{title} </Typography>{' '}
+          <Dropdown>
+            <MenuButton size="sm" slots={{ root: IconButton }} className={css.action} onClick={handlePreventEvent}>
+              <Icon iconName="more_vert" />
+            </MenuButton>
+            <Menu size="sm" onClick={handlePreventEvent}>
+              <MenuItem onClick={handleEdit}>
+                <ListItemDecorator>
+                  <Icon iconName="edit" />
+                </ListItemDecorator>
+                Edit wish
+              </MenuItem>
+              <MenuItem onClick={handleDelete}>
+                <ListItemDecorator>
+                  <Icon iconName="delete" />
+                </ListItemDecorator>
+                Delete wish
+              </MenuItem>
+              <MenuItem onClick={share}>
+                <ListItemDecorator>
+                  <Icon iconName={shareIcon} />
+                </ListItemDecorator>
+                Share wish
+              </MenuItem>
+            </Menu>
+          </Dropdown>
+        </div>
 
-      <Typography>{description}</Typography>
-    </Card>
+        <Typography>{description}</Typography>
+      </Card>
+    </Link>
   );
 };

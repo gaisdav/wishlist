@@ -1,7 +1,7 @@
 import { IFetcher } from 'libs/api';
 import { EEndpoint } from 'common/endpoints.ts';
 import { IUserRepository, IUserResponse } from '../types.ts';
-import { dynamicEndpoint } from 'common/utils.ts';
+import { dynamicEndpoint } from 'common/utils/utils.ts';
 
 export class UserRepository implements IUserRepository {
   constructor(private readonly fetcher: IFetcher) {}
