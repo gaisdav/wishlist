@@ -38,7 +38,7 @@ export const UserInfo: FC<IUserInfo> = ({ user, isProfile, wishes, loading }) =>
         {birthday && <Typography>Birthday: {birthday}</Typography>}
         <Typography>{wishes} wishes</Typography>
         {isProfile && (
-          <Link to={ERoute.PROFILE_EDIT}>
+          <Link to={ERoute.PROFILE_EDIT} underline="none">
             <IconButton disabled={loading}>
               <Icon iconName="edit" />
             </IconButton>

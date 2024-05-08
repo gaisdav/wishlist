@@ -5,7 +5,7 @@ import { ERoute } from 'routes/types.ts';
 
 export const BottomNavigation: FC<IBottomNavigation> = ({ className, onSwitchTheme, ...props }) => (
   <nav className={className} {...props}>
-    <Link to={ERoute.HOME}>
+    <Link to={ERoute.HOME} underline="none">
       <Icon iconName="grid_view" />
     </Link>
 

@@ -40,7 +40,7 @@ export const WishCard: FC<IWishCard> = ({
   };
 
   return (
-    <Link to={route} className={css.link}>
+    <Link to={route} underline="none">
       <Card className={cn(css.wishCard, { [css.loading]: loading })}>
         {loading ? <LinearProgress className={css.linearProgress} size="sm" /> : null}
 
