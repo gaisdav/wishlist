@@ -53,7 +53,7 @@ const RAW_RUNTIME_STATE =
           ["prettier", "npm:3.2.5"],\
           ["react", "npm:18.2.0"],\
           ["react-dom", "virtual:96a9c556c3dfde8c303e4aa460a2c3f624fe7adf234617928a7f51d0403b8b940dc4043274a212527347177482b828db47f294af727bb5d22cb8d15e037f2b43#npm:18.2.0"],\
-          ["react-hook-form", "virtual:96a9c556c3dfde8c303e4aa460a2c3f624fe7adf234617928a7f51d0403b8b940dc4043274a212527347177482b828db47f294af727bb5d22cb8d15e037f2b43#npm:7.51.0"],\
+          ["react-hook-form", "virtual:96a9c556c3dfde8c303e4aa460a2c3f624fe7adf234617928a7f51d0403b8b940dc4043274a212527347177482b828db47f294af727bb5d22cb8d15e037f2b43#npm:7.51.5"],\
           ["react-router-dom", "virtual:96a9c556c3dfde8c303e4aa460a2c3f624fe7adf234617928a7f51d0403b8b940dc4043274a212527347177482b828db47f294af727bb5d22cb8d15e037f2b43#npm:6.22.2"],\
           ["react-transition-group", "virtual:96a9c556c3dfde8c303e4aa460a2c3f624fe7adf234617928a7f51d0403b8b940dc4043274a212527347177482b828db47f294af727bb5d22cb8d15e037f2b43#npm:4.4.5"],\
           ["sass", "npm:1.71.1"],\
@@ -7877,17 +7877,17 @@ const RAW_RUNTIME_STATE =
       }]\
     ]],\
     ["react-hook-form", [\
-      ["npm:7.51.0", {\
-        "packageLocation": "./.yarn/cache/react-hook-form-npm-7.51.0-193e7534e0-2697e2b56a.zip/node_modules/react-hook-form/",\
+      ["npm:7.51.5", {\
+        "packageLocation": "./.yarn/cache/react-hook-form-npm-7.51.5-1449dfc378-f4ff779892.zip/node_modules/react-hook-form/",\
         "packageDependencies": [\
-          ["react-hook-form", "npm:7.51.0"]\
+          ["react-hook-form", "npm:7.51.5"]\
         ],\
         "linkType": "SOFT"\
       }],\
-      ["virtual:96a9c556c3dfde8c303e4aa460a2c3f624fe7adf234617928a7f51d0403b8b940dc4043274a212527347177482b828db47f294af727bb5d22cb8d15e037f2b43#npm:7.51.0", {\
-        "packageLocation": "./.yarn/__virtual__/react-hook-form-virtual-9114560d0b/0/cache/react-hook-form-npm-7.51.0-193e7534e0-2697e2b56a.zip/node_modules/react-hook-form/",\
+      ["virtual:96a9c556c3dfde8c303e4aa460a2c3f624fe7adf234617928a7f51d0403b8b940dc4043274a212527347177482b828db47f294af727bb5d22cb8d15e037f2b43#npm:7.51.5", {\
+        "packageLocation": "./.yarn/__virtual__/react-hook-form-virtual-ed489b6b8b/0/cache/react-hook-form-npm-7.51.5-1449dfc378-f4ff779892.zip/node_modules/react-hook-form/",\
         "packageDependencies": [\
-          ["react-hook-form", "virtual:96a9c556c3dfde8c303e4aa460a2c3f624fe7adf234617928a7f51d0403b8b940dc4043274a212527347177482b828db47f294af727bb5d22cb8d15e037f2b43#npm:7.51.0"],\
+          ["react-hook-form", "virtual:96a9c556c3dfde8c303e4aa460a2c3f624fe7adf234617928a7f51d0403b8b940dc4043274a212527347177482b828db47f294af727bb5d22cb8d15e037f2b43#npm:7.51.5"],\
           ["@types/react", "npm:18.2.64"],\
           ["react", "npm:18.2.0"]\
         ],\
@@ -9308,7 +9308,7 @@ const RAW_RUNTIME_STATE =
           ["prettier", "npm:3.2.5"],\
           ["react", "npm:18.2.0"],\
           ["react-dom", "virtual:96a9c556c3dfde8c303e4aa460a2c3f624fe7adf234617928a7f51d0403b8b940dc4043274a212527347177482b828db47f294af727bb5d22cb8d15e037f2b43#npm:18.2.0"],\
-          ["react-hook-form", "virtual:96a9c556c3dfde8c303e4aa460a2c3f624fe7adf234617928a7f51d0403b8b940dc4043274a212527347177482b828db47f294af727bb5d22cb8d15e037f2b43#npm:7.51.0"],\
+          ["react-hook-form", "virtual:96a9c556c3dfde8c303e4aa460a2c3f624fe7adf234617928a7f51d0403b8b940dc4043274a212527347177482b828db47f294af727bb5d22cb8d15e037f2b43#npm:7.51.5"],\
           ["react-router-dom", "virtual:96a9c556c3dfde8c303e4aa460a2c3f624fe7adf234617928a7f51d0403b8b940dc4043274a212527347177482b828db47f294af727bb5d22cb8d15e037f2b43#npm:6.22.2"],\
           ["react-transition-group", "virtual:96a9c556c3dfde8c303e4aa460a2c3f624fe7adf234617928a7f51d0403b8b940dc4043274a212527347177482b828db47f294af727bb5d22cb8d15e037f2b43#npm:4.4.5"],\
           ["sass", "npm:1.71.1"],\
