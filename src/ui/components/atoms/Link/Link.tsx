@@ -1,7 +1,7 @@
 import { FC, PropsWithChildren } from 'react';
 import { ILink } from './types.ts';
 import { Link as RouterLink } from 'react-router-dom';
-import { Link as JoyLink } from '@mui/joy';
+import JoyLink from '@mui/joy/Link';
 import cn from 'classnames';
 
 export const Link: FC<PropsWithChildren<ILink>> = ({ to, children, className, component, ...props }) => (

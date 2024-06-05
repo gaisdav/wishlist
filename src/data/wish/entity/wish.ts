@@ -8,7 +8,7 @@ export class Wish implements IWishEntity {
   description?: string;
   createdAt: string = '';
   updatedAt: string = '';
-  author: IUserEntity | null = null;
+  author: IUserEntity;
 
   constructor(data: IWishResponse) {
     this.id = data.id;

@@ -1,5 +1,5 @@
 import { forwardRef } from 'react';
-import { IconButton as JoyIconButton } from '@mui/joy';
+import JoyIconButton from '@mui/joy/IconButton';
 import { IIconButtonProps } from './types.ts';
 
 export const IconButton = forwardRef<HTMLButtonElement, IIconButtonProps>((props, ref) => {

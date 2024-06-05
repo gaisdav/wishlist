@@ -1,6 +1,6 @@
 import { FC } from 'react';
 import cn from 'classnames';
-import { Avatar as JoyAvatar } from '@mui/joy';
+import JoyAvatar from '@mui/joy/Avatar';
 import { IAvatar } from './types.ts';
 import css from './styles.module.scss';
 
