@@ -1,13 +1,8 @@
 import { createBrowserRouter } from 'react-router-dom';
 import { ERoute } from './types.ts';
 import { AppWrapper } from 'components/organisms';
-import Profile from '../ui/pages/profile/Profile.tsx';
 import { IVMs } from '../store';
 import { ErrorPage } from 'pages/error/ErrorPage.tsx';
-import ProfileEdit from 'pages/profileEdit/ProfileEdit.tsx';
-import Login from 'pages/login/Login.tsx';
-import Wish from 'pages/wish/Wish.tsx';
-import User from 'pages/user/User.tsx';
 
 export const initRoutes = (store: IVMs) => {
   const { profile, wish, user } = store;
@@ -24,7 +19,10 @@ export const initRoutes = (store: IVMs) => {
       children: [
         {
           path: ERoute.HOME,
-          element: <Profile />,
+          lazy: async () => {
+            const { Profile } = await import('pages/profile/Profile.tsx');
+            return { Component: Profile };
+          },
           loader: async () => {
             wish.getProfileList();
 
@@ -33,7 +31,10 @@ export const initRoutes = (store: IVMs) => {
         },
         {
           path: ERoute.USER,
-          element: <User />,
+          lazy: async () => {
+            const { default: User } = await import('pages/user/User.tsx');
+            return { Component: User };
+          },
           loader: async ({ params }) => {
             const username = params.username || '';
             user.getUser(username);
@@ -44,7 +45,11 @@ export const initRoutes = (store: IVMs) => {
         },
         {
           path: ERoute.USER_WISH,
-          element: <Wish />,
+          lazy: async () => {
+            const { default: Wish } = await import('pages/wish/Wish.tsx');
+
+            return { Component: Wish };
+          },
           loader: async ({ params }) => {
             if (params.wishId) {
               wish.getWish(params.wishId);
@@ -55,12 +60,19 @@ export const initRoutes = (store: IVMs) => {
         },
         {
           path: ERoute.PROFILE_EDIT,
-          element: <ProfileEdit />,
+          lazy: async () => {
+            const { ProfileEdit } = await import('pages/profileEdit/ProfileEdit.tsx');
+            return { Component: ProfileEdit };
+          },
           loader: async () => store,
         },
         {
           path: ERoute.LOGIN,
-          element: <Login />,
+          lazy: async () => {
+            const { default: Login } = await import('pages/login/Login.tsx');
+
+            return { Component: Login };
+          },
           loader: async () => store,
         },
       ],

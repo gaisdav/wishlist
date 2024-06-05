@@ -20,7 +20,7 @@ const skeletons = (
   </>
 );
 
-const Profile: FC<PropsWithChildren> = observer(() => {
+export const Profile: FC<PropsWithChildren> = observer(() => {
   const {
     user: { users, getUsers, usersLoading },
     profile: { entity: profile },

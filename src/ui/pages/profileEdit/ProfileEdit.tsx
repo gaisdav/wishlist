@@ -9,7 +9,7 @@ import { useNavigate } from 'react-router-dom';
 import { ERoute } from 'routes/types.ts';
 import { useStore } from '../../hooks';
 
-const ProfileEdit: FC<PropsWithChildren> = observer(() => {
+export const ProfileEdit: FC<PropsWithChildren> = observer(() => {
   const {
     profile: { entity, editProfile, loading },
   } = useStore();
