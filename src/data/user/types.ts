@@ -31,7 +31,7 @@ export interface IUserService {
 export interface IUserVM {
   loading: boolean;
   usersLoading: boolean;
-  user: IUserEntity | null;
+  entity: IUserEntity | null;
   users: IUserEntity[];
   getUser: (username: string) => Promise<void>;
   getUsers: (search: string) => Promise<void>;

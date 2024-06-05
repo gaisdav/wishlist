@@ -7,12 +7,12 @@ import { Button, Input, Textarea } from 'components/atoms';
 import { format } from 'date-fns';
 import { useNavigate } from 'react-router-dom';
 import { ERoute } from 'routes/types.ts';
-import { useRouteStore } from '../../hooks';
+import { useStore } from '../../hooks';
 
 const ProfileEdit: FC<PropsWithChildren> = observer(() => {
   const {
     profile: { entity, editProfile, loading },
-  } = useRouteStore();
+  } = useStore();
 
   const navigate = useNavigate();
 

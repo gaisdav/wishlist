@@ -4,12 +4,12 @@ import { Outlet } from 'react-router-dom';
 import { Snackbar } from 'components/atoms';
 import { observer } from 'mobx-react-lite';
 import { ErrorBoundary } from 'components/organisms/ErrorBoundary';
-import { useRouteStore } from 'hooks/useRouteStore.tsx';
+import { useStore } from 'hooks/useStore.tsx';
 
 export const AppWrapper: FC = observer(() => {
   const {
     notification: { notification, removeNotification },
-  } = useRouteStore();
+  } = useStore();
 
   return (
     <>

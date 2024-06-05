@@ -16,7 +16,7 @@ export class UserVM implements IUserVM {
     return this._usersLoading;
   }
 
-  get user(): IUserEntity | null {
+  get entity(): IUserEntity | null {
     return this._user;
   }
 

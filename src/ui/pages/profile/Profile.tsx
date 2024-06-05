@@ -1,7 +1,7 @@
 import css from './styles.module.scss';
 import { FC, PropsWithChildren, useCallback, useState } from 'react';
 import { observer } from 'mobx-react-lite';
-import { useRouteStore } from '../../hooks';
+import { useStore } from '../../hooks';
 import { ICreateWishDTO, IEditWishDTO, IWishEntity } from 'data/wish/entity';
 import { AddWishModal, EditWishModal, WishCard, WishCardSkeleton } from 'components/molecules';
 import { Icon, IconButton } from 'components/atoms';
@@ -25,7 +25,7 @@ const Profile: FC<PropsWithChildren> = observer(() => {
     user: { users, getUsers, usersLoading },
     profile: { entity: profile },
     wish: { list, loading, addWish, editWish, deleteWish, isLoading },
-  } = useRouteStore();
+  } = useStore();
   const navigate = useNavigate();
   const [modalMode, setModalMode] = useState<'edit' | 'add' | null>(null);
   const [editableEntity, setEditEntity] = useState<IWishEntity | null>(null);

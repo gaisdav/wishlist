@@ -7,7 +7,7 @@ export interface IWishEntity {
   description?: string;
   createdAt: string;
   updatedAt: string;
-  author: IUserEntity | null;
+  author: IUserEntity;
 }
 
 export interface ICreateWishDTO extends Omit<IWishEntity, 'id' | 'createdAt' | 'updatedAt'> {}

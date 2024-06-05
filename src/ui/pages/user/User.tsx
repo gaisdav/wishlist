@@ -1,7 +1,7 @@
 import css from './styles.module.scss';
 import { FC, PropsWithChildren, useEffect } from 'react';
 import { observer } from 'mobx-react-lite';
-import { useRouteStore } from '../../hooks';
+import { useStore } from '../../hooks';
 import { WishCard, WishCardSkeleton } from 'components/molecules';
 import { UserInfo } from 'components/molecules/UserInfo';
 import { useNavigate, useParams } from 'react-router-dom';
@@ -22,10 +22,10 @@ const User: FC<PropsWithChildren> = observer(() => {
   const navigate = useNavigate();
 
   const {
-    user: { loading, user },
+    user: { loading, entity },
     profile: { entity: profile },
     wish: { loading: wishLoading, list, isLoading },
-  } = useRouteStore();
+  } = useStore();
 
   useEffect(() => {
     if (username === profile?.username) {
@@ -43,7 +43,7 @@ const User: FC<PropsWithChildren> = observer(() => {
   return (
     <>
       <div className={css.profile}>
-        {user ? <UserInfo user={user} wishes={list.length} loading={loading} /> : 'Not found'}
+        {entity ? <UserInfo user={entity} wishes={list.length} loading={loading} /> : 'Not found'}
 
         <div className={css.wishes}>{content}</div>
       </div>
