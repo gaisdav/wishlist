@@ -1,8 +1,8 @@
-import { AxiosRequestConfig } from 'axios';
+import { AxiosError, AxiosRequestConfig } from 'axios';
 import { EEndpoint } from 'common/endpoints.ts';
 
 export type Middleware = (config: AxiosRequestConfig) => AxiosRequestConfig;
-export type ErrorMiddleware = (error: Error) => void;
+export type ErrorMiddleware = (error: AxiosError) => void;
 
 interface RequestInit extends Omit<AxiosRequestConfig, 'url' | 'method'> {}
 

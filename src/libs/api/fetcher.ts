@@ -1,6 +1,7 @@
 import axios, { AxiosError, AxiosInstance, AxiosRequestConfig } from 'axios';
 import { ErrorMiddleware, IFetcher, Middleware } from './types.ts';
 import { EEndpoint } from 'common/endpoints.ts';
+import { authMiddleware } from 'libs/api/middleware.ts';
 
 type RequestInit = Omit<AxiosRequestConfig, 'url' | 'method'>;
 
@@ -13,7 +14,7 @@ export class Fetcher implements IFetcher {
     this.axiosInstance = axios.create({ baseURL });
 
     this.middlewares = [];
-    this.errorMiddlewares = [];
+    this.errorMiddlewares = [authMiddleware];
   }
 
   useRequestMiddleware(middleware: Middleware) {
