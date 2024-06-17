@@ -4,7 +4,7 @@ import { ErrorMiddleware } from './types.ts';
 export const authMiddleware: ErrorMiddleware = (e) => {
   const currentUrl = new URL(window.location.href);
 
-  if (e.response?.status !== 403) {
+  if (e.response?.status !== 401) {
     return;
   }
 

@@ -6,13 +6,18 @@ import { ErrorPage } from 'pages/error/ErrorPage.tsx';
 
 export const initRoutes = (store: IVMs) => {
   const { profile, wish, user } = store;
+
   return createBrowserRouter([
     {
       path: '/',
       Component: AppWrapper,
       ErrorBoundary: ErrorPage,
-      loader: async () => {
-        profile.getProfile();
+      loader: async ({ request }) => {
+        const { pathname } = new URL(request.url);
+
+        if (pathname !== ERoute.LOGIN) {
+          profile.getProfile();
+        }
 
         return store;
       },
