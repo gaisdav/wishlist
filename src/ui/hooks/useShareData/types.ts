@@ -1,10 +1,7 @@
-export type TShareData = {
-  title?: string;
-  text?: string;
-  url: string;
-};
+export type TShareData = Omit<ShareData, 'files'> & { url: string; files?: File[] | string };
 
 export type IUseShareData = {
+  loading: boolean;
   share: () => Promise<void>;
-  shareIcon: 'reply' | 'link';
+  shareIcon: 'share' | 'link';
 };

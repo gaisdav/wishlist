@@ -19,10 +19,15 @@ export const UserInfo: FC<IUserInfo> = ({ user, isProfile, wishes, loading }) =>
   const initials = getInitials(user);
   const birthday = getLocaleBirthday(user);
 
-  const { share, shareIcon } = useShareData({
+  const {
+    share,
+    shareIcon,
+    loading: shareLoading,
+  } = useShareData({
     title: `${firstName}'s wishlist`,
     text: `Hey! Here's ${firstName}'s wishlist`,
     url: shareUrl,
+    files: avatarSrc,
   });
 
   if (loading) return 'Loading...';
@@ -45,6 +50,7 @@ export const UserInfo: FC<IUserInfo> = ({ user, isProfile, wishes, loading }) =>
           </Link>
         )}
         <IconButton disabled={loading} onClick={share}>
+          {shareLoading && 'Loading...'}
           <Icon className={css.shareIcon} iconName={shareIcon} />
         </IconButton>
       </div>
