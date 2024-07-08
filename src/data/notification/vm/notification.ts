@@ -20,7 +20,7 @@ export class NotificationsVM implements INotificationVM {
     let message = 'Unknown error.';
     if (error instanceof AxiosError) {
       // TODO add error type
-      message = `${error.name}. ${error.response?.data?.errorMessage ?? error.message}.`;
+      message = `${error.response?.data?.errorMessage ?? error.message}.`;
     } else if (error instanceof Error) {
       message = `${error.name}. ${error.message}.`;
     } else if (typeof error === 'string') {
