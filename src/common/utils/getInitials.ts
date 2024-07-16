@@ -1,8 +1,11 @@
 import { IUserEntity } from 'data/user/types.ts';
-import { getFullName } from './getFullName.ts';
 
 export const getInitials = (user: IUserEntity | null): string => {
-  const [firstName, lastName] = getFullName(user);
+  if (!user) {
+    return '';
+  }
+
+  const { firstName, lastName } = user;
 
   return [firstName, lastName]
     .filter(Boolean)
