@@ -5,9 +5,9 @@
 
 .wishes {
   display: grid;
-  gap: var(--grid-gap, 12px);
+  gap: var(--grid-gap, 36px);
   padding: 12px 0;
-  grid-template-columns: repeat(var(--grid-columns, 2), 1fr);
+  grid-template-columns: repeat(var(--grid-columns, 1), 1fr);
   background-color: var(--background-default);
   grid-auto-rows: 1fr;
 
@@ -21,11 +21,11 @@
 
   @include lg {
     --grid-columns: 6;
-    --grid-gap: 16px;
+    --grid-gap: 36px;
   }
 
   @include rwd(1400) {
     --grid-columns: 8;
-    --grid-gap: 16px;
+    --grid-gap: 36px;
   }
 }

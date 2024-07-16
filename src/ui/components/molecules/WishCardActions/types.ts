@@ -5,4 +5,5 @@ export interface IWishActions {
   wish: IWishEntity;
   onDelete?: (id: string) => void;
   onEdit?: (id: string) => void;
+  className?: string;
 }

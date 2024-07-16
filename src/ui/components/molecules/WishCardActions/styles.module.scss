@@ -1,0 +1,8 @@
+.wishCardActions {
+  display: flex;
+  width: fit-content;
+  flex-wrap: nowrap;
+  background: var(--variant-softBg, var(--wl-palette-neutral-softBg, var(--wl-palette-neutral-100, #f0f4f8)));
+  padding: 8px;
+  border-radius: 12px;
+}

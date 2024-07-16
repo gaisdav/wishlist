@@ -11,5 +11,6 @@ export const useWishPermissions = ({ wish }: IWishPermissionsParams): IWishPermi
   return {
     canDelete: isAuthor,
     canEdit: isAuthor,
+    canBookmark: !isAuthor,
   };
 };

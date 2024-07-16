@@ -1,30 +1,42 @@
-.wishPic {
-  position: relative;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  aspect-ratio: 1;
-  overflow: hidden;
-  margin-bottom: 12px;
-}
-
 .wishCard {
   position: relative;
+  padding: 0 !important;
+  gap: 0 !important;
   height: 100%;
   width: 100%;
+  overflow: hidden;
+  box-shadow: var(--wl-shadow-lg);
 
   &.loading {
     opacity: 0.5;
   }
 }
 
+.imgWrapper {
+  position: relative;
+  display: grid;
+  align-content: center;
+  justify-content: center;
+  width: 100%;
+  height: 150px;
+  overflow: hidden;
+}
+
 .backgroundImg {
   position: absolute;
-  top: 0;
-  left: 0;
   height: 100%;
   width: 100%;
-  object-fit: contain;
+  filter: blur(10px);
+}
+
+.img {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  max-height: 100%;
+  max-width: 100%;
+  object-fit: cover;
 }
 
 .linearProgress {
@@ -34,13 +46,22 @@
   width: 100%;
 }
 
-.action {
-  height: fit-content;
-  width: fit-content;
+.actions {
+  position: absolute;
+  top: 0%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
+
+.body {
+  position: relative;
 }
 
 .titleWrapper {
   display: flex;
+  flex-direction: column;
+  padding: 24px;
+  gap: 24px;
   justify-content: space-between;
-  margin-bottom: 8px;
+  align-items: center;
 }

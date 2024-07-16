@@ -3,7 +3,7 @@ import { observer } from 'mobx-react-lite';
 import Box from '@mui/joy/Box';
 import { Typography, Img } from 'components/atoms';
 import { useStore } from 'hooks/useStore.tsx';
-import { WishActions } from 'components/molecules/WishActions';
+import { WishCardActions } from 'components/molecules/WishCardActions';
 
 const Wish: FC<PropsWithChildren> = observer(() => {
   const {
@@ -18,7 +18,7 @@ const Wish: FC<PropsWithChildren> = observer(() => {
       <Img src={entity.imageSrc} />
       <Typography>{entity.title}</Typography>
       <Typography>{entity.description}</Typography>
-      <WishActions wish={entity} />
+      <WishCardActions wish={entity} />
     </Box>
   );
 });
