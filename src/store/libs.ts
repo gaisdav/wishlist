@@ -7,8 +7,7 @@ export class LibsStore implements ILibs {
   get fetcher(): IFetcher {
     if (!this.libs?.fetcher) {
       this.libs = {
-        // TODO use env variable for the base URL
-        fetcher: new Fetcher('http://localhost:80'),
+        fetcher: new Fetcher(import.meta.env.VITE_BASE_URL),
       };
     }
 
