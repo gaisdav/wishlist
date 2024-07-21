@@ -11,7 +11,14 @@ export class Fetcher implements IFetcher {
   private readonly errorMiddlewares: ErrorMiddleware[];
 
   constructor(baseURL: string) {
-    this.axiosInstance = axios.create({ baseURL });
+    this.axiosInstance = axios.create({
+      baseURL,
+      withCredentials: true,
+      // headers: {
+      //   'Content-Type': 'application/json',
+      //   // 'Access-Control-Allow-Credentials': 'true',
+      // },
+    });
 
     this.middlewares = [];
     this.errorMiddlewares = [authMiddleware];
@@ -53,7 +60,7 @@ export class Fetcher implements IFetcher {
 
     // eslint-disable-next-line no-useless-catch
     try {
-      const { data } = await this.axiosInstance.request<T>({ withCredentials: true, ...modifiedConfig });
+      const { data } = await this.axiosInstance.request<T>({ ...modifiedConfig });
       return data;
     } catch (error) {
       if (error instanceof AxiosError) {
