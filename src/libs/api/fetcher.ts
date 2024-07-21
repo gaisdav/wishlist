@@ -14,10 +14,11 @@ export class Fetcher implements IFetcher {
     this.axiosInstance = axios.create({
       baseURL,
       withCredentials: true,
-      // headers: {
-      //   'Content-Type': 'application/json',
-      //   // 'Access-Control-Allow-Credentials': 'true',
-      // },
+      headers: {
+        'Access-Control-Allow-Origin': '*',
+        //   'Content-Type': 'application/json',
+        //   // 'Access-Control-Allow-Credentials': 'true',
+      },
     });
 
     this.middlewares = [];
