@@ -15,8 +15,8 @@ export class Fetcher implements IFetcher {
       baseURL,
       withCredentials: true,
       headers: {
-        'Access-Control-Allow-Origin': 'https://www.gaisdav-wishlist-server-edbb.twc1.net',
-        'Access-Control-Allow-Methods': 'GET, POST, PUT, DELETE, PATCH, OPTIONS',
+        'Access-Control-Allow-Origin': '*',
+        'Access-Control-Allow-Methods': 'GET, POST, PUT, DELETE, PATCH',
         'Access-Control-Allow-Headers': 'Content-Type',
         //   'Content-Type': 'application/json',
         //   // 'Access-Control-Allow-Credentials': 'true',
