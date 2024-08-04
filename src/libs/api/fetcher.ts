@@ -15,9 +15,9 @@ export class Fetcher implements IFetcher {
       baseURL,
       withCredentials: true,
       headers: {
-        'Access-Control-Allow-Origin': '*',
-        'Access-Control-Allow-Methods': 'GET, POST, PUT, DELETE, PATCH',
-        'Access-Control-Allow-Headers': 'Content-Type',
+        // 'Access-Control-Allow-Origin': '*',
+        // 'Access-Control-Allow-Methods': 'GET, POST, PUT, DELETE, PATCH',
+        // 'Access-Control-Allow-Headers': 'Content-Type',
         //   'Content-Type': 'application/json',
         //   // 'Access-Control-Allow-Credentials': 'true',
       },

@@ -6,14 +6,13 @@ import { Card, Img, LinearProgress, Link, Typography } from 'components/atoms';
 import { dynamicRoute } from 'common/utils/utils.ts';
 import { ERoute } from 'routes/types.ts';
 import { WishCardActions } from 'components/molecules/WishCardActions';
-import { faker } from '@faker-js/faker';
 
 export const WishCard: FC<IWishCard> = ({ wish, loading, onEdit, onDelete }) => {
   const { id, title, description, author } = wish;
   const route = dynamicRoute(ERoute.USER_WISH, { wishId: id, username: author?.username });
 
-  //TOD remove faker
-  const fakeImg = faker.image.url();
+  const fakeImg =
+    'https://cdn.theatlantic.com/thumbor/me2TZMHw7D5UfmEOq3OaOM2bG3U=/0x0:4800x2700/960x540/media/img/mt/2022/12/What_Gifts_Say/original.jpg';
 
   return (
     <Link to={route} underline="none">
