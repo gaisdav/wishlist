@@ -57,10 +57,11 @@ export const useShareData = ({ files: dataFiles, ...data }: TShareData): IUseSha
       }
 
       const shareData = { ...data, files };
-
-      if (files.length > 0 && navigator.canShare({ files })) {
-        await navigator.share(shareData);
-      } else if (navigator.canShare(data)) {
+      console.log(shareData);
+      // if (files.length > 0 && navigator.canShare({ files })) {
+      //   await navigator.share(shareData);
+      // } else
+      if (navigator.canShare(data)) {
         await navigator.share(data);
       } else {
         await copy(data.url);
