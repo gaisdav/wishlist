@@ -1,63 +1,70 @@
 import { IUseShareData, TShareData } from './types.ts';
-import { useCallback, useState } from 'react';
+import { useCallback, useState, useMemo } from 'react';
 import { useStore } from 'hooks/useStore';
 
-const cache = new Map<string, Promise<File[]>>();
+const cache = new Map<string, File[]>();
 
 export const useShareData = ({ files: dataFiles, ...data }: TShareData): IUseShareData => {
   const [loading, setLoading] = useState(false);
   const {
     notification: { errorNotification },
   } = useStore();
-  const { canShare } = navigator;
-  const shareIcon = Boolean(canShare) ? 'share' : 'link';
 
-  const navShare = navigator.share;
-  const writeText = navigator.clipboard.writeText;
+  const canShare = useMemo(() => typeof navigator !== 'undefined' && navigator.canShare, []);
+  const shareIcon = useMemo(() => (canShare ? 'share' : 'link'), [canShare]);
 
   const share = useCallback(async () => {
-    if (canShare) {
+    if (!canShare) {
+      // Fallback to copying the URL to clipboard if share API is not available
       try {
-        let files: File[] = [];
+        await navigator.clipboard.writeText(data.url);
+      } catch (clipboardError) {
+        errorNotification(clipboardError);
+      }
+      return;
+    }
 
-        if (typeof dataFiles === 'string') {
-          if (cache.has(dataFiles)) {
-            files = (await cache.get(dataFiles)) || [];
-          } else {
-            setLoading(true);
+    try {
+      let files: File[] = [];
 
-            try {
-              const response = await fetch(dataFiles);
-              const blob = await response.blob();
-              files = [
-                new File([blob], 'fileName', {
-                  type: blob.type,
-                }),
-              ];
-            } catch (e) {
-              files = [];
-            } finally {
-              setLoading(false);
-            }
+      if (typeof dataFiles === 'string') {
+        // If files are provided as a URL, fetch and cache them
+        if (cache.has(dataFiles)) {
+          files = cache.get(dataFiles) || [];
+        } else {
+          setLoading(true);
+          try {
+            const response = await fetch(dataFiles);
+            const blob = await response.blob();
+            files = [new File([blob], 'fileName', { type: blob.type })];
+            cache.set(dataFiles, files);
+          } catch (fetchError) {
+            errorNotification(fetchError);
+            files = [];
+          } finally {
+            setLoading(false);
           }
         }
-        const shareFilesData = { ...data, files };
-
-        if (canShare(shareFilesData)) {
-          await navShare(shareFilesData);
-        } else if (canShare(data)) {
-          await navShare(data);
-        } else {
-          await writeText(data.url);
-        }
-      } catch (error) {
-        errorNotification(error);
-        await writeText(data.url);
       }
-    } else {
-      await writeText(data.url);
+
+      const shareData = { ...data, files };
+
+      if (files.length > 0 && navigator.canShare({ files })) {
+        await navigator.share(shareData);
+      } else if (navigator.canShare(data)) {
+        await navigator.share(data);
+      } else {
+        await navigator.clipboard.writeText(data.url);
+      }
+    } catch (error) {
+      errorNotification(error);
+      try {
+        await navigator.clipboard.writeText(data.url);
+      } catch (clipboardError) {
+        errorNotification(clipboardError);
+      }
     }
-  }, [canShare, data]);
+  }, [canShare, data, dataFiles, errorNotification]);
 
   return {
     loading,
