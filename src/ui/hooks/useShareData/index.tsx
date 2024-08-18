@@ -7,7 +7,7 @@ const cache = new Map<string, Promise<File[]>>();
 export const useShareData = ({ files: dataFiles, ...data }: TShareData): IUseShareData => {
   const [loading, setLoading] = useState(false);
   const {
-    notification: { errorNotification, successNotification },
+    notification: { errorNotification },
   } = useStore();
 
   const copy = useCallback(async (url: string) => {
