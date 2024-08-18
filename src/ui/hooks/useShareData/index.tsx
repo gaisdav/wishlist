@@ -13,7 +13,7 @@ export const useShareData = ({ files: dataFiles, ...data }: TShareData): IUseSha
   const copy = useCallback(async (url: string) => {
     try {
       await navigator.clipboard.writeText(url);
-      successNotification('Link copied to clipboard.');
+      // successNotification('Link copied to clipboard.');
     } catch (error) {
       errorNotification(error);
     }
