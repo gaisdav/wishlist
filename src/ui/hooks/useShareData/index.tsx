@@ -1,21 +1,23 @@
 import { IUseShareData, TShareData } from './types.ts';
 import { useCallback, useState } from 'react';
-import { useStore } from 'hooks/useStore.tsx';
+import { useStore } from 'hooks/useStore';
 
 const cache = new Map<string, Promise<File[]>>();
 
-export const useShareData = (data: TShareData): IUseShareData => {
+export const useShareData = ({ files: dataFiles, ...data }: TShareData): IUseShareData => {
+  const [loading, setLoading] = useState(false);
   const {
     notification: { errorNotification },
   } = useStore();
-  const [loading, setLoading] = useState(false);
-  const canShare = 'canShare' in navigator;
-  const shareIcon = canShare ? 'share' : 'link';
+  const { canShare } = navigator;
+  const shareIcon = Boolean(canShare) ? 'share' : 'link';
+
+  const navShare = navigator.share;
+  const writeText = navigator.clipboard.writeText;
 
   const share = useCallback(async () => {
     if (canShare) {
       try {
-        const { files: dataFiles } = data;
         let files: File[] = [];
 
         if (typeof dataFiles === 'string') {
@@ -39,13 +41,21 @@ export const useShareData = (data: TShareData): IUseShareData => {
             }
           }
         }
-        await navigator.share({ ...data, files });
+        const shareFilesData = { ...data, files };
+
+        if (canShare(shareFilesData)) {
+          await navShare(shareFilesData);
+        } else if (canShare(data)) {
+          await navShare(data);
+        } else {
+          await writeText(data.url);
+        }
       } catch (error) {
-        await navigator.clipboard.writeText(data.url);
         errorNotification(error);
+        await writeText(data.url);
       }
     } else {
-      await navigator.clipboard.writeText(data.url);
+      await writeText(data.url);
     }
   }, [canShare, data]);
 
