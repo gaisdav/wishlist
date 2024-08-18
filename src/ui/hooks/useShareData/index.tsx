@@ -34,7 +34,9 @@ export const useShareData = ({ files: dataFiles, ...data }: TShareData): IUseSha
         try {
           const response = await fetch(dataFiles);
           const blob = await response.blob();
-          files = [new File([blob], 'fileName', { type: blob.type })];
+          const fileFormat = blob.type.split('/')[1];
+          const fileName = data.title || 'file';
+          files = [new File([blob], `${fileName}.${fileFormat}`, { type: blob.type })];
           cache.set(dataFiles, Promise.resolve(files));
         } catch (err) {
           files = [];
