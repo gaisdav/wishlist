@@ -2,7 +2,7 @@ import { IUseShareData, TShareData } from './types.ts';
 import { useCallback, useState, useMemo } from 'react';
 import { useStore } from 'hooks/useStore';
 
-const cache = new Map<string, File[]>();
+const cache = new Map<string, Promise<File[]>>();
 
 export const useShareData = ({ files: dataFiles, ...data }: TShareData): IUseShareData => {
   const [loading, setLoading] = useState(false);
@@ -30,14 +30,14 @@ export const useShareData = ({ files: dataFiles, ...data }: TShareData): IUseSha
       if (typeof dataFiles === 'string') {
         // If files are provided as a URL, fetch and cache them
         if (cache.has(dataFiles)) {
-          files = cache.get(dataFiles) || [];
+          files = (await cache.get(dataFiles)) || [];
         } else {
           setLoading(true);
           try {
             const response = await fetch(dataFiles);
             const blob = await response.blob();
             files = [new File([blob], 'fileName', { type: blob.type })];
-            cache.set(dataFiles, files);
+            cache.set(dataFiles, Promise.resolve(files));
           } catch (fetchError) {
             errorNotification(fetchError);
             files = [];
