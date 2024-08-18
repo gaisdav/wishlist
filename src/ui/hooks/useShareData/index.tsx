@@ -7,8 +7,17 @@ const cache = new Map<string, Promise<File[]>>();
 export const useShareData = ({ files: dataFiles, ...data }: TShareData): IUseShareData => {
   const [loading, setLoading] = useState(false);
   const {
-    notification: { errorNotification },
+    notification: { errorNotification, successNotification },
   } = useStore();
+
+  const copy = useCallback(async (url: string) => {
+    try {
+      await navigator.clipboard.writeText(url);
+      successNotification('Link copied to clipboard.');
+    } catch (error) {
+      errorNotification(error);
+    }
+  }, []);
 
   const canShare = useMemo(() => typeof navigator !== 'undefined' && navigator.canShare, []);
   const shareIcon = useMemo(() => (canShare ? 'share' : 'link'), [canShare]);
@@ -17,7 +26,7 @@ export const useShareData = ({ files: dataFiles, ...data }: TShareData): IUseSha
     if (!canShare) {
       // Fallback to copying the URL to clipboard if share API is not available
       try {
-        await navigator.clipboard.writeText(data.url);
+        await copy(data.url);
       } catch (clipboardError) {
         errorNotification(clipboardError);
       }
@@ -54,12 +63,12 @@ export const useShareData = ({ files: dataFiles, ...data }: TShareData): IUseSha
       } else if (navigator.canShare(data)) {
         await navigator.share(data);
       } else {
-        await navigator.clipboard.writeText(data.url);
+        await copy(data.url);
       }
     } catch (error) {
       errorNotification(error);
       try {
-        await navigator.clipboard.writeText(data.url);
+        await copy(data.url);
       } catch (clipboardError) {
         errorNotification(clipboardError);
       }
