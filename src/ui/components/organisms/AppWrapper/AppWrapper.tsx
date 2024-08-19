@@ -21,7 +21,7 @@ export const AppWrapper: FC = observer(() => {
         <Snackbar
           anchorOrigin={{ vertical: 'top', horizontal: 'center' }}
           open={!!notification}
-          autoHideDuration={notification?.duration || 1500}
+          autoHideDuration={notification?.duration || 3000}
           onClose={removeNotification}
           color={notification?.type || 'success'}
         >
