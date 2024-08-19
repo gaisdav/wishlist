@@ -42,7 +42,7 @@ export class ProfileVM implements IProfileVM {
     this._loading = true;
     try {
       this._entity = await this.service.editProfile(dto);
-      this.notification.successNotification('Profile edited successfully');
+      this.notification.successNotification('Profile updated successfully');
     } catch (error) {
       this.notification.errorNotification(error);
       throwError(error);
